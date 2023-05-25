@@ -1,0 +1,17 @@
+.signup-page {
+  background-color: var(--primary-color);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.signup-container {
+  border: 1px solid var(--secondary-color);
+  padding: 7.5em;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+}
