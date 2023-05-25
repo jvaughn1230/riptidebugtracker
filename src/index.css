@@ -1,13 +1,36 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  /* Colors - Update later */
+  --primary-color: cadetblue;
+  --secondary-color: darkgoldenrod;
+
+  /* Font Sizes */
+  --link-text: 16px;
+  --header-text: 48px;
+  --subhead-text: 32px;
+
+  /* Add Fonts Later */
+  --header-font: "Brush Script MT";
+  --subhead-font: "Georgia";
+  --content-font: "Verdana";
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
