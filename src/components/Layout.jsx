@@ -1,10 +1,12 @@
-import React, { Children } from "react";
+import React from "react";
 import { Outlet } from "react-router-dom";
+
+import Navbar from "./Navbar/Navbar";
 
 const Layout = () => {
   return (
-    <div>
-      Layout
+    <div className="layout">
+      <Navbar />
       <Outlet />
     </div>
   );
