@@ -1,0 +1,22 @@
+.navbar {
+  background-color: pink;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  width: 13vw;
+  padding-left: 1.5em;
+  padding-block: 2.5em;
+}
+
+.links-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 10vh;
+  height: 70vh;
+}
+
+.signout-link {
+  justify-self: end;
+}
