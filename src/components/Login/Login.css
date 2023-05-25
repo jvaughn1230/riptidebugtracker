@@ -1,0 +1,16 @@
+.login {
+  background-color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-header {
+  font-family: var(--header-font);
+  font-size: var(--header-text);
+}
+
+.login-redirect {
+  font-family: var(--content-font);
+  font-size: var(--link-text);
+}

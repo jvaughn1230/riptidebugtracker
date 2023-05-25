@@ -9,6 +9,9 @@
   --subhead-text: 32px;
 
   /* Add Fonts Later */
+  --header-font: "Brush Script MT";
+  --subhead-font: "Georgia";
+  --content-font: "Verdana";
 }
 
 * {
