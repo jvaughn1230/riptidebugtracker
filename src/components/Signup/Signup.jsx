@@ -1,44 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./signup.css";
 
 const Signup = () => {
+  console.log("signup page loaded");
+
+  const [formInput, setFormInput] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+
+  const handleInputChange = (e) => {
+    setFormInput({
+      ...formInput,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="signup-page">
       <div className="signup-container">
         <h1 className="signup-title">Create A Free Account</h1>
         <form className="signup-form">
-          <div>
-            <label>First Name: </label>
-            <input type="text" label="firstname" placeholder="First Name...." />
-            <label>Last Name: </label>
-            <input type="text" label="lastname" placeholder="Last Name...." />
-          </div>
-          <div>
-            <label>Username</label>
-            <input
-              type="text"
-              label="username"
-              placeholder="Desired Username...."
-            />
-            <label>Email:</label>
-            <input type="email" label="email" placeholder="Your Email...." />
-          </div>
-          <div>
-            <label>Password:</label>
-            <input
-              type="password"
-              label="password"
-              placeholder="password...."
-            />
-            <label>Confirm Password</label>
-            <input
-              type="password"
-              label="password"
-              placeholder="confirm password...."
-            />
-          </div>
+          <input
+            type="text"
+            label="firstName"
+            name="firstName"
+            placeholder="First Name...."
+          />
+          <input
+            type="text"
+            label="lastName"
+            name="lastName"
+            placeholder="Last Name...."
+          />
+          <input
+            type="text"
+            label="userName"
+            name="userName"
+            placeholder="Desired Username...."
+          />
+          <input type="email" label="email" placeholder="Your Email...." />
+          <input type="password" label="password" placeholder="password...." />
+          <input
+            type="password"
+            label="password"
+            placeholder="confirm password...."
+          />
           <button>Submit</button>
         </form>
+        <p>
+          Already have an account? Login <Link to="/">here</Link>
+        </p>
       </div>
     </div>
   );
