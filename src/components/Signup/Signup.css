@@ -1,17 +1,36 @@
 .signup-page {
-  background-color: var(--primary-color);
   height: 100vh;
   width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url(../../assets/wave.jpg);
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.3);
+  background-blend-mode: multiply;
 }
 .signup-container {
-  border: 1px solid var(--secondary-color);
   padding: 7.5em;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  text-align: center;
 }
 
 .signup-form {
   display: flex;
   flex-direction: column;
+}
+
+.signup-form input {
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: none;
+  height: 30px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.signup-form button {
+  width: 30%;
+  align-self: center;
 }
