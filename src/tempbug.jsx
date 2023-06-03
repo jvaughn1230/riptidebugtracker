@@ -5,6 +5,9 @@ export const bugs = [
     description: "navbar not working",
     priority: 1,
     status: 1,
+    creator: "name",
+    assigned: "assigned to me",
+    created: "13:08",
   },
   {
     id: 2,
@@ -12,5 +15,8 @@ export const bugs = [
     description: "navbar not working",
     priority: 1,
     status: 1,
+    creator: "name",
+    assigned: "assigned to me",
+    created: "15:23",
   },
 ];
