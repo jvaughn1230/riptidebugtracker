@@ -1,13 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { bugs } from "../tempbug";
+import { retrieveBugs } from "../components/bugController";
 
 const bugSlice = createSlice({
-  name: "bug",
+  name: "bugs",
   initialState: [],
   reducers: {
-    getBugs: (state) => {
-      bugs();
-    },
+    getBugs: (state) => retrieveBugs(),
+
     createBugs: (state, action) => {},
     updateBug: (state, action) => {},
     completeBug: (state, action) => {},

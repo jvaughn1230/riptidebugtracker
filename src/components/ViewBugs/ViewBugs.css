@@ -1,0 +1,12 @@
+.viewbugs {
+  width: 100%;
+}
+
+.buglist {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.viewbugs-title {
+  text-align: center;
+}

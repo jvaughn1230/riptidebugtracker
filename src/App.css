@@ -5,3 +5,7 @@
 .layout {
   display: flex;
 }
+
+.flex-row {
+  display: flex;
+}
