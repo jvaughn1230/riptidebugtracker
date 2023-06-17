@@ -1,3 +1,18 @@
 .bugcard {
-  background-color: purple;
+  background-color: pink;
+  box-shadow: 2px 2px 2px var(--primary-color);
+  text-align: center;
+  margin: 10px;
+  width: 22%;
+  padding-inline: 2rem;
+}
+
+.card-row {
+  display: flex;
+  align-items: baseline;
+  /* justify-content: space-around; */
+}
+
+.card-row p {
+  margin-left: 0.5em;
 }

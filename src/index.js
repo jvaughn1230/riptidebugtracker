@@ -10,23 +10,23 @@ import authReducer from "./redux/authSlice";
 import bugReducer from "./redux/bugSlice";
 import userReducer from "./redux/userSlice";
 
-const reducer = combineReducers({
-  auth: authReducer,
-  bug: bugReducer,
-  user: userReducer,
-});
+// const reducer = combineReducers({
+//   auth: authReducer,
+//   bug: bugReducer,
+//   user: userReducer,
+// });
 
-const store = configureStore({
-  reducer,
-});
+// const store = configureStore({
+//   reducer,
+// });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
+      {/* <Provider store={store}> */}
+      <App />
+      {/* </Provider> */}
     </BrowserRouter>
   </React.StrictMode>
 );

@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./App.css";
 import Login from "./components/Login/Login";
 import AddBug from "./components/AddBug/AddBug";
@@ -9,6 +10,7 @@ import Layout from "./components/Layout";
 import Home from "./components/Home/Home";
 
 function App() {
+  // const { auth } = useSelector((state) => state);
   return (
     <div className="app">
       <Routes>

@@ -9,7 +9,6 @@ const authSlice = createSlice({
   reducers: {
     signIn: (state, action) => {
       const { name, password } = action.payload;
-      // Below are temp
       state.loggedIn = true;
       state.admin = true;
     },

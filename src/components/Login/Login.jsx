@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { signIn } from "../../redux/authSlice";
 import "./login.css";
 
 const Login = () => {
-  // ! Login form reloading for every letter typed
+  const dispatch = useDispatch();
+
   const [formInput, setFormInput] = useState({
     userName: "",
     password: "",
@@ -17,7 +20,7 @@ const Login = () => {
   };
 
   const handleSubmit = (e) => {
-    // dispatch signIn(formInput)
+    dispatch(signIn(formInput));
     e.preventDefault();
   };
 
@@ -44,7 +47,9 @@ const Login = () => {
             onChange={handleInputChange}
             required
           />
-          <button type="submit">Login</button>
+          <button type="submit" onClick={handleSubmit}>
+            Login
+          </button>
         </form>
 
         <p className="login-redirect">
