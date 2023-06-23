@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { signIn } from "../../redux/authSlice";
+// import { signIn } from "../../redux/authSlice";
 import "./login.css";
 
 const Login = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [formInput, setFormInput] = useState({
     userName: "",
@@ -20,8 +20,9 @@ const Login = () => {
   };
 
   const handleSubmit = (e) => {
-    dispatch(signIn(formInput));
-    e.preventDefault();
+    console.log("signed in");
+    // dispatch(signIn(formInput));
+    // e.preventDefault();
   };
 
   console.log("signin page loaded");

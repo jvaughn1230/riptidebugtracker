@@ -1,0 +1,33 @@
+.modal-bg {
+  z-index: 3;
+  backdrop-filter: (12px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+}
+
+.modal-container {
+  background-color: #fff;
+  width: 60%;
+  border-radius: 0.25rem;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-plankton {
+  width: 20%;
+  max-height: 100%;
+  font-size: 12px;
+  justify-self: end;
+}
+
+.modal-close {
+}
