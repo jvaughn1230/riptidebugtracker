@@ -55,7 +55,7 @@ const Signup = () => {
           />
           <button>Submit</button>
         </form>
-        <p>
+        <p className="signup-redirect">
           Already have an account? Login <Link to="/">here</Link>
         </p>
       </div>

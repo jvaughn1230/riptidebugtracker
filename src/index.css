@@ -6,7 +6,8 @@
   /* Font Sizes */
   --link-text: 16px;
   --header-text: 48px;
-  --subhead-text: 32px;
+  --subheader-text: 32px;
+  --body-text: 16px;
 
   /* Add Fonts Later */
   --header-font: "Brush Script MT";

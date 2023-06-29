@@ -29,5 +29,12 @@
   justify-self: end;
 }
 
-.modal-close {
+.bugmodal-title {
+  font-size: var(--header-text);
+  font-family: var(--header-font);
+}
+
+.bugmodal-body {
+  font-size: var(--body-text);
+  font-family: var(--content-font);
 }

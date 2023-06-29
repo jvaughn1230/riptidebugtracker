@@ -7,6 +7,11 @@
   padding-inline: 2rem;
 }
 
+.bugcard-title {
+  font-size: var(--header-text);
+  font-family: var(--header-font);
+}
+
 .card-row {
   display: flex;
   align-items: baseline;
