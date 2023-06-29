@@ -22,6 +22,10 @@
   flex-direction: column;
 }
 
+.modal-top {
+  align-self: center;
+}
+
 .modal-plankton {
   width: 20%;
   max-height: 100%;

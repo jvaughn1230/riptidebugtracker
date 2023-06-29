@@ -38,6 +38,8 @@
 
 .login-form button {
   width: 30%;
+  font-size: var(--body-text);
+  font-family: var(--content-font);
 }
 
 .login-form button:hover {

@@ -16,7 +16,7 @@ const BugCard = (bug) => {
 
   return (
     <div className="bugcard">
-      <h2>Bug Name</h2>
+      <h2 className="bugcard-title">Bug Name</h2>
       <div className="card-row">
         <h3>Details:</h3>
         <p>Details Here</p>
