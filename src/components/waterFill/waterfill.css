@@ -1,0 +1,67 @@
+.waterfill {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.wave-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border: 2px solid yellow;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+}
+
+.wave {
+  background-color: #3f68c5;
+  position: absolute;
+  height: 200%;
+  width: 200%;
+  transition: all 1s ease;
+  animation: wave 30s linear infinite;
+  transform: rotate(360deg);
+  /* transform: translate(300px); */
+  left: -50%;
+  top: 110%;
+  border-radius: 38%;
+  border: 2px solid red;
+}
+
+.not-filled {
+}
+
+/* .fill {
+  top: 200%;
+  left: -50%;
+} */
+
+/* .fill-effect {
+  top: 200%;
+} */
+
+@keyframes wave {
+  0% {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -ms-transform: rotate(3600deg);
+    -moz-transform: rotate(3600deg);
+    -webkit-transform: rotate(3600deg);
+    -o-transform: rotate(3600deg);
+    transform: rotate(3600deg);
+  }
+}
+
+.wave-container:hover .wave {
+  top: 0%;
+}
