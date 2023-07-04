@@ -1,5 +1,5 @@
 .navbar {
-  background-color: pink;
+  background-color: var(--secondary-color);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,6 +20,7 @@
   height: 70vh;
   font-family: var(--body-font);
   font-size: var(--link-text);
+  color: #f6f1f1;
 }
 
 .signout-link {
