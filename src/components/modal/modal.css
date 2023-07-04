@@ -1,5 +1,5 @@
 .modal-bg {
-  z-index: 3;
+  z-index: 9999;
   backdrop-filter: (12px);
   position: fixed;
   top: 0;

@@ -1,7 +1,7 @@
 :root {
   /* Colors - Update later */
-  --primary-color: cadetblue;
-  --secondary-color: darkgoldenrod;
+  --primary-color: #f6f1f1;
+  --secondary-color: #19a7ce;
 
   /* Font Sizes */
   --link-text: 16px;
@@ -13,6 +13,10 @@
   --header-font: "Brush Script MT";
   --subhead-font: "Georgia";
   --content-font: "Verdana";
+
+  /* Stacking */
+  --modal-zindex: 3;
+  --wave-zindex: 2;
 }
 
 * {
@@ -37,10 +41,11 @@ a {
 }
 
 button {
-  background-color: #ef6c57;
+  background-color: #fff5b8;
+  /* #ef6c57; */
   border-radius: 5px;
   padding: 5px 20px;
-  color: white;
+  color: #afd3e2;
   font: normal bold 18px "Open Sans", sans-serif;
   text-align: center;
   margin-bottom: 10px;
@@ -49,5 +54,5 @@ button {
 
 button:hover {
   transition: all 0.3s;
-  background-color: #9c3829;
+  background-color: #ffe7a0;
 }
