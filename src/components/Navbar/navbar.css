@@ -4,25 +4,30 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   width: 13vw;
   padding-left: 1.5em;
   padding-block: 2.5em;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  border: 2px solid red;
 }
 
 .links-container {
   display: flex;
   flex-direction: column;
-  min-height: 10vh;
-  height: 70vh;
+  height: 30vh;
   font-family: var(--body-font);
   font-size: var(--link-text);
   color: #f6f1f1;
+  justify-content: space-around;
+  /* margin-top: 20vh; */
+  border: 2px solid yellow;
+  margin-top: -10rem;
 }
 
 .signout-link {
-  justify-self: end;
+  border: 2px solid white;
 }

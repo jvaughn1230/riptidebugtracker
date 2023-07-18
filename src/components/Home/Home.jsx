@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TestCard from "../testCard/TestCard";
+// import Riptidebg from "../riptidebg/Riptidebg";
 const Home = () => {
   const [complete, setComplete] = useState(false);
 
