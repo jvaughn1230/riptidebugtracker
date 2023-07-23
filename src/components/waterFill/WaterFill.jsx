@@ -1,27 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./waterfill.css";
 
-const WaterFill = ({ complete }) => {
-  console.log("waterfill complete" + complete);
+const WaterFill = () => {
+  const [isComplete, setIsComplete] = useState(false);
+  const handleCardClick = () => {
+    setIsComplete(!isComplete);
+  };
+
   return (
-    <div className="waterfill">
-      <div className="wave-container">
-        <div className="wave"></div>
+    <div className="wave2">
+      <div
+        className={`wave2-box ${isComplete ? "wave2-show" : "hide"}`}
+        onClick={handleCardClick}
+      >
+        <div className={`wave2 ${isComplete ? "wave2-top" : ""}`}></div>
       </div>
     </div>
   );
 };
 
 export default WaterFill;
-
-// const [fillPerecntage, setFillPercentage] = useState(0);
-
-// useEffect(() => {
-//   if (complete) {
-//     setFillPercentage(100);
-//   } else {
-//     setFillPercentage(0);
-//   }
-// }, [complete]);
-
-// style={{ height: `${fillPerecntage}%` }}

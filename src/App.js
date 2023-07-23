@@ -8,6 +8,7 @@ import Signup from "./components/Signup/Signup";
 import ViewBugs from "./components/ViewBugs/ViewBugs";
 import Layout from "./components/Layout";
 import Home from "./components/Home/Home";
+import Wave3 from "./components/wave3/Wave3";
 
 function App() {
   // const { auth } = useSelector((state) => state);
@@ -20,6 +21,7 @@ function App() {
           <Route path="/account" element={<Home />} />
           <Route path="/account/addbug" element={<AddBug />} />
           <Route path="/account/viewbugs" element={<ViewBugs />} />
+          <Route path="/account/wave" element={<Wave3 />} />
         </Route>
       </Routes>
     </div>
