@@ -1,69 +1,90 @@
-.waterfill {
+.wave2 {
   height: 100%;
   width: 100%;
-  position: absolute;
-  /* z-index: 2; */
 }
 
-.wave-container {
+.wave2-box {
+  height: 100%;
+  width: 100%;
+  /* width: 500px;
+  height: 500px; */
   position: relative;
-  height: 100%;
-  width: 100%;
+  /* left: 50%; */
+  /* top: 50%; */
+  /* transform: translate(-50%, -50%); */
+  border-radius: 5px;
+  background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
   overflow: hidden;
-  border: 2px solid yellow;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  transform: translate3d(0, 0, 0);
-  -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
 }
 
-.wave {
-  background-color: #3f68c5;
+.wave2 {
+  display: none;
+  width: 1000px;
+  height: 1025px;
   position: absolute;
-  height: 200%;
-  width: 200%;
-  transition: all 1s ease;
-  animation: wave 30s linear infinite;
-  transform: rotate(360deg);
-  /* transform: translate(300px); */
-  left: -50%;
-  top: 110%;
-  border-radius: 38%;
-  border: 2px solid red;
-  /* z-index: 5; */
+  top: -25%;
+  left: 50%;
+  margin-left: -500px;
+  margin-top: -500px;
+  border-radius: 35%;
+  background: rgba(255, 255, 255, 0.75);
+  animation: wave 15s infinite linear;
+  transition: top 0.5s;
 }
 
-.not-filled {
+.wave2-show {
+  display: block;
+  top: -25%;
 }
 
-/* .fill {
-  top: 200%;
-  left: -50%;
-} */
+.wave2-top {
+  top: 10%;
+  animation-play-state: paused;
+}
 
-/* .fill-effect {
-  top: 200%;
-} */
+.wave2-box:hover .wave2 {
+  top: -25%; /* Reset the top position to its original value */
+}
+
+.wave2-box:hover .wave2 {
+  animation-play-state: running;
+}
+
+.hide {
+  display: none;
+}
 
 @keyframes wave {
-  0% {
-    -ms-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
+  from {
     transform: rotate(0deg);
   }
-  100% {
-    -ms-transform: rotate(3600deg);
-    -moz-transform: rotate(3600deg);
-    -webkit-transform: rotate(3600deg);
-    -o-transform: rotate(3600deg);
-    transform: rotate(3600deg);
+  from {
+    transform: rotate(360deg);
   }
 }
 
-.wave-container:hover .wave {
-  top: 0%;
+/* .wave2-box {
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+  overflow: hidden;
 }
+
+.wave2 {
+  width: 1000px;
+  height: 1025px;
+  position: absolute;
+  top: -25%;
+  left: 50%;
+  margin-left: -500px;
+  margin-top: -500px;
+  border-radius: 35%;
+  background: rgba(255, 255, 255, 0.75);
+  animation: wave 5s infinite linear;
+  transition: top 2s;
+} */

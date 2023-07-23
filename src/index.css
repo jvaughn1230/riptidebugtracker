@@ -2,6 +2,12 @@
   /* Colors - Update later */
   --primary-color: #f6f1f1;
   --secondary-color: #19a7ce;
+  --water-color: #0184bd;
+
+  /* Font Families */
+  --title-text: ;
+  --header-text: ;
+  --body-text: ;
 
   /* Font Sizes */
   --link-text: 16px;
@@ -41,11 +47,11 @@ a {
 }
 
 button {
-  background-color: #fff5b8;
+  /* background-color: #fff5b8; */
   /* #ef6c57; */
+  background-color: #ffbfc3;
   border-radius: 5px;
   padding: 5px 20px;
-  color: #afd3e2;
   font: normal bold 18px "Open Sans", sans-serif;
   text-align: center;
   margin-bottom: 10px;
@@ -54,5 +60,5 @@ button {
 
 button:hover {
   transition: all 0.3s;
-  background-color: #ffe7a0;
+  background-color: #ff9fa6;
 }
