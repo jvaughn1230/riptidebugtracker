@@ -9,6 +9,7 @@ const authSlice = createSlice({
   reducers: {
     signIn: (state, action) => {
       const { name, password } = action.payload;
+      // TODO: Correct below to work with DB
       state.loggedIn = true;
       state.admin = true;
     },
