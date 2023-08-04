@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-// import { signIn } from "../../redux/authSlice";
+import { signIn } from "../../redux/authSlice";
 import "./login.css";
 
 const Login = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [formInput, setFormInput] = useState({
-    userName: "",
+    name: "",
     password: "",
   });
 
@@ -20,9 +20,8 @@ const Login = () => {
   };
 
   const handleSubmit = (e) => {
-    console.log("signed in");
-    // dispatch(signIn(formInput));
-    // e.preventDefault();
+    dispatch(signIn(formInput));
+    e.preventDefault();
   };
 
   console.log("signin page loaded");
@@ -33,10 +32,10 @@ const Login = () => {
         <h1 className="login-header">Log In</h1>
         <form className="login-form">
           <input
-            name="userName"
+            name="name"
             type="text"
-            placeholder="username"
-            value={formInput.userName}
+            placeholder="name"
+            value={formInput.name}
             onChange={handleInputChange}
             required
           />
