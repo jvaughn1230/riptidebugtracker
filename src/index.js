@@ -7,7 +7,7 @@ import "./index.css";
 import App from "./App";
 
 import authReducer from "./redux/authSlice";
-import bugReducer from "./redux/bugSlice";
+import bugReducer from "./redux/apis/bugsApi";
 import userReducer from "./redux/userSlice";
 
 const reducer = combineReducers({

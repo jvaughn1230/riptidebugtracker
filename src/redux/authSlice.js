@@ -2,25 +2,22 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const authSlice = createSlice({
   name: "auth",
-  initialState: {
-    admin: false,
-    loggedIn: false,
-  },
+  initialState: { user: null, token: null },
   reducers: {
-    signIn: (state, action) => {
-      const { name, password } = action.payload;
-      // TODO: Correct below to work with DB
-      state.loggedIn = true;
-      state.admin = true;
+    setCredentials: (state, action) => {
+      const { user, accessToken } = action.payload;
+      state.user = user;
+      state.token = accessToken;
     },
-    signOut: (state) => {
-      state.loggedIn = false;
-      state.admin = false;
+    logOut: (state, action) => {
+      state.user = null;
+      state.action = null;
     },
   },
-  createUser: (state, action) => {},
 });
 
+export const { setCredentials, logOut } = authSlice.actions;
 export default authSlice.reducer;
 
-export const { signIn, signOut, createUser } = authSlice.actions;
+export const selectCurrentUser = (state) => state.auth.user;
+export const selectCurrentToken = (state) => state.auth.token;
