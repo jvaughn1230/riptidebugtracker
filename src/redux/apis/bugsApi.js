@@ -28,4 +28,9 @@ export const bugApi = createApi({
   }),
 });
 
-export const { useGetBugs, useGetBug, useUpdateBug, useAddBug } = bugApi;
+export const {
+  useGetBugsQuery,
+  useGetBugQuery,
+  useUpdateBugMutation,
+  useAddBugMutation,
+} = bugApi;

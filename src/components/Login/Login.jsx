@@ -1,50 +1,86 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { signIn } from "../../redux/authSlice";
+import { Link, useNavigate } from "react-router-dom";
+import { setCredentials } from "../../redux/authSlice";
+import { useLoginMutation } from "../../redux/authApi";
 import "./login.css";
 
 const Login = () => {
+  const emailRef = useRef();
+  const errRef = useRef();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const navigate = useNavigate();
+
+  const [login, { isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
 
-  const [formInput, setFormInput] = useState({
-    name: "",
-    password: "",
-  });
+  //On Load Focus
+  useEffect(() => {
+    emailRef.current.focus();
+  }, []);
 
-  const handleInputChange = (e) => {
-    setFormInput({
-      ...formInput,
-      [e.target.name]: e.target.value,
-    });
-  };
+  //Clear Error
+  useEffect(() => {
+    setErrMsg("");
+  }, [email, password]);
 
-  const handleSubmit = (e) => {
-    dispatch(signIn(formInput));
+  //Submit Handler
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      const userData = await login({ email, password }).unwrap();
+      dispatch(setCredentials({ ...userData, email }));
+      setEmail("");
+      setPassword("");
+      //TODO: Fix Route Name
+      navigate("/account");
+    } catch (err) {
+      // ToDO: Check Server Errors
+      if (!err.response) {
+        setErrMsg("No Server Response");
+      } else if (err.response?.status === 400) {
+        setErrMsg("Missing Email or Password");
+      } else if (err.response?.status === 401) {
+        setErrMsg("Unauthorized");
+      } else {
+        setErrMsg("Login Failed");
+      }
+      errRef.current.focus();
+    }
   };
 
-  console.log("signin page loaded");
+  // Input handlers
+  const handleEmailInput = (e) => setEmail(e.target.value);
+  const handlePasswordInput = (e) => setPassword(e.target.value);
 
-  return (
-    <div className="login page-container">
+  return isLoading ? (
+    <h1>Loading ...</h1>
+  ) : (
+    <section className="login page-container">
       <div className="login-container">
+        <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+          {errMsg}
+        </p>
         <h1 className="login-header">Log In</h1>
-        <form className="login-form">
+        <form className="login-form" onSubmit={handleSubmit}>
           <input
-            name="name"
+            name="user"
             type="text"
-            placeholder="name"
-            value={formInput.name}
-            onChange={handleInputChange}
+            placeholder="Email"
+            ref={emailRef}
+            value={email}
+            onChange={handleEmailInput}
             required
           />
           <input
             name="password"
             type="password"
             placeholder="Password"
-            value={formInput.password}
-            onChange={handleInputChange}
+            value={password}
+            onChange={handlePasswordInput}
             required
           />
           <button type="submit" onClick={handleSubmit}>
@@ -56,7 +92,7 @@ const Login = () => {
           Dont have an account? Signup <Link to="/signup">here</Link>
         </p>
       </div>
-    </div>
+    </section>
   );
 };
 
