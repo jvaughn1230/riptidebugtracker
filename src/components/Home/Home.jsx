@@ -1,14 +1,10 @@
-import React, { useState } from "react";
-// import Riptidebg from "../riptidebg/Riptidebg";
+import React from "react";
+import { useSelector } from "react-redux";
+import { selectCurrentUser, selectCurrentToken } from "../../redux/authSlice";
+import { Link } from "react-router-dom";
+
 const Home = () => {
-  const [complete, setComplete] = useState(false);
-
-  const handleToggleComplete = () => {
-    setComplete(!complete);
-  };
-
-  console.log("home complete" + complete);
-  return <div></div>;
+  return <div>Home</div>;
 };
 
 export default Home;
