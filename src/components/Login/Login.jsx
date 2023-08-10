@@ -36,7 +36,7 @@ const Login = () => {
       setEmail("");
       setPassword("");
       //TODO: Fix Route Name
-      navigate("/account");
+      navigate("/account/bugs");
     } catch (err) {
       // ToDO: Check Server Errors
       if (!err.response) {

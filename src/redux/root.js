@@ -3,6 +3,6 @@ import authSlice from "./authSlice";
 import { apiSlice } from "./api";
 
 export const rootReducer = combineReducers({
-  authSlice,
+  auth: authSlice,
   [apiSlice.reducerPath]: apiSlice.reducer,
 });
