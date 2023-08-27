@@ -5,11 +5,17 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   const user = useSelector(selectCurrentUser);
-  const token = useSelector(selectCurrentToken);
+  // const token = useSelector(selectCurrentToken);
 
-  const welcome = user ? `Welcome ${user.email}!` : "Welceome!";
+  console.log(user);
 
-  return <div>Home</div>;
+  const welcome = user ? `Welcome ${user.name}!` : "Welcome!";
+
+  return (
+    <div>
+      <h1>{welcome}</h1>
+    </div>
+  );
 };
 
 export default Home;
