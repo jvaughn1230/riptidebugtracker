@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { setCredentials } from "../../redux/authSlice";
 import { useLoginMutation } from "../../redux/authApi";
+import usePersist from "../../hooks/usePersist";
+
 import "./login.css";
 
 const Login = () => {
@@ -11,6 +13,8 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
+  const [persist, setPersist] = usePersist();
+
   const navigate = useNavigate();
 
   const [login, { isLoading }] = useLoginMutation();
@@ -55,13 +59,14 @@ const Login = () => {
   // Input handlers
   const handleEmailInput = (e) => setEmail(e.target.value);
   const handlePasswordInput = (e) => setPassword(e.target.value);
+  const handleToggle = (e) => setPersist((prev) => !prev);
 
   return isLoading ? (
     <h1>Loading ...</h1>
   ) : (
     <section className="login page-container">
       <div className="login-container">
-        <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+        <p ref={errRef} className={errMsg ? "errmsg" : "hide"}>
           {errMsg}
         </p>
         <h1 className="login-header">Log In</h1>
@@ -87,6 +92,17 @@ const Login = () => {
             Login
           </button>
         </form>
+
+        <label htmlFor="persist" className="form_persist">
+          <input
+            type="checkbox"
+            className="form_checkbox"
+            id="persist"
+            onChange={handleToggle}
+            checked={persist}
+          />
+          Trust This Device?
+        </label>
 
         <p className="login-redirect">
           Dont have an account? Signup <Link to="/signup">here</Link>

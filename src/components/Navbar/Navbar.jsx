@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/riptide-white.png";
 import AddBug from "../AddBug/AddBug";
+import Logout from "../Logout/Logout";
 import "./navbar.css";
 
 const Navbar = () => {
@@ -21,9 +22,7 @@ const Navbar = () => {
         {isModalOpen && <AddBug closeModal={closeModal} />}
       </div>
 
-      <Link to="/" className="signout-link">
-        Sign Out
-      </Link>
+      <Logout />
     </div>
   );
 };

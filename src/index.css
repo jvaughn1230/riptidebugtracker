@@ -46,6 +46,10 @@ a {
   text-decoration: none;
 }
 
+.hide {
+  display: none;
+}
+
 button {
   /* background-color: #fff5b8; */
   /* #ef6c57; */
