@@ -7,8 +7,6 @@ const Home = () => {
   const user = useSelector(selectCurrentUser);
   // const token = useSelector(selectCurrentToken);
 
-  console.log(user);
-
   const welcome = user ? `Welcome ${user.name}!` : "Welcome!";
 
   return (

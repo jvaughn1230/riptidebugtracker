@@ -5,10 +5,11 @@ import "./App.css";
 import Login from "./routes/Login/Login";
 import AddBug from "./components/AddBug/AddBug";
 import Signup from "./routes/Signup/Signup";
-import ViewBugs from "./components/ViewBugs/ViewBugs";
+import ViewBugs from "./routes/ViewBugs/ViewBugs";
 import Layout from "./routes/Layout";
 import Home from "./routes/Home/Home";
 
+import RequireAuth from "./components/RequireAuth";
 import PersistLogin from "./redux/PersistLogin";
 
 function App() {
@@ -18,13 +19,15 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        {/* <Route element={<PersistLogin />}> */}
-        <Route path="/account" element={<Layout />}>
-          <Route path="/account" element={<Home />} />
-          <Route path="/account/addbug" element={<AddBug />} />
-          <Route path="/account/viewbugs" element={<ViewBugs />} />
+        <Route element={<PersistLogin />}>
+          <Route element={<RequireAuth />}>
+            <Route path="/account" element={<Layout />}>
+              <Route path="/account" element={<Home />} />
+              <Route path="/account/addbug" element={<AddBug />} />
+              <Route path="/account/viewbugs" element={<ViewBugs />} />
+            </Route>
+          </Route>
         </Route>
-        {/* </Route> */}
       </Routes>
     </div>
   );

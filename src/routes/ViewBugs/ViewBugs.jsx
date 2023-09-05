@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./ViewBugs.css";
-import BugCard from "../BugCard/BugCard";
+import BugCard from "../../components/BugCard/BugCard";
 import { useDispatch, useSelector } from "react-redux";
 
 const bugsData = ["bug1", "bug2"];

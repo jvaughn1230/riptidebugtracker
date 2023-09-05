@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { setCredentials } from "../../redux/authSlice";
-import { useLoginMutation } from "../../redux/authApi";
+import { useLoginMutation } from "../../redux/authApiSlice";
 import usePersist from "../../hooks/usePersist";
 
 import "./login.css";
@@ -36,10 +36,9 @@ const Login = () => {
 
     try {
       const userData = await login({ email, password }).unwrap();
-      dispatch(setCredentials({ ...userData, email }));
+      await dispatch(setCredentials({ ...userData, email }));
       setEmail("");
       setPassword("");
-      //TODO: Fix Route Name
       navigate("/account");
     } catch (err) {
       // ToDO: Check Server Errors
