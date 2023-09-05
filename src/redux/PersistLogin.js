@@ -1,6 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { useRefreshMutation } from "./authApi";
+import { useRefreshMutation } from "./authApiSlice";
 import usePersist from "../hooks/usePersist";
 import { useSelector } from "react-redux";
 import { selectCurrentToken } from "./authSlice";
@@ -32,16 +32,12 @@ const PersistLogin = () => {
     // eslint-disable-next-line
   }, []);
 
-  // TODO: Remove console.logs
   let content;
   if (!persist) {
-    console.log("no persist");
     content = <Outlet />;
   } else if (isLoading) {
-    console.log("loading");
     content = <p>Loading...</p>;
   } else if (isError) {
-    console.log("error");
     content = (
       <p>
         {error.data?.message}
@@ -49,11 +45,8 @@ const PersistLogin = () => {
       </p>
     );
   } else if (isSuccess && trueSuccess) {
-    console.log("success");
     content = <Outlet />;
   } else if (token && isUninitialized) {
-    console.log("token and uninit");
-    console.log(isUninitialized);
     content = <Outlet />;
   }
 
