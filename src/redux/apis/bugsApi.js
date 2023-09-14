@@ -8,20 +8,20 @@ export const bugApi = createApi({
       query: () => "/bugs",
       providesTags: ["bugs"],
     }),
-    getBug: builder.query(),
+    getBug: builder.query({}),
     updateBug: builder.mutation({
       query: (bug) => ({
         url: `/bugs/${bug.id}`,
         method: "PATCH",
         body: bug,
-        invalidateTags: ["Todos"],
+        invalidateTags: [""],
       }),
       addBug: builder.mutation({
         query: (bug) => ({
           url: "/bugs",
           method: "POST",
           body: bug,
-          invalidateTags: ["Todos"],
+          invalidateTags: [""],
         }),
       }),
     }),

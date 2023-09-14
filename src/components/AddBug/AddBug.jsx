@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import "./AddBug.css";
 import Modal from "../modal/Modal";
+import { useAddBugMutation } from "../../redux/apis/bugsApi";
 
 const AddBug = ({ closeModal }) => {
-  console.log("bug page loaded");
-  const [newBug, setNewBug] = useState({
-    assigned: "option1",
-    priority: "1",
-  });
+  const [newBug, setNewBug] = useState({});
 
   const handleChange = (e) => {
     const name = e.target.name;
