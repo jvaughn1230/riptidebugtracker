@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "./ViewBugs.css";
 import BugCard from "../../components/BugCard/BugCard";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 const bugsData = ["bug1", "bug2"];
 const ViewBugs = () => {
