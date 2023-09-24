@@ -2,19 +2,24 @@ import React, { useEffect } from "react";
 import "./ViewBugs.css";
 import BugCard from "../../components/BugCard/BugCard";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import { useFetchBugsQuery } from "../../redux/apis/bugsApiSlice";
 
 const bugsData = ["bug1", "bug2"];
 const ViewBugs = () => {
-  // TODO: Update to fetch bugs from DB
-  const bugs = bugsData.map((bug, index) => {
-    return <BugCard key={index} bug={bug} />;
-  });
+  const { data, error, isLoading } = useFetchBugsQuery();
+  console.log("Bug Data: ");
+  console.log(data);
 
-  return (
+  return isLoading ? (
+    <h1>Loading...</h1>
+  ) : (
     <div className="viewbugs">
       <h1 className="viewbugs-title">View Bugs</h1>
-      <div className="buglist">{bugs}</div>
+      <div className="buglist">
+        {data?.map((bug, index) => {
+          return <BugCard key={index} bug={bug} />;
+        })}
+      </div>
     </div>
   );
 };
