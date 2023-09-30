@@ -10,7 +10,7 @@ export const bugApi = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidateTags: ["Bug"],
+      invalidatesTags: ["Bug"],
     }),
 
     // Fetch Bugs
@@ -45,7 +45,7 @@ export const bugApi = apiSlice.injectEndpoints({
     // Delete Bug
     deleteBug: builder.mutation({
       query: ({ id }) => ({
-        url: `/notes/${id}`,
+        url: `/bugs/${id}`,
         method: "DELETE",
         body: { id },
       }),
