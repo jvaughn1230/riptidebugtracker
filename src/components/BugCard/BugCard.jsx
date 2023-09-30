@@ -3,7 +3,6 @@ import "./bugcard.css";
 import BugModal from "../bugModal/BugModal";
 
 const BugCard = ({ bug }) => {
-  console.log(bug);
   // TODO: Need to have something that checks for changes and then have a update bug button to update bug
   const [isModalOpen, setIsModalOpen] = useState(false);
 

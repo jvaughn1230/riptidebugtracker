@@ -7,8 +7,6 @@ import { useFetchBugsQuery } from "../../redux/apis/bugsApiSlice";
 const bugsData = ["bug1", "bug2"];
 const ViewBugs = () => {
   const { data, error, isLoading } = useFetchBugsQuery();
-  console.log("Bug Data: ");
-  console.log(data);
 
   return isLoading ? (
     <h1>Loading...</h1>
