@@ -29,6 +29,7 @@
 .addbug-form label {
   text-align: right;
   font-size: 1.5rem;
+  color: black;
 }
 
 .addbug-form input,

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./bugcard.css";
 import BugModal from "../bugModal/BugModal";
+import plankton from "../../assets/plankton.png";
 
 const BugCard = ({ bug }) => {
-  // TODO: Need to have something that checks for changes and then have a update bug button to update bug
   const [isModalOpen, setIsModalOpen] = useState(false);
+  console.log(bug);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -16,10 +17,10 @@ const BugCard = ({ bug }) => {
 
   return (
     <div className="bugcard">
-      <h2 className="bugcard-title">{bug.issue}</h2>
+      <img src={plankton} alt="plankton" className="card-plankton" />
       <div className="card-row">
-        <h3>Details:</h3>
-        <p>{bug.details}</p>
+        <h3>Issue: </h3>
+        <p>{bug.issue}</p>
       </div>
       <div className="card-row">
         {" "}
@@ -28,8 +29,8 @@ const BugCard = ({ bug }) => {
       </div>
       <div className="card-row">
         {" "}
-        <h3>Status:</h3>
-        <p>{bug.status}</p>
+        <h3>Due:</h3>
+        <p>{bug.due}</p>
       </div>
       {/* <div className="card-row">
         <h3>Due Date:</h3>

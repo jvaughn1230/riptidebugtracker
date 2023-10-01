@@ -4,7 +4,6 @@ import BugCard from "../../components/BugCard/BugCard";
 import { useDispatch, useSelector } from "react-redux";
 import { useFetchBugsQuery } from "../../redux/apis/bugsApiSlice";
 
-const bugsData = ["bug1", "bug2"];
 const ViewBugs = () => {
   const { data, error, isLoading } = useFetchBugsQuery();
 

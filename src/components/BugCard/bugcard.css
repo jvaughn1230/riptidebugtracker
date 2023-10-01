@@ -1,15 +1,41 @@
 .bugcard {
-  background-color: #afd3e2;
-  box-shadow: 2px 2px 2px var(--primary-color);
+  background-color: var(--card-color);
+  /* box-shadow: 2px 2px 2px var(--primary-color); */
   text-align: center;
   margin: 10px;
   width: 22%;
   padding-inline: 2rem;
+  border-radius: 0.5rem;
+  position: relative;
+  /* border: 10px solid;
+  border-image-source: linear-gradient(
+    45deg,
+    var(--orange-color),
+    var(--dark-blue)
+  );
+  border-image-slice: 10;
+  border-image-repeat: round; */
+}
+
+.bucard::before,
+.bugcard::after {
+  content: "";
+  position: absolute;
+  inset: -0.5rem;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(180deg, var(--orange-color), var(--dark-blue));
 }
 
 .bugcard-title {
   font-size: var(--header-text);
   font-family: var(--header-font);
+}
+
+.card-plankton {
+  width: 40%;
+  max-height: 100%;
+  margin-top: 10%;
 }
 
 .card-row {

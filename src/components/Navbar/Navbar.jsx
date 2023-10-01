@@ -2,14 +2,19 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/riptide-white.png";
 import AddBug from "../AddBug/AddBug";
+import AddProject from "../addProject/AddProject";
 import Logout from "../Logout/Logout";
 import "./navbar.css";
 
 const Navbar = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isBugModalOpen, setIsBugModalOpen] = useState(false);
+  const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const openBugModal = () => setIsBugModalOpen(true);
+  const closeBugModal = () => setIsBugModalOpen(false);
+
+  const openProjectModal = () => setIsProjectModalOpen(true);
+  const closeProjectModal = () => setIsProjectModalOpen(false);
 
   return (
     <div className="navbar">
@@ -18,8 +23,11 @@ const Navbar = () => {
         <Link to="/account">Home</Link>
         <Link to="/account/viewbugs">View Bugs</Link>
         <Link to="/wave">Wave</Link>
-        <Link onClick={openModal}>Add Bug</Link>
-        {isModalOpen && <AddBug closeModal={closeModal} />}
+        <div className="line"></div>
+        <Link onClick={openBugModal}>Add Bug</Link>
+        {isBugModalOpen && <AddBug closeModal={closeBugModal} />}
+        <Link onClick={openProjectModal}>Add Project</Link>
+        {isProjectModalOpen && <AddProject closeModal={closeProjectModal} />}
       </div>
 
       <Logout />

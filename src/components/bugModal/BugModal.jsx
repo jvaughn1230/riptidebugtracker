@@ -8,12 +8,11 @@ import {
 
 const BugModal = ({ closeModal, bug }) => {
   const initBug = bug;
-  console.log("Init Bug: ");
-  console.log(initBug);
 
   const [updateBugPriority, setUpdateBugPriority] = useState(bug.priority);
-  const [updateBugDetails, setUpdateBugDetails] = useState(bug.details);
-  const [updateBugStatus, setUpdateBugStatus] = useState(bug.status);
+  const [updateBugUpdates, setUpdateBugUpdates] = useState(bug.updates);
+  // const [updateBugStatus, setUpdateBugStatus] = useState(bug.status);
+  const [completed, setCompleted] = useState(bug.completed);
 
   const [changed, setChanged] = useState(false);
 
@@ -35,62 +34,69 @@ const BugModal = ({ closeModal, bug }) => {
     await deleteBug({ id: bug._id });
   };
 
+  const onCompletedChanged = (e) => setCompleted((prev) => !prev);
+
   // const canSave = [title, text, userId].every(Boolean) && !isLoading
 
   const onUpdateBugClicked = async (e) =>
     await updateBug({
       id: bug._id,
       priority: updateBugPriority,
-      status: updateBugStatus,
-      details: updateBugDetails,
+      updates: updateBugUpdates,
+      completed: completed,
     });
 
   return (
     <Modal closeModal={closeModal}>
-      {bug.issue}
-      <h1 className="bugmodal-title">bug #bugid</h1>
+      <h1 className="bugmodal-title">{bug.issue}</h1>
       <div className="bugmodal-body">
         {isDelError ? <div>Failed to delete Bug please try again</div> : null}
         {isError ? <div>Failed to update Bug. Please try again</div> : null}
-        <div>
-          <p>Priority: </p>
-          <input
-            type="text"
-            value={updateBugPriority}
-            onChange={(e) => {
-              setUpdateBugPriority(e.target.value);
-              setChanged(true);
-            }}
-          ></input>
-          <div>Created: {bug.createdAt}</div>
+        <div className="flex-row budmodal-row">
+          <p>Last Updated: {bug.updatedAt}</p>
+          <p>Created: {bug.createdAt.slice(0, 10)}</p>
         </div>
-        <p>Issue: {bug.issue}</p>
-        <p>details:</p>
+        <p>Steps to Recreate: {bug.recreate}</p>
+        <label>Updates: </label>
         <input
           type="text"
-          value={updateBugDetails}
+          value={updateBugUpdates}
           onChange={(e) => {
-            setUpdateBugDetails(e.target.value);
+            setUpdateBugUpdates(e.target.value);
             setChanged(true);
           }}
         ></input>
-        <div>Updates</div>
-        <p>Priority: </p>
-        <input
-          type="text"
-          value={updateBugStatus}
+
+        <label>Priority: </label>
+        <select
+          name="priority"
+          value={updateBugPriority}
           onChange={(e) => {
-            setUpdateBugStatus(e.target.value);
+            setUpdateBugPriority(e.target.value);
             setChanged(true);
           }}
-        ></input>
+        >
+          <option value="Regular">Regular</option>
+          <option value="High">High</option>
+          <option value="Low">Low</option>
+        </select>
+
+        <label>Mark Complete</label>
+        <input
+          type="checkbox"
+          checked={completed}
+          onChange={() => {
+            onCompletedChanged();
+            setChanged(true);
+          }}
+        />
         {changed ? (
           <>
             <button
               onClick={(e) => {
-                setUpdateBugDetails(bug.details);
+                setUpdateBugUpdates(bug.updates);
                 setUpdateBugPriority(bug.priority);
-                setUpdateBugStatus(bug.status);
+                setCompleted(bug.completed);
                 setChanged(false);
               }}
             >

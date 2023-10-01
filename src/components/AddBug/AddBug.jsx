@@ -3,13 +3,34 @@ import "./AddBug.css";
 import Modal from "../modal/Modal";
 import { useAddBugMutation } from "../../redux/apis/bugsApiSlice";
 import { useDispatch } from "react-redux";
+import { useFetchProjectsQuery } from "../../redux/apis/projectsApiSlice";
 
 const AddBug = ({ closeModal }) => {
+  const {
+    data,
+    error: projectsError,
+    isLoading: projectsLoading,
+  } = useFetchProjectsQuery();
+
+  const projectsData = { data };
+
+  console.log(data);
+  console.log({ data });
+  // Fetch Today's Date & Format
+  const today = new Date();
+
+  const month =
+    today.getMonth() + 1 < 10 ? `0${today.getMonth()}` : `${today.getMonth()}`;
+
   const [newBug, setNewBug] = useState({
     issue: "",
-    details: "",
-    priority: "2",
+    recreate: "",
+    priority: "Regular",
+    project: "",
+    due: `${today.getFullYear()}-${month}-${today.getDate()}`,
   });
+
+  console.log("new bug", newBug);
 
   const [addBug, { isLoading, isSuccess, isError, error }] =
     useAddBugMutation();
@@ -34,8 +55,10 @@ const AddBug = ({ closeModal }) => {
     if (isSuccess) {
       setNewBug({
         issue: "",
-        details: "",
-        priority: "2",
+        recreate: "",
+        priority: "Regular",
+        due: `${today.getFullYear()}-${month}-${today.getDate()}`,
+        created: `${today.getFullYear()}-${month}-${today.getDate()}`,
       });
     }
   }, [isSuccess]);
@@ -50,14 +73,25 @@ const AddBug = ({ closeModal }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { issue, details, priority } = newBug;
+    const { issue, recreate, priority, due, project } = newBug;
+    console.log("New Bug: ");
+    console.log(newBug);
 
     try {
-      const bugData = await addBug({ issue, details, priority }).unwrap();
+      const bugData = await addBug({
+        issue,
+        recreate,
+        priority,
+        due,
+        project,
+      }).unwrap();
+
       setNewBug({
         issue: "",
-        details: "",
-        priority: "2",
+        recreate: "",
+        priority: "Regular",
+        due: `${today}`,
+        project: "",
       });
       closeModal();
     } catch (err) {
@@ -82,7 +116,7 @@ const AddBug = ({ closeModal }) => {
         <p className={errClass}>{error?.data?.message}</p>
 
         <form className="addbug-form" id="bugform">
-          <label>Name: </label>
+          <label>Issue: </label>
           <input
             type="input"
             name="issue"
@@ -94,8 +128,8 @@ const AddBug = ({ closeModal }) => {
 
           <label>Details: </label>
           <textarea
-            name="details"
-            value={newBug.details}
+            name="recreate"
+            value={newBug.recreate}
             onChange={handleChange}
             required
           />
@@ -107,10 +141,29 @@ const AddBug = ({ closeModal }) => {
             onChange={handleChange}
             required
           >
-            <option value="2">Regular</option>
-            <option value="1">High</option>
-            <option value="3">Low</option>
+            <option value="Regular">Regular</option>
+            <option value="High">High</option>
+            <option value="Low">Low</option>
           </select>
+
+          <label>Project: </label>
+          <select name="project" value={newBug.project} onChange={handleChange}>
+            {data?.map((project, index) => {
+              return (
+                <option key={index} value={project._id}>
+                  {project.name}
+                </option>
+              );
+            })}
+          </select>
+
+          <label>Due By: </label>
+          <input
+            type="date"
+            name="due"
+            value={newBug.due}
+            onChange={handleChange}
+          />
 
           <button type="submit" onClick={handleSubmit}>
             Add Bug
