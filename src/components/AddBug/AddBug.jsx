@@ -12,25 +12,24 @@ const AddBug = ({ closeModal }) => {
     isLoading: projectsLoading,
   } = useFetchProjectsQuery();
 
-  const projectsData = { data };
-
-  console.log(data);
-  console.log({ data });
   // Fetch Today's Date & Format
   const today = new Date();
 
   const month =
-    today.getMonth() + 1 < 10 ? `0${today.getMonth()}` : `${today.getMonth()}`;
+    today.getMonth() + 1 < 10
+      ? `0${today.getMonth() + 1}`
+      : `${today.getMonth() + 1}`;
+
+  const day =
+    today.getDate() + 1 < 10 ? `0${today.getDate}` : `${today.getDate()}`;
 
   const [newBug, setNewBug] = useState({
     issue: "",
     recreate: "",
-    priority: "Regular",
+    priority: 2,
     project: "",
-    due: `${today.getFullYear()}-${month}-${today.getDate()}`,
+    due: `${today.getFullYear()}-${month}-${day}`,
   });
-
-  console.log("new bug", newBug);
 
   const [addBug, { isLoading, isSuccess, isError, error }] =
     useAddBugMutation();
@@ -57,8 +56,8 @@ const AddBug = ({ closeModal }) => {
         issue: "",
         recreate: "",
         priority: "Regular",
-        due: `${today.getFullYear()}-${month}-${today.getDate()}`,
-        created: `${today.getFullYear()}-${month}-${today.getDate()}`,
+        due: `${today.getFullYear()}-${month}-${day}`,
+        created: `${today.getFullYear()}-${month}-${day}`,
       });
     }
   }, [isSuccess]);
@@ -73,16 +72,20 @@ const AddBug = ({ closeModal }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { issue, recreate, priority, due, project } = newBug;
-    console.log("New Bug: ");
-    console.log(newBug);
+    const inputTime = new Date(newBug.due);
+    const timeZoneOffsetMninutes = inputTime.getTimezoneOffset();
+    const utcTime = new Date(
+      inputTime.getTime() + timeZoneOffsetMninutes * 60000
+    );
+
+    const { issue, recreate, priority, project } = newBug;
 
     try {
-      const bugData = await addBug({
+      await addBug({
         issue,
         recreate,
         priority,
-        due,
+        due: utcTime,
         project,
       }).unwrap();
 
@@ -111,7 +114,7 @@ const AddBug = ({ closeModal }) => {
   ) : (
     <Modal closeModal={closeModal}>
       <div className="addbug-container">
-        <h2>Create Bug</h2>
+        <h2 className="addbug-header">Create Bug</h2>
 
         <p className={errClass}>{error?.data?.message}</p>
 
@@ -141,13 +144,20 @@ const AddBug = ({ closeModal }) => {
             onChange={handleChange}
             required
           >
-            <option value="Regular">Regular</option>
-            <option value="High">High</option>
-            <option value="Low">Low</option>
+            <option value={2}>Regular</option>
+            <option value={3}>High</option>
+            <option value={1}>Low</option>
           </select>
 
           <label>Project: </label>
-          <select name="project" value={newBug.project} onChange={handleChange}>
+          <select
+            name="project"
+            value={newBug.project}
+            onChange={handleChange}
+            defaultValue={"none"}
+          >
+            <option value="none">Select Project</option>
+
             {data?.map((project, index) => {
               return (
                 <option key={index} value={project._id}>

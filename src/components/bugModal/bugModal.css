@@ -23,7 +23,7 @@
 }
 
 .modal-plankton {
-  width: 20%;
+  width: 15%;
   max-height: 100%;
   font-size: 12px;
   justify-self: end;
@@ -37,4 +37,46 @@
 .bugmodal-body {
   font-size: var(--body-text);
   font-family: var(--content-font);
+  margin-inline: auto;
+  width: 75%;
+  border: 2px solid blue;
+}
+
+.budmodal-row1 {
+  justify-content: space-around;
+}
+
+.bugmodal-row2 {
+  display: flex;
+  justify-content: space-around;
+}
+
+.bugmodal-row3 {
+  margin-inline: auto;
+  margin-top: 10px;
+}
+
+.bugmodal-row3 label {
+  padding-right: 10px;
+}
+
+.bugmodal-row4 {
+  margin-top: 10px;
+}
+.recreate-bug {
+  height: 50px;
+  width: 66%;
+}
+.bugmodal-buttons {
+  margin-top: 50px;
+  border: 2px solid purple;
+}
+
+.bugmodal-buttons button {
+  margin-inline: 2.5vw;
+}
+
+.updates-input {
+  height: 150px;
+  width: 80%;
 }

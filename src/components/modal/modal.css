@@ -23,15 +23,20 @@
 }
 
 .modal-top {
-  align-self: center;
+  width: 100%;
+  padding-top: 3vh;
+  display: flex;
+  justify-content: center;
+}
+
+.close-modal {
+  align-self: flex-start;
+  color: var(--orange-color);
 }
 
 .modal-plankton {
-  width: 20%;
+  width: 15%;
   max-height: 100%;
   font-size: 12px;
   justify-self: end;
-}
-
-.modal-close {
 }

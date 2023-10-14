@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import "./addProject.css";
 import { useAddProjectMutation } from "../../redux/apis/projectsApiSlice";
 import Modal from "../modal/Modal";
 
@@ -54,24 +55,33 @@ const AddProject = ({ closeModal }) => {
     <h1>Loading ...</h1>
   ) : (
     <Modal closeModal={closeModal}>
-      <form>
-        <label>Name: </label>
-        <input
-          type="text"
-          name="name"
-          value={newProject.name}
-          ref={projectRef}
-          onChange={handleChange}
-          required
-        />
-        <label>Description</label>
-        <input
-          type="text"
-          name="description"
-          value={newProject.description}
-          onChange={handleChange}
-        />
-        <button onClick={handleSubmit}>Add</button>
+      <form className="addproject-form">
+        <h2 className="addproject-header">Add New Project</h2>
+        <div className="addproject-form-row">
+          <label>Project Name:</label>
+          <input
+            type="text"
+            name="name"
+            value={newProject.name}
+            ref={projectRef}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="addproject-form-row">
+          <label>Description:</label>
+          <input
+            type="text"
+            name="description"
+            value={newProject.description}
+            onChange={handleChange}
+          />
+        </div>
+
+        <button onClick={handleSubmit} className="addproject-button">
+          Add
+        </button>
       </form>
     </Modal>
   );

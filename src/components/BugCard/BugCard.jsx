@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+// import { DateTime } from "luxon";
 import "./bugcard.css";
 import BugModal from "../bugModal/BugModal";
 import plankton from "../../assets/plankton.png";
 
 const BugCard = ({ bug }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  console.log(bug);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -14,6 +14,27 @@ const BugCard = ({ bug }) => {
   const openModal = () => {
     setIsModalOpen(true);
   };
+
+  // helper function
+  function getPriorityText(priority) {
+    const priorityMap = {
+      1: "Low",
+      2: "Medium",
+      3: "High",
+    };
+    return priorityMap[priority] || "Unknown";
+  }
+
+  const formattedDueDate = bug.due
+    ? new Date(bug.due).toLocaleDateString("en-US")
+    : "";
+
+  var dueDate = new Date(bug.due);
+  const updatedDue = dueDate.toLocaleString("en-US", {
+    day: "numeric",
+    month: "numeric",
+    year: "numeric",
+  });
 
   return (
     <div className="bugcard">
@@ -25,12 +46,12 @@ const BugCard = ({ bug }) => {
       <div className="card-row">
         {" "}
         <h3>Priority:</h3>
-        <p>{bug.priority}</p>
+        <p> {getPriorityText(bug.priority)}</p>
       </div>
       <div className="card-row">
         {" "}
         <h3>Due:</h3>
-        <p>{bug.due}</p>
+        <p>{formattedDueDate}</p>
       </div>
       {/* <div className="card-row">
         <h3>Due Date:</h3>

@@ -22,7 +22,6 @@ const Navbar = () => {
       <div className="links-container">
         <Link to="/account">Home</Link>
         <Link to="/account/viewbugs">View Bugs</Link>
-        <Link to="/wave">Wave</Link>
         <div className="line"></div>
         <Link onClick={openBugModal}>Add Bug</Link>
         {isBugModalOpen && <AddBug closeModal={closeBugModal} />}

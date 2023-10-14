@@ -1,5 +1,6 @@
 import React from "react";
 import plankton from "../../assets/plankton.png";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 import "./modal.css";
 
 const Modal = ({ children, closeModal }) => {
@@ -8,7 +9,11 @@ const Modal = ({ children, closeModal }) => {
       <div className="modal-container">
         <div className="modal-top">
           <img src={plankton} alt="plankton" className="modal-plankton" />
-          <button onClick={closeModal}>Close</button>
+          <AiOutlineCloseCircle
+            size={40}
+            onClick={closeModal}
+            className="close-modal"
+          />
         </div>
         <div className="modal-content">{children}</div>
       </div>
