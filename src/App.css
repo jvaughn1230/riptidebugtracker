@@ -4,8 +4,13 @@
 
 .layout {
   display: flex;
+  background-color: var(--background-color);
 }
 
 .flex-row {
   display: flex;
+}
+
+p {
+  font-family: var(--content-font);
 }

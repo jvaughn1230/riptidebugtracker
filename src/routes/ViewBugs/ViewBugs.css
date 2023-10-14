@@ -1,9 +1,11 @@
 .viewbugs {
   width: 100%;
+  z-index: 1;
 }
 
 .buglist {
   display: flex;
+  justify-content: space-around;
   flex-wrap: wrap;
 }
 

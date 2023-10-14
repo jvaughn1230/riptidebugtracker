@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+// import { DateTime } from "luxon";
 import "./bugcard.css";
 import BugModal from "../bugModal/BugModal";
+import plankton from "../../assets/plankton.png";
 
 const BugCard = ({ bug }) => {
-  // TODO: Need to have something that checks for changes and then have a update bug button to update bug
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const closeModal = () => {
@@ -14,22 +15,43 @@ const BugCard = ({ bug }) => {
     setIsModalOpen(true);
   };
 
+  // helper function
+  function getPriorityText(priority) {
+    const priorityMap = {
+      1: "Low",
+      2: "Medium",
+      3: "High",
+    };
+    return priorityMap[priority] || "Unknown";
+  }
+
+  const formattedDueDate = bug.due
+    ? new Date(bug.due).toLocaleDateString("en-US")
+    : "";
+
+  var dueDate = new Date(bug.due);
+  const updatedDue = dueDate.toLocaleString("en-US", {
+    day: "numeric",
+    month: "numeric",
+    year: "numeric",
+  });
+
   return (
     <div className="bugcard">
-      <h2 className="bugcard-title">{bug.issue}</h2>
+      <img src={plankton} alt="plankton" className="card-plankton" />
       <div className="card-row">
-        <h3>Details:</h3>
-        <p>{bug.details}</p>
+        <h3>Issue: </h3>
+        <p>{bug.issue}</p>
       </div>
       <div className="card-row">
         {" "}
         <h3>Priority:</h3>
-        <p>{bug.priority}</p>
+        <p> {getPriorityText(bug.priority)}</p>
       </div>
       <div className="card-row">
         {" "}
-        <h3>Status:</h3>
-        <p>{bug.status}</p>
+        <h3>Due:</h3>
+        <p>{formattedDueDate}</p>
       </div>
       {/* <div className="card-row">
         <h3>Due Date:</h3>

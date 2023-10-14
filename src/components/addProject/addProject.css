@@ -1,0 +1,35 @@
+.addproject-form {
+  /* border: 2px solid yellow; */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.addproject-header {
+  font-size: var(--subheader-text);
+  color: black;
+  align-self: center;
+}
+
+.addproject-form label {
+  color: black;
+  font-size: var(--modal-text);
+}
+
+.addproject-form input {
+  width: 60%;
+}
+
+.addproject-form-row {
+  align-self: center;
+}
+
+.addproject-form-row label {
+  margin-right: 0.5em;
+  text-align: right;
+}
+
+.addproject-button {
+  width: 35%;
+  align-self: center;
+}

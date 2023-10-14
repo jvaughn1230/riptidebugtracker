@@ -4,21 +4,23 @@
   --secondary-color: #19a7ce;
   --water-color: #0184bd;
 
-  /* Font Families */
-  --title-text: ;
-  --header-text: ;
-  --body-text: ;
+  /* New Color Template */
+  --background-color: #e5dad3;
+  --card-color: #efebe8;
+  --orange-color: #ff8a29;
+  --new-blue: #1e89a5;
+  --dark-blue: #205085;
 
   /* Font Sizes */
   --link-text: 16px;
   --header-text: 48px;
   --subheader-text: 32px;
+  --modal-text: 24px;
   --body-text: 16px;
 
   /* Add Fonts Later */
-  --header-font: "Brush Script MT";
-  --subhead-font: "Georgia";
-  --content-font: "Verdana";
+  --content-font: "Gabarito", sans-serif;
+  --header-font: "Hammersmith One", sans-serif;
 
   /* Stacking */
   --modal-zindex: 3;
@@ -31,6 +33,7 @@
 
 body {
   margin: 0;
+  font-family: var(--content-font);
 }
 
 html {
@@ -44,6 +47,8 @@ img {
 a {
   color: inherit;
   text-decoration: none;
+  color: var(--background-color);
+  font-size: 18px;
 }
 
 .hide {
@@ -51,18 +56,17 @@ a {
 }
 
 button {
-  /* background-color: #fff5b8; */
-  /* #ef6c57; */
-  background-color: #ffbfc3;
+  background-color: var(--orange-color);
   border-radius: 5px;
   padding: 5px 20px;
-  font: normal bold 18px "Open Sans", sans-serif;
+  font-size: 18px;
   text-align: center;
   margin-bottom: 10px;
   border: none;
+  font-family: var(--content-font);
 }
 
 button:hover {
   transition: all 0.3s;
-  background-color: #ff9fa6;
+  opacity: 0.8;
 }

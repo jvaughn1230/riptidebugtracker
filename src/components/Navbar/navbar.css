@@ -1,5 +1,5 @@
 .navbar {
-  background-color: var(--secondary-color);
+  background-color: var(--new-blue);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,7 +12,13 @@
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  border: 2px solid red;
+  z-index: 2;
+}
+
+.line {
+  background-color: var(--orange-color);
+  height: 1px;
+  width: 75%;
 }
 
 .links-container {
@@ -24,10 +30,8 @@
   color: #f6f1f1;
   justify-content: space-around;
   /* margin-top: 20vh; */
-  border: 2px solid yellow;
   margin-top: -10rem;
 }
 
 .signout-link {
-  border: 2px solid white;
 }
