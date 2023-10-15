@@ -2,9 +2,19 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-left: 2rem;
+  /* margin-left: 2rem; */
+  margin-inline: 1.3021vw;
+  z-index: 1;
 }
 
 .welcome-msg {
   align-self: center;
+}
+
+.home__row {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 1.3021vw;
+  margin-inline: 1.3021vw;
 }

@@ -5,8 +5,10 @@
 
 .buglist {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   flex-wrap: wrap;
+  gap: 1.3021vw;
+  margin-inline: 1.3021vw;
 }
 
 .viewbugs-title {
