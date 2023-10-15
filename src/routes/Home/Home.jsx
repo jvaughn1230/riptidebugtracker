@@ -10,20 +10,36 @@ const Home = () => {
   const user = useSelector(selectCurrentUser);
   // const token = useSelector(selectCurrentToken);
 
-  const { data, error, isLoading } = useFetchBugsQuery();
+  const { data: bugs, error, isLoading } = useFetchBugsQuery();
 
   const welcome = user ? `Welcome ${user.name}!` : "Welcome!";
 
-  const getPriorityBugs = data?.filter((item) => item.priority === "High");
+  const isDueToday = (dueDate) => {
+    const today = new Date();
+    const due = new Date(dueDate);
 
-  const today = new Date();
-  const date =
-    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+    const formattedToday = new Intl.DateTimeFormat("en-US").format(today);
+    const formattedDue = new Intl.DateTimeFormat("en-US").format(due);
 
-  const getTodaysBugs = data?.filter((item) => {
-    let currDate = new Date(item);
-    let todaysDate = new Date("2023-10-1");
-    return currDate === todaysDate;
+    return formattedDue === formattedToday;
+  };
+
+  const isPastDue = (dueDate) => {
+    const today = new Date();
+    const due = new Date(dueDate);
+
+    const formattedToday = new Intl.DateTimeFormat("en-US").format(today);
+    const formattedDue = new Intl.DateTimeFormat("en-US").format(due);
+
+    return formattedDue < formattedToday;
+  };
+
+  const highPriorityBugs = bugs?.filter((bug) => bug.priority === 3);
+  const pastDueBugs = bugs?.filter((bug) => {
+    return isPastDue(bug.due);
+  });
+  const dueBugs = bugs?.filter((bug) => {
+    return isDueToday(bug.due);
   });
 
   return (
@@ -31,12 +47,27 @@ const Home = () => {
       <h1 className="welcome-msg">{welcome}</h1>
       <div>
         <h2>Due Today: </h2>
+        <div className="home__row">
+          {dueBugs?.map((bug) => (
+            <BugCard bug={bug} key={bug.id} />
+          ))}
+        </div>
       </div>
       <div>
         <h2>Important: </h2>
+        <div className="home__row">
+          {highPriorityBugs?.map((bug) => (
+            <BugCard bug={bug} key={bug.id} />
+          ))}
+        </div>
       </div>
       <div>
         <h2>Past Due: </h2>
+        <div className="home__row">
+          {pastDueBugs?.map((bug) => (
+            <BugCard bug={bug} key={bug.id} />
+          ))}
+        </div>
       </div>
     </div>
   );

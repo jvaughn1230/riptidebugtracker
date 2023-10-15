@@ -3,18 +3,12 @@
   /* box-shadow: 2px 2px 2px var(--primary-color); */
   text-align: center;
   margin: 10px;
-  width: 22%;
-  padding-inline: 2rem;
-  border-radius: 0.5rem;
+  /* width: 22%; */
+  max-width: calc(25% - 20px);
+  flex: 1 0 21%;
+  padding-inline: 2em;
+  border-radius: 0.5em;
   position: relative;
-  /* border: 10px solid;
-  border-image-source: linear-gradient(
-    45deg,
-    var(--orange-color),
-    var(--dark-blue)
-  );
-  border-image-slice: 10;
-  border-image-repeat: round; */
 }
 
 .bucard::before,
@@ -41,7 +35,6 @@
 .card-row {
   display: flex;
   align-items: baseline;
-  /* justify-content: space-around; */
 }
 
 .card-row p {
