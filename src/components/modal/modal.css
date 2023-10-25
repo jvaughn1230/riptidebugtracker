@@ -1,12 +1,12 @@
 .modal-bg {
+  position: relative;
   z-index: 9999;
   backdrop-filter: (12px);
-  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: var(--background-color);
   display: flex;
   justify-content: center;
 }
@@ -37,6 +37,16 @@
 .modal-plankton {
   width: 15%;
   max-height: 100%;
-  font-size: 12px;
   justify-self: end;
+}
+@media (max-width: 800px) {
+  .modal-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+  }
+
+  .modal-bg {
+    position: relative;
+  }
 }

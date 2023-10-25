@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 import logo from "../../assets/riptide-white.png";
 import AddBug from "../AddBug/AddBug";
 import AddProject from "../addProject/AddProject";
@@ -9,6 +11,7 @@ import "./navbar.css";
 const Navbar = () => {
   const [isBugModalOpen, setIsBugModalOpen] = useState(false);
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
+  const [toggleMenu, setToggleMenu] = useState(false);
 
   const openBugModal = () => setIsBugModalOpen(true);
   const closeBugModal = () => setIsBugModalOpen(false);
@@ -19,7 +22,9 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <img src={logo} alt="riptide logo" className="navbar-logo" />
-      <div className="links-container">
+
+      {/* Desktop Links */}
+      <div className="desktop-links-container">
         <Link to="/account">Home</Link>
         <Link to="/account/viewbugs">View Bugs</Link>
         <div className="line"></div>
@@ -29,7 +34,42 @@ const Navbar = () => {
         {isProjectModalOpen && <AddProject closeModal={closeProjectModal} />}
       </div>
 
-      <Logout />
+      {/* Mobile Links */}
+      <div className="mobile-menu-container">
+        <GiHamburgerMenu
+          className="hamburger"
+          onClick={() => setToggleMenu(true)}
+        />
+        <div className={`${toggleMenu ? "openMobileMenu" : "closeMobileMenu"}`}>
+          <div className="mobile-nav-container">
+            <AiOutlineCloseCircle
+              onClick={() => setToggleMenu(false)}
+              size={70}
+              className="mobilenav__exit"
+            />
+            <Link to="/account" className="mobilenav__link">
+              Home
+            </Link>
+            <Link to="/account/viewbugs" className="mobilenav__link">
+              View Bugs
+            </Link>
+            <div className="line"></div>
+            <Link onClick={openBugModal} className="mobilenav__link">
+              Add Bug
+            </Link>
+            {isBugModalOpen && <AddBug closeModal={closeBugModal} />}
+            <Link onClick={openProjectModal} className="mobilenav__link">
+              Add Project
+            </Link>
+            {isProjectModalOpen && (
+              <AddProject closeModal={closeProjectModal} />
+            )}
+            <Logout className="mobilenav__button" />
+          </div>
+        </div>
+      </div>
+
+      <Logout className="desktop-button" />
     </div>
   );
 };

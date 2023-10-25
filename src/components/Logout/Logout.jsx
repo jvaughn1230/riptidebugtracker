@@ -4,7 +4,7 @@ import { useLogoutMutation } from "../../redux/authApiSlice";
 
 import "./logout.css";
 
-const Logout = () => {
+const Logout = ({ className }) => {
   const navigate = useNavigate();
 
   const [sendLogout, { isLoading, isSuccess, isError, error }] =
@@ -17,7 +17,11 @@ const Logout = () => {
   if (isLoading) return <p>Logging Out...</p>;
   if (isError) return <p>Error: {error.date?.message}</p>;
 
-  return <button onClick={sendLogout}>Logout</button>;
+  return (
+    <button onClick={sendLogout} className={`${className}`}>
+      Logout
+    </button>
+  );
 };
 
 export default Logout;

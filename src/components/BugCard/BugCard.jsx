@@ -53,12 +53,10 @@ const BugCard = ({ bug }) => {
         <h3>Due:</h3>
         <p>{formattedDueDate}</p>
       </div>
-      {/* <div className="card-row">
-        <h3>Due Date:</h3>
-        <p>Due Date Here</p>
-      </div> */}
 
-      <button onClick={openModal}>View Bug</button>
+      <button onClick={openModal} className="bugcard__button">
+        View Bug
+      </button>
       {isModalOpen && <BugModal closeModal={closeModal} bug={bug} />}
     </div>
   );

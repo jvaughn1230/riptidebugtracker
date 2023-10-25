@@ -6,7 +6,7 @@
   justify-content: center;
   background: url(../../assets/smallwave.jpg);
   background-size: cover;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: var(--background-color);
   background-blend-mode: multiply;
 }
 

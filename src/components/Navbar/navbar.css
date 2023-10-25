@@ -21,7 +21,7 @@
   width: 75%;
 }
 
-.links-container {
+.desktop-links-container {
   display: flex;
   flex-direction: column;
   height: 30vh;
@@ -29,9 +29,78 @@
   font-size: var(--link-text);
   color: #f6f1f1;
   justify-content: space-around;
-  /* margin-top: 20vh; */
   margin-top: -10rem;
 }
 
-.signout-link {
+.open-mobile-menu,
+.closeMobileMenu {
+  display: none;
+}
+
+.mobile-links-container {
+  display: none;
+}
+
+.mobile-menu-container {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .navbar {
+    flex-direction: row;
+    padding: 0;
+    width: 100%;
+    height: 20vh;
+    min-height: 20vh;
+  }
+
+  .mobile-menu-container {
+    display: inline-block;
+  }
+
+  .desktop-links-container {
+    display: none;
+  }
+
+  .openMobileMenu {
+    display: block;
+    height: 100vh;
+    width: 100vw;
+    border: 2px solid purple;
+    color: black;
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
+
+  .mobilenav__exit {
+    position: absolute;
+    top: 2.5%;
+    right: 2.5%;
+    /* top: 5vh;
+    right: 5vw; */
+  }
+
+  .mobile-nav-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-around;
+    width: 100vw;
+    background-color: var(--new-blue);
+    padding-block: 15px;
+  }
+
+  .mobilenav__button {
+    font-size: clamp(30px, 6vw, 45px);
+  }
+
+  .mobilenav__link {
+    font-size: clamp(50px, 8vw, 64px);
+  }
+
+  .exit-mobile-menu {
+    color: black;
+  }
 }

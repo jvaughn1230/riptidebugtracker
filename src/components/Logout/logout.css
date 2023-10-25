@@ -1,0 +1,16 @@
+.mobile-button {
+  display: none;
+}
+.desktop-button {
+  display: block;
+}
+
+@media (max-width: 800px) {
+  .mobile-button {
+    display: block;
+  }
+
+  .desktop-button {
+    display: none;
+  }
+}
