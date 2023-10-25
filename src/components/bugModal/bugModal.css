@@ -6,7 +6,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: var(--background-color);
   display: flex;
   justify-content: center;
 }
@@ -20,56 +20,77 @@
   padding: 1em;
   display: flex;
   flex-direction: column;
+  overflow: scroll;
 }
 
 .modal-plankton {
-  width: 15%;
+  width: 10%;
   max-height: 100%;
-  font-size: 12px;
   justify-self: end;
 }
 
 .bugmodal-title {
-  font-size: var(--header-text);
+  font-size: var(--subheader-text);
   font-family: var(--header-font);
+  margin-block: 1em;
+  font-weight: normal;
 }
 
 .bugmodal-body {
-  font-size: var(--body-text);
+  font-size: var(--card-text);
   font-family: var(--content-font);
+  font-weight: 400;
   margin-inline: auto;
-  width: 75%;
-  border: 2px solid blue;
+  width: 90%;
+  text-align: start;
+  line-height: 1.4;
 }
 
-.budmodal-row1 {
-  justify-content: space-around;
+.bugmodal__section-header {
+  font-size: var(--card-text);
+  font-family: var(--content-font);
+  font-weight: 700;
+  margin-block: 0.5em;
 }
 
-.bugmodal-row2 {
+.bugmodal__section-row {
   display: flex;
-  justify-content: space-around;
 }
 
-.bugmodal-row3 {
-  margin-inline: auto;
-  margin-top: 10px;
+.bugmodal__row {
+  display: flex;
+  justify-content: space-between;
+  row-gap: 0;
 }
 
-.bugmodal-row3 label {
-  padding-right: 10px;
+.bugmodal__section {
+  margin-bottom: 1.5em;
 }
 
-.bugmodal-row4 {
-  margin-top: 10px;
+.bugmodal__column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
+.bugmodal__container {
+  display: flex;
+  gap: 0 0.4em;
+}
+
+.bugmodal__container p {
+  margin-block: 1em 0;
+}
+
 .recreate-bug {
   height: 50px;
   width: 66%;
 }
+
 .bugmodal-buttons {
   margin-top: 50px;
-  border: 2px solid purple;
+  text-align: center;
+  margin-bottom: 1em;
 }
 
 .bugmodal-buttons button {

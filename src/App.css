@@ -4,7 +4,7 @@
 
 .layout {
   display: flex;
-  background-color: var(--background-color);
+  background-color: var(--cream-color);
 }
 
 .flex-row {
@@ -13,4 +13,10 @@
 
 p {
   font-family: var(--content-font);
+}
+
+@media (max-width: 800px) {
+  .layout {
+    flex-direction: column;
+  }
 }

@@ -8,6 +8,7 @@ import {
 import { useFetchProjectsQuery } from "../../redux/apis/projectsApiSlice";
 
 const BugModal = ({ closeModal, bug }) => {
+  console.log(bug);
   const formattedUpdateDate = bug.updatedAt
     ? new Date(bug.updatedAt).toLocaleDateString("en-US")
     : "";
@@ -67,8 +68,6 @@ const BugModal = ({ closeModal, bug }) => {
   const onUpdateBugClicked = async (e) => {
     e.preventDefault();
 
-    console.log("received time: ", updateBugDueDate);
-
     const inputTime = new Date(updateBugDueDate);
     const timeZoneOffsetMninutes = inputTime.getTimezoneOffset();
     const utcTime = new Date(
@@ -92,94 +91,123 @@ const BugModal = ({ closeModal, bug }) => {
 
   return (
     <Modal closeModal={closeModal}>
-      <h1 className="bugmodal-title">{bug.issue}</h1>
-
+      {/* Modal Header */}
+      <h4 className="bugmodal-title">Alert #{bug._id}</h4>
+      {/* Modal Body */}
       <div className="bugmodal-body">
         {isDelError ? <div>Failed to delete Bug please try again</div> : null}
         {isError ? <div>Failed to update Bug. Please try again</div> : null}
-        <div className="flex-row budmodal-row1">
-          <p>Last Updated: {formattedUpdateDate}</p>
-          <p>Created: {formattedCreatedDate}</p>
+
+        {/* Modal Details Section */}
+        <div className="bugmodal__section">
+          <h5 className="bugmodal__section-header">Details: </h5>
+          <div className="bugmodal__row">
+            <div className="bugmodal__container">
+              <label className="bugmodal__text">Project:</label>
+              <select
+                name="project"
+                value={updateBugProject}
+                onChange={(e) => {
+                  setUpdateBugProject(e.target.value);
+                  setChanged(true);
+                }}
+              >
+                {data?.map((project, index) => {
+                  return (
+                    <option key={index} value={project.name}>
+                      {project.name}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+
+            <div className="bugmodal__container">
+              <label>Priority: </label>
+              <select
+                name="priority"
+                value={updateBugPriority}
+                onChange={(e) => {
+                  setUpdateBugPriority(e.target.value);
+                  setChanged(true);
+                }}
+              >
+                <option value={2}>Regular</option>
+                <option value={3}>High</option>
+                <option value={1}>Low</option>
+              </select>
+            </div>
+
+            <div className="bugmodal__container">
+              <label>Mark Complete</label>
+              <input
+                type="checkbox"
+                checked={completed}
+                onChange={() => {
+                  onCompletedChanged();
+                  setChanged(true);
+                }}
+              />
+            </div>
+          </div>
+          <div className="bugmodal__container">
+            <p>Issue: </p>
+            <p>{bug.issue}</p>
+          </div>
+          <div className="bugmodal__container">
+            <p>Steps to Recreate: </p>
+            <p>{bug.recreate}</p>
+          </div>
         </div>
 
-        <div className="bugmodal-row2">
-          <div>
-            <label>Priority: </label>
-            <select
-              name="priority"
-              value={updateBugPriority}
+        {/* Modal Dates Section */}
+        <div className="bugmodal__section">
+          <div className="bugmodal__section-header">Dates:</div>
+          <div className="bugmodal__row">
+            <div className="bugmodal__column">
+              <div className="bugmodal__container">
+                <p>Created: </p>
+                <p>{formattedCreatedDate}</p>
+              </div>
+              <div className="bugmodal__container">
+                <label>Due Date: </label>
+                <input
+                  type="date"
+                  value={updateBugDueDate}
+                  onChange={handleDueDateChange}
+                />
+              </div>
+            </div>
+            <div className="bugmodal__colum">
+              <div className="bugmodal__container">
+                <p>Last Updated: </p>
+                <p>{formattedUpdateDate}</p>
+              </div>
+              <div className="bugmodal__container">
+                <p>Completed: </p>
+                <p>{bug.completedAt}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Modal Notes Section */}
+        <div className="bugmodal__section">
+          <div className="bugmodal__row">
+            <label className="bugmodal__section-header">Updates: </label>
+            <textarea
+              type="text"
+              value={updateBugUpdates}
+              className="updates-input"
               onChange={(e) => {
-                setUpdateBugPriority(e.target.value);
+                setUpdateBugUpdates(e.target.value);
                 setChanged(true);
               }}
-            >
-              <option value={2}>Regular</option>
-              <option value={3}>High</option>
-              <option value={1}>Low</option>
-            </select>
-          </div>
-          <label>Due Date: </label>
-          <input
-            type="date"
-            value={updateBugDueDate}
-            onChange={handleDueDateChange}
-          />
-          <div>
-            <label>Project</label>
-            <select
-              name="priority"
-              value={updateBugProject}
-              onChange={(e) => {
-                setUpdateBugProject(e.target.value);
-                setChanged(true);
-              }}
-            >
-              {data?.map((project, index) => {
-                return (
-                  <option key={index} value={project.name}>
-                    {project.name}
-                  </option>
-                );
-              })}
-            </select>
+            ></textarea>
           </div>
         </div>
 
-        <div className="bugmodal-row3">
-          <label>Steps to Recreate: </label>
-          <input
-            type="text"
-            value={bug.recreate}
-            className="recreate-bug"
-            disabled
-          ></input>
-        </div>
-
-        <div className="bugmodal-row4">
-          <label>Updates: </label>
-          <textarea
-            type="text"
-            value={updateBugUpdates}
-            className="updates-input"
-            onChange={(e) => {
-              setUpdateBugUpdates(e.target.value);
-              setChanged(true);
-            }}
-          ></textarea>
-        </div>
-
-        <div>
-          <label>Mark Complete</label>
-          <input
-            type="checkbox"
-            checked={completed}
-            onChange={() => {
-              onCompletedChanged();
-              setChanged(true);
-            }}
-          />
-        </div>
-
+        {/* Modal Buttons */}
         {changed ? (
           <div className="bugmodal-buttons">
             <button

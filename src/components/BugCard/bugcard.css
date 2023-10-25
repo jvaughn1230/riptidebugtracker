@@ -3,9 +3,8 @@
   /* box-shadow: 2px 2px 2px var(--primary-color); */
   text-align: center;
   margin: 10px;
-  /* width: 22%; */
-  max-width: calc(25% - 20px);
-  flex: 1 0 21%;
+  /* max-width: calc(25% - 20px); */
+  flex: 0 0 22%;
   padding-inline: 2em;
   border-radius: 0.5em;
   position: relative;
@@ -26,6 +25,22 @@
   font-family: var(--header-font);
 }
 
+.bugcard h3 {
+  font-size: var(--card-text);
+}
+
+.bugcard p {
+  font-size: var(--card-text);
+}
+
+.bugcard__button {
+  margin-bottom: 1em;
+}
+
+.card-row {
+  display: flex;
+}
+
 .card-plankton {
   width: 40%;
   max-height: 100%;
@@ -39,4 +54,28 @@
 
 .card-row p {
   margin-left: 0.5em;
+}
+
+@media (max-width: 800px) {
+  .bugcard {
+    flex: 0 0 45%;
+  }
+
+  .bugcard h3 {
+    font-size: 24px;
+  }
+
+  .bugcard p {
+    font-size: 14px;
+
+    .card-row {
+      flex-direction: column;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .bugcard {
+    flex: 0 0 80%;
+  }
 }

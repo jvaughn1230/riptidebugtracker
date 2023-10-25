@@ -6,7 +6,7 @@
   align-items: center;
   background-image: url(../../assets/wave.jpg);
   background-size: cover;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: var(--background-color);
   background-blend-mode: multiply;
 }
 .signup-container {

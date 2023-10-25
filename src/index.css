@@ -1,22 +1,21 @@
 :root {
-  /* Colors - Update later */
+  /* Colors */
+  --cream-color: #e5dad3;
+  --background-color: rgba(0, 0, 0, 0.3);
   --primary-color: #f6f1f1;
-  --secondary-color: #19a7ce;
-  --water-color: #0184bd;
-
-  /* New Color Template */
-  --background-color: #e5dad3;
   --card-color: #efebe8;
   --orange-color: #ff8a29;
   --new-blue: #1e89a5;
   --dark-blue: #205085;
+  --water-color: #0184bd;
 
   /* Font Sizes */
-  --link-text: 16px;
-  --header-text: 48px;
-  --subheader-text: 32px;
-  --modal-text: 24px;
-  --body-text: 16px;
+  --link-text: clamp(12px, 1.1719vw, 22px);
+  --header-text: clamp(24px, 3.125vw, 60px);
+  --subheader-text: clamp(20px, 2.0833vw, 32px);
+  --modal-text: 1.5625vw;
+  --body-text: 1.0417vw;
+  --card-text: clamp(14px, 1.3672vw, 24px);
 
   /* Add Fonts Later */
   --content-font: "Gabarito", sans-serif;
@@ -25,6 +24,16 @@
   /* Stacking */
   --modal-zindex: 3;
   --wave-zindex: 2;
+}
+
+/* Utility Classes */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
 }
 
 * {
@@ -45,10 +54,9 @@ img {
 }
 
 a {
-  color: inherit;
   text-decoration: none;
-  color: var(--background-color);
-  font-size: 18px;
+  color: var(--cream-color);
+  font-size: var(--link-text);
 }
 
 .hide {
@@ -59,7 +67,7 @@ button {
   background-color: var(--orange-color);
   border-radius: 5px;
   padding: 5px 20px;
-  font-size: 18px;
+  font-size: var(--link-text);
   text-align: center;
   margin-bottom: 10px;
   border: none;
