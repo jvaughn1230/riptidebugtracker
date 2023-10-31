@@ -28,13 +28,6 @@ const BugCard = ({ bug }) => {
     ? new Date(bug.due).toLocaleDateString("en-US")
     : "";
 
-  var dueDate = new Date(bug.due);
-  const updatedDue = dueDate.toLocaleString("en-US", {
-    day: "numeric",
-    month: "numeric",
-    year: "numeric",
-  });
-
   return (
     <div className="bugcard">
       <img src={plankton} alt="plankton" className="card-plankton" />

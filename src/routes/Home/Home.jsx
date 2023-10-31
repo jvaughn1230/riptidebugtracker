@@ -38,6 +38,9 @@ const Home = () => {
   const pastDueBugs = bugs?.filter((bug) => {
     return isPastDue(bug.due);
   });
+
+  console.log(pastDueBugs);
+
   const dueBugs = bugs?.filter((bug) => {
     return isDueToday(bug.due);
   });
