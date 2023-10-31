@@ -12,19 +12,22 @@ import { useFetchProjectsQuery } from "../../redux/apis/projectsApiSlice";
 
 const BugModal = ({ closeModal, bug }) => {
   console.log(bug);
-  const formattedUpdateDate = bug.updatedAt
-    ? new Date(bug.updatedAt).toLocaleDateString("en-US")
-    : "";
-
-  const formattedCreatedDate = bug.createdAt
-    ? new Date(bug.createdAt).toLocaleDateString("en-US")
-    : "";
 
   const formattedDueDate = bug.due
     ? new Date(bug.due).toISOString().split("T")[0]
     : "";
 
-  console.log("bug project", bug.project);
+  // const dueDate = new Date(bug.due);
+  const updateDate = new Date(bug.updatedAt);
+  const createdDate = new Date(bug.createdAt);
+
+  // const formattedDueDate = new Intl.DateTimeFormat("en-US").format(dueDate);
+  const formattedUpdateDate = new Intl.DateTimeFormat("en-US").format(
+    updateDate
+  );
+  const formattedCreatedDate = new Intl.DateTimeFormat("en-US").format(
+    createdDate
+  );
 
   const [updateBugPriority, setUpdateBugPriority] = useState(bug.priority);
   const [updateBugUpdates, setUpdateBugUpdates] = useState(bug.updates);
@@ -32,6 +35,9 @@ const BugModal = ({ closeModal, bug }) => {
   const [updateBugDueDate, setUpdateBugDueDate] = useState(formattedDueDate);
   // const [updateBugStatus, setUpdateBugStatus] = useState(bug.status);
   const [completed, setCompleted] = useState(bug.completed);
+
+  console.log("state: ", updateBugDueDate);
+  console.log(formattedDueDate);
 
   const [changed, setChanged] = useState(false);
 
