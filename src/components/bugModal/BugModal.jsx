@@ -6,6 +6,9 @@ import {
   useUpdateBugMutation,
 } from "../../redux/apis/bugsApiSlice";
 import { useFetchProjectsQuery } from "../../redux/apis/projectsApiSlice";
+// TODO: Cleanup Date functions
+
+// TODO: fix issue with empty projects. Receiving null, need a condition for null projects e.g., no project assigned
 
 const BugModal = ({ closeModal, bug }) => {
   console.log(bug);
@@ -21,9 +24,11 @@ const BugModal = ({ closeModal, bug }) => {
     ? new Date(bug.due).toISOString().split("T")[0]
     : "";
 
+  console.log("bug project", bug.project);
+
   const [updateBugPriority, setUpdateBugPriority] = useState(bug.priority);
   const [updateBugUpdates, setUpdateBugUpdates] = useState(bug.updates);
-  const [updateBugProject, setUpdateBugProject] = useState(bug.project.name);
+  const [updateBugProject, setUpdateBugProject] = useState(bug.project);
   const [updateBugDueDate, setUpdateBugDueDate] = useState(formattedDueDate);
   // const [updateBugStatus, setUpdateBugStatus] = useState(bug.status);
   const [completed, setCompleted] = useState(bug.completed);
@@ -36,27 +41,22 @@ const BugModal = ({ closeModal, bug }) => {
     isLoading: projectsLoading,
   } = useFetchProjectsQuery();
 
-  const [
-    deleteBug,
-    { isSuccess: isDelSuccess, isError: isDelError, error: delerror },
-  ] = useDeleteBugMutation();
+  const [deleteBug, { isSuccess: isDelSuccess, isError: isDelError }] =
+    useDeleteBugMutation();
 
-  const [updateBug, { isSuccess, isLoading, isError, error }] =
-    useUpdateBugMutation();
+  const [updateBug, { isSuccess, isLoading, isError }] = useUpdateBugMutation();
 
   useEffect(() => {
     if (isDelSuccess || isSuccess) {
       closeModal();
     }
-  }, [isDelSuccess, isSuccess]);
+  }, [isDelSuccess, isSuccess, closeModal]);
 
   const onDeleteBugClicked = async () => {
     await deleteBug({ id: bug._id });
   };
 
   const onCompletedChanged = (e) => setCompleted((prev) => !prev);
-
-  // const canSave = [title, text, userId].every(Boolean) && !isLoading
 
   const handleDueDateChange = (e) => {
     // value={editedBugData.dueDate.toISOString().split('T')[0]}
@@ -93,10 +93,15 @@ const BugModal = ({ closeModal, bug }) => {
     <Modal closeModal={closeModal}>
       {/* Modal Header */}
       <h4 className="bugmodal-title">Alert #{bug._id}</h4>
+
       {/* Modal Body */}
       <div className="bugmodal-body">
-        {isDelError ? <div>Failed to delete Bug please try again</div> : null}
-        {isError ? <div>Failed to update Bug. Please try again</div> : null}
+        {isDelError && (
+          <div className="errmsg">Failed to delete Bug please try again</div>
+        )}
+        {isError && (
+          <div className="errmsg">Failed to update Bug. Please try again</div>
+        )}
 
         {/* Modal Details Section */}
         <div className="bugmodal__section">
@@ -104,22 +109,35 @@ const BugModal = ({ closeModal, bug }) => {
           <div className="bugmodal__row">
             <div className="bugmodal__container">
               <label className="bugmodal__text">Project:</label>
-              <select
-                name="project"
-                value={updateBugProject}
-                onChange={(e) => {
-                  setUpdateBugProject(e.target.value);
-                  setChanged(true);
-                }}
-              >
-                {data?.map((project, index) => {
-                  return (
-                    <option key={index} value={project.name}>
-                      {project.name}
-                    </option>
-                  );
-                })}
-              </select>
+              {projectsError ? (
+                <div class="errmsg">failed to load projects</div>
+              ) : (
+                <select
+                  name="project"
+                  value={updateBugProject}
+                  onChange={(e) => {
+                    setUpdateBugProject(e.target.value);
+                    setChanged(true);
+                  }}
+                >
+                  {projectsLoading ? (
+                    <select disabled>Loading...</select>
+                  ) : (
+                    data?.map((project, index) => {
+                      return (
+                        <option
+                          key={index}
+                          value={project.name === null ? null : project.name}
+                        >
+                          {project.name === null
+                            ? "No Project Assigned"
+                            : project.name}
+                        </option>
+                      );
+                    })
+                  )}
+                </select>
+              )}
             </div>
 
             <div className="bugmodal__container">
@@ -208,7 +226,7 @@ const BugModal = ({ closeModal, bug }) => {
         </div>
 
         {/* Modal Buttons */}
-        {changed ? (
+        {changed && (
           <div className="bugmodal-buttons">
             <button
               onClick={(e) => {
@@ -220,9 +238,11 @@ const BugModal = ({ closeModal, bug }) => {
             >
               cancel
             </button>
-            <button onClick={onUpdateBugClicked}>Update</button>
+            <button onClick={onUpdateBugClicked}>
+              {isLoading ? "Updating" : "Update"}
+            </button>
           </div>
-        ) : null}
+        )}
       </div>
       <div>
         <button onClick={onDeleteBugClicked}>Delete</button>

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { DateTime } from "luxon";
 import "./bugcard.css";
 import BugModal from "../bugModal/BugModal";
 import plankton from "../../assets/plankton.png";

@@ -17,11 +17,12 @@
 }
 
 .addproject-form input {
-  width: 60%;
+  width: 80%;
 }
 
 .addproject-form-row {
   align-self: center;
+  display: flex;
 }
 
 .addproject-form-row label {
