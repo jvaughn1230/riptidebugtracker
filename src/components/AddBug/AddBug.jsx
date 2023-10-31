@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import "./AddBug.css";
 import Modal from "../modal/Modal";
 import { useAddBugMutation } from "../../redux/apis/bugsApiSlice";
-import { useDispatch } from "react-redux";
 import { useFetchProjectsQuery } from "../../redux/apis/projectsApiSlice";
+
+// TODO: Cleanup Date function
 
 const AddBug = ({ closeModal }) => {
   const {
@@ -23,11 +24,12 @@ const AddBug = ({ closeModal }) => {
   const day =
     today.getDate() + 1 < 10 ? `0${today.getDate}` : `${today.getDate()}`;
 
+  // New Bug Init State
   const [newBug, setNewBug] = useState({
     issue: "",
     recreate: "",
     priority: 2,
-    project: "",
+    project: null,
     due: `${today.getFullYear()}-${month}-${day}`,
   });
 
@@ -38,7 +40,6 @@ const AddBug = ({ closeModal }) => {
 
   const errRef = useRef();
   const bugRef = useRef();
-  const dispatch = useDispatch();
 
   const errClass = isError ? "errMsg" : "offscreen";
 
@@ -94,7 +95,7 @@ const AddBug = ({ closeModal }) => {
         recreate: "",
         priority: "Regular",
         due: `${today}`,
-        project: "",
+        project: null,
       });
       closeModal();
     } catch (err) {
@@ -157,14 +158,19 @@ const AddBug = ({ closeModal }) => {
             defaultValue={"none"}
           >
             <option value="none">Select Project</option>
-
-            {data?.map((project, index) => {
-              return (
-                <option key={index} value={project._id}>
-                  {project.name}
-                </option>
-              );
-            })}
+            {projectsError ? (
+              <div>Failed to Load Projects</div>
+            ) : projectsLoading ? (
+              <option disabled>Loading . . .</option>
+            ) : (
+              data?.map((project, index) => {
+                return (
+                  <option key={index} value={project._id}>
+                    {project.name}
+                  </option>
+                );
+              })
+            )}
           </select>
 
           <label>Due By: </label>

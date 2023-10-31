@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./ViewBugs.css";
 import BugCard from "../../components/BugCard/BugCard";
-import { useDispatch, useSelector } from "react-redux";
 import { useFetchBugsQuery } from "../../redux/apis/bugsApiSlice";
 
 const ViewBugs = () => {
