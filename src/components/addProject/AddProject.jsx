@@ -38,6 +38,7 @@ const AddProject = ({ closeModal }) => {
         name: "",
         description: "",
       });
+      closeModal();
     } catch (err) {
       if (!err.response) {
         setErrMsg("No Server Response");
@@ -47,8 +48,6 @@ const AddProject = ({ closeModal }) => {
         setErrMsg("Failed to add Project");
       }
     }
-
-    closeModal();
   };
 
   return isLoading ? (
@@ -57,8 +56,9 @@ const AddProject = ({ closeModal }) => {
     <Modal closeModal={closeModal}>
       <form className="addproject-form">
         <h2 className="addproject-header">Add New Project</h2>
+        {errMsg ? <div className="errmsg">{errMsg}</div> : null}
         <div className="addproject-form-row">
-          <label>Project Name:</label>
+          <label>Name:</label>
           <input
             type="text"
             name="name"

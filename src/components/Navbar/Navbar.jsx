@@ -44,13 +44,20 @@ const Navbar = () => {
           <div className="mobile-nav-container">
             <AiOutlineCloseCircle
               onClick={() => setToggleMenu(false)}
-              size={70}
               className="mobilenav__exit"
             />
-            <Link to="/account" className="mobilenav__link">
+            <Link
+              to="/account"
+              className="mobilenav__link"
+              onClick={() => setToggleMenu(false)}
+            >
               Home
             </Link>
-            <Link to="/account/viewbugs" className="mobilenav__link">
+            <Link
+              to="/account/viewbugs"
+              className="mobilenav__link"
+              onClick={() => setToggleMenu(false)}
+            >
               View Bugs
             </Link>
             <div className="line"></div>

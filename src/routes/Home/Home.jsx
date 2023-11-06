@@ -39,8 +39,6 @@ const Home = () => {
     return isPastDue(bug.due);
   });
 
-  console.log(pastDueBugs);
-
   const dueBugs = bugs?.filter((bug) => {
     return isDueToday(bug.due);
   });
@@ -52,7 +50,7 @@ const Home = () => {
         There was an error. Please try again
       </div>
       <div>
-        <h2>Due Today: </h2>
+        <h2 className="home__subtitle">Due Today </h2>
         <div className="home__row">
           {isLoading ? (
             <h3>Loading . . . </h3>
@@ -62,7 +60,7 @@ const Home = () => {
         </div>
       </div>
       <div>
-        <h2>Important: </h2>
+        <h2 className="home__subtitle">Important </h2>
         <div className="home__row">
           {isLoading ? (
             <h3>Loading . . .</h3>
@@ -72,7 +70,7 @@ const Home = () => {
         </div>
       </div>
       <div>
-        <h2>Past Due: </h2>
+        <h2 className="home__subtitle">Past Due </h2>
         <div className="home__row">
           {isLoading ? (
             <h3>Loading . . .</h3>

@@ -5,23 +5,16 @@ import {
   useDeleteBugMutation,
   useUpdateBugMutation,
 } from "../../redux/apis/bugsApiSlice";
-import { useFetchProjectsQuery } from "../../redux/apis/projectsApiSlice";
-// TODO: Cleanup Date functions
-
-// TODO: fix issue with empty projects. Receiving null, need a condition for null projects e.g., no project assigned
+import SelectProject from "../SelectProject/SelectProject";
 
 const BugModal = ({ closeModal, bug }) => {
-  console.log(bug);
-
   const formattedDueDate = bug.due
     ? new Date(bug.due).toISOString().split("T")[0]
     : "";
 
-  // const dueDate = new Date(bug.due);
   const updateDate = new Date(bug.updatedAt);
   const createdDate = new Date(bug.createdAt);
 
-  // const formattedDueDate = new Intl.DateTimeFormat("en-US").format(dueDate);
   const formattedUpdateDate = new Intl.DateTimeFormat("en-US").format(
     updateDate
   );
@@ -29,23 +22,17 @@ const BugModal = ({ closeModal, bug }) => {
     createdDate
   );
 
-  const [updateBugPriority, setUpdateBugPriority] = useState(bug.priority);
-  const [updateBugUpdates, setUpdateBugUpdates] = useState(bug.updates);
-  const [updateBugProject, setUpdateBugProject] = useState(bug.project);
-  const [updateBugDueDate, setUpdateBugDueDate] = useState(formattedDueDate);
-  // const [updateBugStatus, setUpdateBugStatus] = useState(bug.status);
-  const [completed, setCompleted] = useState(bug.completed);
-
-  console.log("state: ", updateBugDueDate);
-  console.log(formattedDueDate);
+  const [draftBug, setDraftBug] = useState({
+    priority: bug.priority,
+    updates: bug.updates,
+    project: bug.project ? bug.project._id : "none",
+    due: formattedDueDate,
+    status: bug.status,
+    completed: bug.completed,
+  });
 
   const [changed, setChanged] = useState(false);
-
-  const {
-    data,
-    error: projectsError,
-    isLoading: projectsLoading,
-  } = useFetchProjectsQuery();
+  const [updates, setUpdates] = useState({ id: bug._id });
 
   const [deleteBug, { isSuccess: isDelSuccess, isError: isDelError }] =
     useDeleteBugMutation();
@@ -62,38 +49,52 @@ const BugModal = ({ closeModal, bug }) => {
     await deleteBug({ id: bug._id });
   };
 
-  const onCompletedChanged = (e) => setCompleted((prev) => !prev);
+  // const onCompletedChanged = (e) => setCompleted((prev) => !prev);
 
   const handleDueDateChange = (e) => {
-    // value={editedBugData.dueDate.toISOString().split('T')[0]}
     const newDueDate = e.target.value;
-    setUpdateBugDueDate(newDueDate);
+    setDraftBug({
+      ...draftBug,
+      due: newDueDate,
+    });
+    setChanged(true);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setDraftBug((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    setUpdates((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    console.log("setting changed");
+
     setChanged(true);
   };
 
   const onUpdateBugClicked = async (e) => {
     e.preventDefault();
 
-    const inputTime = new Date(updateBugDueDate);
-    const timeZoneOffsetMninutes = inputTime.getTimezoneOffset();
-    const utcTime = new Date(
-      inputTime.getTime() + timeZoneOffsetMninutes * 60000
-    );
+    if (updates.due) {
+      const inputTime = new Date(draftBug.due);
+      const timeZoneOffsetMninutes = inputTime.getTimezoneOffset();
+      const utcTime = new Date(
+        inputTime.getTime() + timeZoneOffsetMninutes * 60000
+      );
+    }
 
     try {
-      await updateBug({
-        id: bug._id,
-        priority: updateBugPriority,
-        due: utcTime,
-        updates: updateBugUpdates,
-        completed: completed,
-      });
+      await updateBug(updates);
     } catch (err) {
       console.log(err);
     }
   };
-
-  // const formattedDueDate = editedBugData.dueDate.toISOString();
 
   return (
     <Modal closeModal={closeModal}>
@@ -115,46 +116,15 @@ const BugModal = ({ closeModal, bug }) => {
           <div className="bugmodal__row">
             <div className="bugmodal__container">
               <label className="bugmodal__text">Project:</label>
-              {projectsError ? (
-                <div class="errmsg">failed to load projects</div>
-              ) : (
-                <select
-                  name="project"
-                  value={updateBugProject}
-                  onChange={(e) => {
-                    setUpdateBugProject(e.target.value);
-                    setChanged(true);
-                  }}
-                >
-                  {projectsLoading ? (
-                    <select disabled>Loading...</select>
-                  ) : (
-                    data?.map((project, index) => {
-                      return (
-                        <option
-                          key={index}
-                          value={project.name === null ? null : project.name}
-                        >
-                          {project.name === null
-                            ? "No Project Assigned"
-                            : project.name}
-                        </option>
-                      );
-                    })
-                  )}
-                </select>
-              )}
+              <SelectProject value={draftBug.project} onChange={handleChange} />
             </div>
 
             <div className="bugmodal__container">
               <label>Priority: </label>
               <select
                 name="priority"
-                value={updateBugPriority}
-                onChange={(e) => {
-                  setUpdateBugPriority(e.target.value);
-                  setChanged(true);
-                }}
+                value={draftBug.priority}
+                onChange={handleChange}
               >
                 <option value={2}>Regular</option>
                 <option value={3}>High</option>
@@ -163,24 +133,25 @@ const BugModal = ({ closeModal, bug }) => {
             </div>
 
             <div className="bugmodal__container">
-              <label>Mark Complete</label>
-              <input
-                type="checkbox"
-                checked={completed}
-                onChange={() => {
-                  onCompletedChanged();
-                  setChanged(true);
-                }}
-              />
+              <label>status:</label>
+              <select
+                name="status"
+                value={draftBug.status}
+                onChange={handleChange}
+              >
+                <option value={1}>Open</option>
+                <option value={2}>In Progress</option>
+                <option value={3}>Complete</option>
+              </select>
             </div>
           </div>
-          <div className="bugmodal__container">
-            <p>Issue: </p>
-            <p>{bug.issue}</p>
+          <div className="bugmodal__row">
+            <label className="display-label">Issue: </label>
+            <div className="display-inputs">{bug.issue}</div>
           </div>
-          <div className="bugmodal__container">
-            <p>Steps to Recreate: </p>
-            <p>{bug.recreate}</p>
+          <div className="bugmodal__row">
+            <label className="display-label">To Recreate: </label>
+            <div className="display-inputs">{bug.recreate}</div>
           </div>
         </div>
 
@@ -197,7 +168,8 @@ const BugModal = ({ closeModal, bug }) => {
                 <label>Due Date: </label>
                 <input
                   type="date"
-                  value={updateBugDueDate}
+                  name="due"
+                  value={draftBug.due}
                   onChange={handleDueDateChange}
                 />
               </div>
@@ -221,12 +193,10 @@ const BugModal = ({ closeModal, bug }) => {
             <label className="bugmodal__section-header">Updates: </label>
             <textarea
               type="text"
-              value={updateBugUpdates}
+              value={draftBug.updates}
+              name="updates"
               className="updates-input"
-              onChange={(e) => {
-                setUpdateBugUpdates(e.target.value);
-                setChanged(true);
-              }}
+              onChange={handleChange}
             ></textarea>
           </div>
         </div>
@@ -236,10 +206,14 @@ const BugModal = ({ closeModal, bug }) => {
           <div className="bugmodal-buttons">
             <button
               onClick={(e) => {
-                setUpdateBugUpdates(bug.updates);
-                setUpdateBugPriority(bug.priority);
-                setCompleted(bug.completed);
-                setChanged(false);
+                setDraftBug({
+                  priority: bug.priority,
+                  updates: bug.updates,
+                  project: bug.project ? bug.project._id : "none",
+                  due: formattedDueDate,
+                  status: bug.status,
+                  completed: bug.completed,
+                });
               }}
             >
               cancel
