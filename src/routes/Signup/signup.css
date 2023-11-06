@@ -10,25 +10,27 @@
   background-blend-mode: multiply;
 }
 .signup-container {
-  padding: 7.5em;
+  padding: 5em;
   background-color: var(--primary-color);
-  border-radius: 5px;
   text-align: center;
+  width: 50vw;
 }
 
 .signup-form {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .signup-form input {
   margin-bottom: 10px;
   border-radius: 5px;
   border: none;
-  height: 30px;
+  height: 40px;
   padding: 5px;
-  font-size: var(--body-text);
+  font-size: 16px;
   font-family: var(--content-font);
+  width: 70%;
 }
 
 .signup-form button {
@@ -44,4 +46,35 @@
 .signup-redirect {
   font-family: var(--content-font);
   font-size: var(--body-text);
+}
+
+@media (max-width: 900px) {
+  .signup-container {
+    min-width: 80vw;
+    padding-inline: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .signup-title {
+    font-size: 36px;
+  }
+
+  .signup-form {
+    width: 80%;
+  }
+
+  .signup-form input {
+    width: 80%;
+  }
+
+  .signup-form button {
+    font-size: 24px;
+  }
+
+  .signup-redirect a,
+  .signup-redirect {
+    font-size: 16px;
+  }
 }

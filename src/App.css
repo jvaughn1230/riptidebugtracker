@@ -15,7 +15,7 @@ p {
   font-family: var(--content-font);
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .layout {
     flex-direction: column;
   }

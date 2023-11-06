@@ -1,5 +1,5 @@
 .modal-bg {
-  position: relative;
+  position: fixed;
   z-index: 9999;
   backdrop-filter: (12px);
   top: 0;
@@ -12,7 +12,7 @@
 }
 
 .modal-container {
-  background-color: #fff;
+  background-color: var(--primary-color);
   width: 60%;
   border-radius: 0.25rem;
   margin-top: 2em;
@@ -20,33 +20,41 @@
   padding: 1em;
   display: flex;
   flex-direction: column;
+  overflow: scroll;
 }
 
 .modal-top {
   width: 100%;
   padding-top: 3vh;
+  position: relative;
   display: flex;
   justify-content: center;
 }
 
 .close-modal {
   align-self: flex-start;
+  position: absolute;
+  right: 5px;
+  top: 0px;
+  height: auto;
+  width: 50px;
   color: var(--orange-color);
 }
 
 .modal-plankton {
   width: 15%;
   max-height: 100%;
-  justify-self: end;
 }
-@media (max-width: 800px) {
+
+@media (max-width: 900px) {
   .modal-container {
+    margin-top: 0px;
+    margin-bottom: 0px;
     width: 100vw;
     height: 100vh;
-    position: relative;
   }
 
-  .modal-bg {
-    position: relative;
+  .modal-plankton {
+    display: none;
   }
 }

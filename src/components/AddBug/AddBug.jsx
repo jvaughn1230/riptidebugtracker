@@ -2,17 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import "./AddBug.css";
 import Modal from "../modal/Modal";
 import { useAddBugMutation } from "../../redux/apis/bugsApiSlice";
-import { useFetchProjectsQuery } from "../../redux/apis/projectsApiSlice";
+import SelectProject from "../SelectProject/SelectProject";
 
 // TODO: Cleanup Date function
 
 const AddBug = ({ closeModal }) => {
-  const {
-    data,
-    error: projectsError,
-    isLoading: projectsLoading,
-  } = useFetchProjectsQuery();
-
   // Fetch Today's Date & Format
   const today = new Date();
 
@@ -61,7 +55,7 @@ const AddBug = ({ closeModal }) => {
         created: `${today.getFullYear()}-${month}-${day}`,
       });
     }
-  }, [isSuccess]);
+  }, [isSuccess, day, month, today]);
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -130,7 +124,7 @@ const AddBug = ({ closeModal }) => {
             ref={bugRef}
           />
 
-          <label>Details: </label>
+          <label>Steps to Recreate: </label>
           <textarea
             name="recreate"
             value={newBug.recreate}
@@ -151,27 +145,7 @@ const AddBug = ({ closeModal }) => {
           </select>
 
           <label>Project: </label>
-          <select
-            name="project"
-            value={newBug.project}
-            onChange={handleChange}
-            defaultValue={"none"}
-          >
-            <option value="none">Select Project</option>
-            {projectsError ? (
-              <div>Failed to Load Projects</div>
-            ) : projectsLoading ? (
-              <option disabled>Loading . . .</option>
-            ) : (
-              data?.map((project, index) => {
-                return (
-                  <option key={index} value={project._id}>
-                    {project.name}
-                  </option>
-                );
-              })
-            )}
-          </select>
+          <SelectProject value={newBug.project} handleChange={handleChange} />
 
           <label>Due By: </label>
           <input

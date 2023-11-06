@@ -20,6 +20,26 @@
 
 @media (max-width: 800px) {
   .homepg {
-    margin-top: 20vh;
+    margin-top: 20px;
+    margin-inline: 0;
+  }
+
+  .home__row {
+    justify-content: center;
+    margin-inline: 0;
+  }
+
+  .welcome-msg {
+    font-size: 48px;
+  }
+
+  .home__subtitle {
+    font-size: 32px;
+    /* border: 2px solid red; */
+    width: 30%;
+    text-align: center;
+    padding-bottom: 0.5em;
+    border-bottom: 3px solid var(--orange-color);
+    margin: 0 auto;
   }
 }

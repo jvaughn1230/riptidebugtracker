@@ -45,10 +45,10 @@
   display: none;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .navbar {
     flex-direction: row;
-    padding: 0;
+    padding-inline: 1rem;
     width: 100%;
     height: 20vh;
     min-height: 20vh;
@@ -60,6 +60,11 @@
 
   .desktop-links-container {
     display: none;
+  }
+
+  .hamburger {
+    height: auto;
+    width: 15vw;
   }
 
   .openMobileMenu {
@@ -76,6 +81,8 @@
     position: absolute;
     top: 2.5%;
     right: 2.5%;
+    height: auto;
+    width: 15vw;
     /* top: 5vh;
     right: 5vw; */
   }
@@ -88,7 +95,7 @@
     justify-content: space-around;
     width: 100vw;
     background-color: var(--new-blue);
-    padding-block: 15px;
+    padding-block: 10vh;
   }
 
   .mobilenav__button {

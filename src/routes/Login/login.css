@@ -10,13 +10,10 @@
   background-blend-mode: multiply;
 }
 
-/* need to change to a div for everything & div for form */
 .login-container {
   background-color: var(--primary-color);
-  /* height: 30vw; */
-  width: 35vw;
-  padding: 3em;
-  border: 2px solid gold;
+  width: 50vw;
+  padding: 5em;
   text-align: center;
 }
 
@@ -34,6 +31,7 @@
   padding: 5px;
   border: none;
   font-size: 16px;
+  font-family: var(--content-font);
 }
 
 .login-form button {
@@ -55,4 +53,32 @@
 .login-redirect {
   font-family: var(--content-font);
   font-size: var(--link-text);
+}
+
+@media (max-width: 900px) {
+  .login-container {
+    min-width: 80vw;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .login-form input {
+    width: 80%;
+  }
+
+  .login-header {
+    font-size: 36px;
+  }
+
+  .login-form button {
+    font-size: 24px;
+  }
+
+  .login-redirect {
+    font-size: 16px;
+  }
+
+  .login-redirect a {
+    font-size: 16px;
+  }
 }

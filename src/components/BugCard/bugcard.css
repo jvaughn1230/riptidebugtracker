@@ -10,7 +10,7 @@
   position: relative;
 }
 
-.bucard::before,
+/* .bucard::before,
 .bugcard::after {
   content: "";
   position: absolute;
@@ -18,7 +18,7 @@
   z-index: -1;
   border-radius: inherit;
   background: linear-gradient(180deg, var(--orange-color), var(--dark-blue));
-}
+} */
 
 .bugcard-title {
   font-size: var(--header-text);
@@ -54,23 +54,23 @@
 
 .card-row p {
   margin-left: 0.5em;
+  font-size: 24px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .bugcard {
     flex: 0 0 45%;
+  }
+
+  .card-row {
   }
 
   .bugcard h3 {
     font-size: 24px;
   }
 
-  .bugcard p {
-    font-size: 14px;
-
-    .card-row {
-      flex-direction: column;
-    }
+  .bugcard__button {
+    font-size: 24px;
   }
 }
 

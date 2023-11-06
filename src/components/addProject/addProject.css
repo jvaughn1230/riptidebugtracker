@@ -1,5 +1,4 @@
 .addproject-form {
-  /* border: 2px solid yellow; */
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -17,20 +16,34 @@
 }
 
 .addproject-form input {
-  width: 80%;
+  width: 70%;
 }
 
 .addproject-form-row {
+  width: 75%;
   align-self: center;
   display: flex;
-}
-
-.addproject-form-row label {
-  margin-right: 0.5em;
-  text-align: right;
+  justify-content: space-between;
+  margin-block: 0.5em;
+  padding-inline: 10%;
 }
 
 .addproject-button {
   width: 35%;
   align-self: center;
+  margin-top: 1.5em;
+}
+
+@media (max-width: 900px) {
+  .addproject-header {
+    font-size: 32px;
+  }
+
+  .addproject-form label {
+    font-size: 24px;
+  }
+
+  .addproject-form button {
+    font-size: 24px;
+  }
 }
