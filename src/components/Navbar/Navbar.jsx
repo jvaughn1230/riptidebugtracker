@@ -27,6 +27,7 @@ const Navbar = () => {
       <div className="desktop-links-container">
         <Link to="/account">Home</Link>
         <Link to="/account/viewbugs">View Bugs</Link>
+        <Link to="/account/projects">My Projects</Link>
         <div className="line"></div>
         <Link onClick={openBugModal}>Add Bug</Link>
         {isBugModalOpen && <AddBug closeModal={closeBugModal} />}
@@ -59,6 +60,13 @@ const Navbar = () => {
               onClick={() => setToggleMenu(false)}
             >
               View Bugs
+            </Link>
+            <Link
+              to="/account/projects"
+              className="mobilenav__link"
+              onClick={() => setToggleMenu(false)}
+            >
+              My Projects
             </Link>
             <div className="line"></div>
             <Link onClick={openBugModal} className="mobilenav__link">

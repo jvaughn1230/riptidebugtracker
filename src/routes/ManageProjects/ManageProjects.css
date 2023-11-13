@@ -1,0 +1,16 @@
+.manageprojects {
+  width: 100%;
+}
+
+.manageprojects-title {
+  text-align: center;
+  font-family: var(--header-font);
+  font-size: var(--header-text);
+}
+
+.projects-container {
+  margin-inline: 1.3021vw;
+  gap: 1.3021vw;
+  display: flex;
+  flex-wrap: wrap;
+}

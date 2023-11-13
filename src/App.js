@@ -8,6 +8,7 @@ import Signup from "./routes/Signup/Signup";
 import ViewBugs from "./routes/ViewBugs/ViewBugs";
 import Layout from "./routes/Layout";
 import Home from "./routes/Home/Home";
+import ManageProjects from "./routes/ManageProjects/ManageProjects";
 
 import RequireAuth from "./components/RequireAuth";
 import PersistLogin from "./redux/PersistLogin";
@@ -24,6 +25,7 @@ function App() {
               <Route path="/account" element={<Home />} />
               <Route path="/account/addbug" element={<AddBug />} />
               <Route path="/account/viewbugs" element={<ViewBugs />} />
+              <Route path="/account/projects" element={<ManageProjects />} />
             </Route>
           </Route>
         </Route>

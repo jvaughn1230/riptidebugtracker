@@ -73,8 +73,6 @@ const BugModal = ({ closeModal, bug }) => {
       [name]: value,
     }));
 
-    console.log("setting changed");
-
     setChanged(true);
   };
 

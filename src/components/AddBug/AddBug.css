@@ -46,3 +46,7 @@ textarea {
 .addbug-form button {
   grid-column: 2;
 }
+
+@media(max-width: 900px){
+  
+}
