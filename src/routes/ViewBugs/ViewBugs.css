@@ -1,5 +1,6 @@
 .viewbugs {
   width: 100%;
+  min-height: 100vh;
 }
 
 .buglist {
@@ -16,7 +17,7 @@
   font-size: var(--header-text);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1200px) {
   .buglist {
     justify-content: center;
   }

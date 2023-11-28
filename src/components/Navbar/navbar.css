@@ -64,7 +64,8 @@
 
   .hamburger {
     height: auto;
-    width: 15vw;
+    width: 10vw;
+    min-width: 70px;
   }
 
   .openMobileMenu {

@@ -1,23 +1,35 @@
 .projectcard {
   display: flex;
   flex-direction: column;
-  background-color: aqua;
-  padding: 0.5em;
+  background-color: var(--card-color);
+  padding: 1em;
   width: 30%;
   border-radius: 0.5em;
   position: relative;
 }
 
-.projectdcard__header {
+.projectcard__header {
   margin-block: 0;
+  font-size: var(--card-text);
+  margin-bottom: 0.25em;
 }
 
-.projectdcard__body {
+.projectcard__body {
   margin-block: 0;
+  font-size: var(--card-text);
+  overflow-wrap: normal;
 }
 
 .projectcard__container {
   display: flex;
+  margin-bottom: 0.5em;
+  flex-direction: column;
+}
+
+.projectcard__buttons {
+  margin-top: 1em;
+  display: flex;
+  justify-content: space-around;
 }
 
 .reqDelete__container {
@@ -43,6 +55,12 @@
   flex-direction: column;
 }
 
+.reqDelete__header {
+  font-size: var(--modal-text);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .reqDelete__btns {
   display: flex;
   justify-content: space-around;
@@ -56,4 +74,60 @@
   position: absolute;
   background-color: var(--background-color);
   backdrop-filter: (12px);
+}
+
+@media (max-width: 1200px) {
+  .projectcard {
+    width: 40%;
+  }
+
+  .projectcard__header {
+    font-size: 24px;
+  }
+
+  .projectcard__body {
+    font-size: 24px;
+  }
+
+  .projectcard__buttons button {
+    font-size: 24px;
+  }
+
+  .reqDelete__header {
+    font-size: 24px;
+  }
+
+  .reqDelete__btns {
+    flex-direction: column;
+  }
+
+  .reqDelete__btns button {
+    font-size: 20px;
+    width: 90%;
+    margin-inline: auto;
+  }
+
+  .reqDelete__body {
+    height: 80%;
+    width: 80%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 900px) {
+  .projectcard__container {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  .projectcard__buttons {
+    flex-direction: column;
+  }
+
+  .projectcard {
+    width: 80%;
+    margin-inline: auto;
+    margin-bottom: 1em;
+  }
 }
