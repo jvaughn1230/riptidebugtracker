@@ -64,9 +64,9 @@ const ProjectCard = ({ project }) => {
   return (
     <div className="projectcard">
       <div className="projectcard__container">
-        <h5 className="projectdcard__header">Project:</h5>
+        <h5 className="projectcard__header">Project:</h5>
         <input
-          className="projectdcard__body"
+          className="projectcard__body"
           type="text"
           name="name"
           value={updateName}
@@ -74,15 +74,15 @@ const ProjectCard = ({ project }) => {
         />
       </div>
       <div className="projectcard__container">
-        <h5 className="projectdcard__header">Description</h5>
+        <h5 className="projectcard__header">Description: </h5>
         <input
-          className="projectdcard__body"
+          className="projectcard__body"
           name="description"
           value={updateDescription}
           onChange={handleDescriptionChange}
         />
       </div>
-      <div>
+      <div className="projectcard__buttons">
         <button disabled={!changed} type="submit" onClick={handleSubmit}>
           Submit
         </button>
@@ -90,7 +90,7 @@ const ProjectCard = ({ project }) => {
       </div>
       <div className={`${reqDelete ? "reqDelete__container" : "hide"}`}>
         <div className="reqDelete__body">
-          <span>Delete Project? </span>
+          <p className="reqDelete__header">Delete Project? </p>
           <div className="reqDelete__btns">
             <button onClick={onDeleteProjectClicked}>Confirm</button>
             <button onClick={() => setReqDelete(false)}>Cancel</button>

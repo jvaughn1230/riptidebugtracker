@@ -11,7 +11,7 @@
 
   /* Font Sizes */
   --link-text: clamp(12px, 1.1719vw, 22px);
-  --header-text: clamp(24px, 3.125vw, 60px);
+  --header-text: clamp(36px, 3.125vw, 60px);
   --subheader-text: clamp(20px, 2.0833vw, 32px);
   --modal-text: 1.5625vw;
   --body-text: 1.0417vw;
@@ -57,6 +57,7 @@ a {
   text-decoration: none;
   color: var(--cream-color);
   font-size: var(--link-text);
+  font-weight: 500;
 }
 
 .hide {
