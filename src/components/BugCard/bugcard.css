@@ -5,10 +5,30 @@
   margin: 10px;
   /* max-width: calc(25% - 20px); */
   /* flex: 0 0 22%; */
-  width: 22%;
+  width: 22vw;
   padding-inline: 2em;
   border-radius: 0.5em;
   position: relative;
+  /* z-index: 2; */
+  /* Below works but no rounded */
+  /* border: 10px solid;
+  border-image-slice: 1;
+  border-width: 5px;
+  border-image-source: linear-gradient(
+    180deg,
+    var(--orange-color),
+    var(--dark-blue)
+  ); */
+}
+
+.bugcard-bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 23vw;
+  background: linear-gradient(180deg, var(--orange-color), var(--dark-blue));
+  border-radius: 0.5em;
 }
 
 /* .bucard::before,
@@ -16,6 +36,7 @@
   content: "";
   position: absolute;
   inset: -0.5rem;
+
   z-index: -1;
   border-radius: inherit;
   background: linear-gradient(180deg, var(--orange-color), var(--dark-blue));
@@ -56,13 +77,21 @@
 
 @media (max-width: 1200px) {
   .bugcard {
-    width: 30%;
+    width: 30vw;
+  }
+
+  .bugcard-bg {
+    width: 31vw;
   }
 }
 
 @media (max-width: 900px) {
   .bugcard {
-    width: 40%;
+    width: 40vw;
+  }
+
+  .bugcard-bg {
+    width: 41vw;
   }
 
   .bugcard h3 {
@@ -76,6 +105,10 @@
 
 @media (max-width: 600px) {
   .bugcard {
-    flex: 0 0 80%;
+    width: 80vw;
+  }
+
+  .bugcard-bg {
+    width: 81vw;
   }
 }

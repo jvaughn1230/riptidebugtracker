@@ -38,25 +38,27 @@ const BugCard = ({ bug }) => {
     : "";
 
   return (
-    <div className="bugcard">
-      <img src={plankton} alt="plankton" className="card-plankton" />
-      <div className="card-row">
-        <h3>Priority:</h3>
-        <p> {getPriorityText(bug.priority)}</p>
-      </div>
-      <div className="card-row">
-        <h3>Due:</h3>
-        <p>{formattedDueDate}</p>
-      </div>
-      <div className="card-row">
-        <h3>Status: </h3>
-        <p>{getStatus(bug.status)}</p>{" "}
-      </div>
+    <div className="bugcard-bg">
+      <div className="bugcard">
+        <img src={plankton} alt="plankton" className="card-plankton" />
+        <div className="card-row">
+          <h3>Priority:</h3>
+          <p> {getPriorityText(bug.priority)}</p>
+        </div>
+        <div className="card-row">
+          <h3>Due:</h3>
+          <p>{formattedDueDate}</p>
+        </div>
+        <div className="card-row">
+          <h3>Status: </h3>
+          <p>{getStatus(bug.status)}</p>{" "}
+        </div>
 
-      <button onClick={openModal} className="bugcard__button">
-        View Bug
-      </button>
-      {isModalOpen && <BugModal closeModal={closeModal} bug={bug} />}
+        <button onClick={openModal} className="bugcard__button">
+          View Bug
+        </button>
+        {isModalOpen && <BugModal closeModal={closeModal} bug={bug} />}
+      </div>
     </div>
   );
 };
