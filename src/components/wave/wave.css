@@ -1,0 +1,13 @@
+.wave {
+  display: none;
+}
+
+.complete {
+  overflow: hidden;
+  width: 110px;
+  height: 100px;
+  background-color: blue;
+  border: 2px solid white;
+  position: absolute;
+  z-index: 100;
+}

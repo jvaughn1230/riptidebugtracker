@@ -3,7 +3,7 @@ import { setCredentials, logOut } from "./authSlice";
 
 const baseQuery = fetchBaseQuery({
   // TODO: when hosted change to hosted server base
-  baseUrl: "http://localhost:3500",
+  baseUrl: "https://riptide-bugtracker-api.onrender.com",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.accessToken;
