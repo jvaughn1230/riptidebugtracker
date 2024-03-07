@@ -2,8 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 import { setCredentials, logOut } from "./authSlice";
 
 const baseQuery = fetchBaseQuery({
-  // TODO: when hosted change to hosted server base
-  baseUrl: "http://localhost:3500",
+  baseUrl: "https://riptide-bugtracker-api.onrender.com",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.accessToken;
@@ -14,20 +13,10 @@ const baseQuery = fetchBaseQuery({
   },
 });
 
-// and here
-// let refreshRequest;
-
 const baseQueryWithReauth = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
 
   if (result?.error?.originalStatus === 403) {
-    // Try to get new token
-    // Here
-    // if (!refreshRequest) {
-    //   refreshRequest = baseQuery("/auth/refresh", api, extraOptions);
-    // }
-    // To Here
-
     const refreshResult = await baseQuery("/auth/refresh", api, extraOptions);
 
     if (refreshResult?.data) {
