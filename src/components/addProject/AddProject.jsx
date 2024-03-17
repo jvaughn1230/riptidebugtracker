@@ -11,6 +11,7 @@ const AddProject = ({ closeModal }) => {
 
   const [errMsg, setErrMsg] = useState("");
 
+  // TODO: Check if all needed
   const [addProject, { isLoading, isSuccess, isError, error }] =
     useAddProjectMutation();
 

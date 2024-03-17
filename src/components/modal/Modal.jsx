@@ -9,11 +9,7 @@ const Modal = ({ children, closeModal }) => {
       <div className="modal-container">
         <div className="modal-top">
           <img src={plankton} alt="plankton" className="modal-plankton" />
-          <AiOutlineCloseCircle
-            // size={40}
-            onClick={closeModal}
-            className="close-modal"
-          />
+          <AiOutlineCloseCircle onClick={closeModal} className="close-modal" />
         </div>
         <div className="modal-content">{children}</div>
       </div>
