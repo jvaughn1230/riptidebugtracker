@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import "./AddBug.css";
 import Modal from "../modal/Modal";
 import { useAddBugMutation } from "../../redux/apis/bugsApiSlice";
@@ -8,7 +8,7 @@ import SelectProject from "../SelectProject/SelectProject";
 
 const AddBug = ({ closeModal }) => {
   // Fetch Today's Date & Format
-  const today = new Date();
+  const today = useMemo(() => new Date(), []);
 
   const month =
     today.getMonth() + 1 < 10

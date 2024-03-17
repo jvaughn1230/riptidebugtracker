@@ -13,6 +13,7 @@
   --link-text: clamp(12px, 1.1719vw, 22px);
   --header-text: clamp(36px, 3.125vw, 60px);
   --subheader-text: clamp(20px, 2.0833vw, 32px);
+  /* Todo: add clamp below */
   --modal-text: 1.5625vw;
   --body-text: 1.0417vw;
   --card-text: clamp(14px, 1.3672vw, 24px);
@@ -20,10 +21,6 @@
   /* Add Fonts Later */
   --content-font: "Gabarito", sans-serif;
   --header-font: "Hammersmith One", sans-serif;
-
-  /* Stacking */
-  --modal-zindex: 3;
-  --wave-zindex: 2;
 }
 
 /* Utility Classes */

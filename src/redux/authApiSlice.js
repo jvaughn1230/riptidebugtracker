@@ -17,6 +17,7 @@ export const authApi = apiSlice.injectEndpoints({
       query: (data) => ({
         url: "/auth/register",
         method: "POST",
+        mode: "cors",
         body: data,
       }),
     }),

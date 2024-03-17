@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./ProjectCard.css";
-import plankton from "../../assets/plankton.png";
 
 import {
   useDeleteProjectMutation,
@@ -19,6 +18,7 @@ const ProjectCard = ({ project }) => {
   const [deleteProject, { isSuccess: isDelSuccess, isError: isDelError }] =
     useDeleteProjectMutation();
 
+  //todo: check if need below
   const [updateProject, { isSuccess: isUpdateSuccess, isLoading, isError }] =
     useUpdateProjectMutation();
 
