@@ -46,6 +46,7 @@ const Home = () => {
   return (
     <div className="homepg">
       <h1 className="welcome-msg">{welcome}</h1>
+
       <div className={error ? "" : "hide"}>
         There was an error. Please try again
       </div>

@@ -3,6 +3,8 @@ import "./AddBug.css";
 import Modal from "../modal/Modal";
 import { useAddBugMutation } from "../../redux/apis/bugsApiSlice";
 import SelectProject from "../SelectProject/SelectProject";
+import { toast } from "react-toastify";
+import useErrorHandling from "../../hooks/useErrorHandling";
 
 // TODO: Cleanup Date function
 
@@ -30,20 +32,15 @@ const AddBug = ({ closeModal }) => {
   const [addBug, { isLoading, isSuccess, isError, error }] =
     useAddBugMutation();
 
-  const [errMsg, setErrMsg] = useState("");
-
-  const errRef = useRef();
+  const { handleErrors } = useErrorHandling();
   const bugRef = useRef();
 
-  const errClass = isError ? "errMsg" : "offscreen";
+  // const errClass = isError ? "errMsg" : "offscreen";
+  // <p className={errClass}>{error?.data?.message}</p>
 
   useEffect(() => {
     bugRef.current.focus();
   }, []);
-
-  useEffect(() => {
-    setErrMsg("");
-  }, [newBug.issue, newBug.details]);
 
   useEffect(() => {
     if (isSuccess) {
@@ -92,15 +89,9 @@ const AddBug = ({ closeModal }) => {
         project: null,
       });
       closeModal();
+      toast.success("Bug Added!");
     } catch (err) {
-      if (!err.response) {
-        setErrMsg("No Server Response");
-      } else if (err.response?.status === 400) {
-        setErrMsg("Issues and Details are required fields");
-      } else {
-        setErrMsg("Failed to add Bug");
-      }
-      // errRef.current.focus();
+      handleErrors(err, "bug");
     }
   };
 
@@ -110,8 +101,6 @@ const AddBug = ({ closeModal }) => {
     <Modal closeModal={closeModal}>
       <div className="addbug-container">
         <h2 className="addbug-header">Create Bug</h2>
-
-        <p className={errClass}>{error?.data?.message}</p>
 
         <form className="addbug-form" id="bugform">
           <label>Issue: </label>
