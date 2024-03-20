@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./ProjectCard.css";
+import { toast } from "react-toastify";
 
 import {
   useDeleteProjectMutation,
@@ -15,15 +16,18 @@ const ProjectCard = ({ project }) => {
   );
   const [updates, setUpdates] = useState({ id: project._id });
 
-  const [deleteProject, { isSuccess: isDelSuccess, isError: isDelError }] =
+  const [deleteProject, { isSuccess: isDelSuccess }] =
     useDeleteProjectMutation();
 
-  //todo: check if need below
-  const [updateProject, { isSuccess: isUpdateSuccess, isLoading, isError }] =
-    useUpdateProjectMutation();
+  const [updateProject, { isLoading }] = useUpdateProjectMutation();
 
   const onDeleteProjectClicked = async () => {
-    await deleteProject({ id: project._id });
+    try {
+      await deleteProject({ id: project._id });
+      toast.success("Projected Deleted!");
+    } catch (err) {
+      toast.error("Failed to Delete. Please Try Again!");
+    }
   };
 
   useEffect(() => {
@@ -55,9 +59,10 @@ const ProjectCard = ({ project }) => {
 
     try {
       await updateProject(updates);
+      toast.success("Project Updated!");
       return setChanged(false);
     } catch (err) {
-      console.log(err);
+      toast.error(err);
     }
   };
 
@@ -83,7 +88,11 @@ const ProjectCard = ({ project }) => {
         />
       </div>
       <div className="projectcard__buttons">
-        <button disabled={!changed} type="submit" onClick={handleSubmit}>
+        <button
+          disabled={!changed || isLoading}
+          type="submit"
+          onClick={handleSubmit}
+        >
           Submit
         </button>
         <button onClick={() => setReqDelete(true)}>Delete</button>

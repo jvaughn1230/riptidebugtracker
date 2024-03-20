@@ -5,23 +5,20 @@ import {
   useDeleteBugMutation,
   useUpdateBugMutation,
 } from "../../redux/apis/bugsApiSlice";
+import { toast } from "react-toastify";
 import SelectProject from "../SelectProject/SelectProject";
+import useDateFormatter from "../../hooks/useDateFormatter";
 
 const BugModal = ({ closeModal, bug }) => {
-  const formattedDueDate = bug.due
-    ? new Date(bug.due).toISOString().split("T")[0]
-    : "";
+  const { formatForDisplay, formatForBackend, formatForForm } =
+    useDateFormatter();
 
-  const updateDate = new Date(bug.updatedAt);
-  const createdDate = new Date(bug.createdAt);
+  // Formatted Dates from Bug
+  const formattedDueDate = bug.due ? formatForForm(bug.due) : "";
+  const formattedUpdateDate = bug.due ? formatForForm(bug.updatedAt) : "";
+  const formattedCreatedDate = formatForDisplay(bug.createdAt);
 
-  const formattedUpdateDate = new Intl.DateTimeFormat("en-US").format(
-    updateDate
-  );
-  const formattedCreatedDate = new Intl.DateTimeFormat("en-US").format(
-    createdDate
-  );
-
+  // State
   const [draftBug, setDraftBug] = useState({
     priority: bug.priority,
     updates: bug.updates,
@@ -34,8 +31,7 @@ const BugModal = ({ closeModal, bug }) => {
   const [changed, setChanged] = useState(false);
   const [updates, setUpdates] = useState({ id: bug._id });
 
-  const [deleteBug, { isSuccess: isDelSuccess, isError: isDelError }] =
-    useDeleteBugMutation();
+  const [deleteBug, { isSuccess: isDelSuccess }] = useDeleteBugMutation();
 
   const [updateBug, { isSuccess, isLoading, isError }] = useUpdateBugMutation();
 
@@ -46,10 +42,13 @@ const BugModal = ({ closeModal, bug }) => {
   }, [isDelSuccess, isSuccess, closeModal]);
 
   const onDeleteBugClicked = async () => {
-    await deleteBug({ id: bug._id });
+    try {
+      await deleteBug({ id: bug._id });
+      toast.success("Deleted Bug!");
+    } catch (err) {
+      toast.error("Failed To Delete Bug. Please Try Again!");
+    }
   };
-
-  // const onCompletedChanged = (e) => setCompleted((prev) => !prev);
 
   const handleDueDateChange = (e) => {
     const newDueDate = e.target.value;
@@ -63,33 +62,29 @@ const BugModal = ({ closeModal, bug }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    setDraftBug((prev) => ({
-      ...prev,
+    setDraftBug((prevDraftBug) => ({
+      ...prevDraftBug,
       [name]: value,
     }));
 
-    setUpdates((prev) => ({
-      ...prev,
+    setUpdates((prevUpdates) => ({
+      ...prevUpdates,
       [name]: value,
     }));
 
     setChanged(true);
   };
 
-  //Todo: check below YTCH time issue
   const onUpdateBugClicked = async (e) => {
     e.preventDefault();
 
     if (updates.due) {
-      const inputTime = new Date(draftBug.due);
-      const timeZoneOffsetMninutes = inputTime.getTimezoneOffset();
-      const utcTime = new Date(
-        inputTime.getTime() + timeZoneOffsetMninutes * 60000
-      );
+      formatForBackend(updates.due);
     }
 
     try {
       await updateBug(updates);
+      toast.success("Bug Updated!");
     } catch (err) {
       console.log(err);
     }
@@ -102,12 +97,7 @@ const BugModal = ({ closeModal, bug }) => {
 
       {/* Modal Body */}
       <div className="bugmodal-body">
-        {isDelError && (
-          <div className="errmsg">Failed to delete Bug please try again</div>
-        )}
-        {isError && (
-          <div className="errmsg">Failed to update Bug. Please try again</div>
-        )}
+        {isError && toast.error("Failed to Update Bug. Please Try Again.")}
 
         {/* Modal Details Section */}
         <div className="bugmodal__section">
@@ -153,7 +143,6 @@ const BugModal = ({ closeModal, bug }) => {
             <div className="display-inputs">{bug.recreate}</div>
           </div>
         </div>
-
         {/* Modal Dates Section */}
         <div className="bugmodal__section">
           <div className="bugmodal__section-header">Dates:</div>
@@ -185,7 +174,6 @@ const BugModal = ({ closeModal, bug }) => {
             </div>
           </div>
         </div>
-
         {/* Modal Notes Section */}
         <div className="bugmodal__section">
           <div className="bugmodal__row">
@@ -199,7 +187,6 @@ const BugModal = ({ closeModal, bug }) => {
             ></textarea>
           </div>
         </div>
-
         {/* Modal Buttons */}
         {changed && (
           <div className="bugmodal-buttons">
@@ -223,8 +210,10 @@ const BugModal = ({ closeModal, bug }) => {
           </div>
         )}
       </div>
-      <div>
-        <button onClick={onDeleteBugClicked}>Delete</button>
+      <div className="delete-button-container">
+        <button onClick={onDeleteBugClicked} className="delete-button">
+          Delete
+        </button>
       </div>
     </Modal>
   );

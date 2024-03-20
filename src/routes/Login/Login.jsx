@@ -41,11 +41,10 @@ const Login = () => {
       setPassword("");
       navigate("/account");
     } catch (err) {
-      // ToDO: Check Server Errors
       if (!err.response) {
         setErrMsg("No Server Response");
       } else if (err.response?.status === 400) {
-        setErrMsg("Missing Email or Password");
+        setErrMsg("Email or Password Are Incorrect");
       } else if (err.response?.status === 401) {
         setErrMsg("Unauthorized");
       } else {

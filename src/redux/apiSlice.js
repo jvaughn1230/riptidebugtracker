@@ -3,7 +3,8 @@ import { setCredentials, logOut } from "./authSlice";
 
 const baseQuery = fetchBaseQuery({
   // Todo: change when commiting
-  baseUrl: "https://riptide-bugtracker-api.onrender.com",
+  // baseUrl: "https://riptide-bugtracker-api.onrender.com",
+  baseUrl: "http://localhost:3500",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.accessToken;

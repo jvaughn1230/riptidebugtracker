@@ -1,7 +1,7 @@
 import React from "react";
 import "./ViewBugs.css";
-import BugCard from "../../components/BugCard/BugCard";
 import { useFetchBugsQuery } from "../../redux/apis/bugsApiSlice";
+import BugModalContainer from "../../components/BugModalContainer";
 
 const ViewBugs = () => {
   const { data, error, isLoading } = useFetchBugsQuery();
@@ -12,8 +12,8 @@ const ViewBugs = () => {
     <div className="viewbugs">
       <h1 className="viewbugs-title">View Bugs</h1>
       <div className="buglist">
-        {data?.map((bug, index) => {
-          return <BugCard key={index} bug={bug} />;
+        {data?.map((bug) => {
+          return <BugModalContainer key={bug.id} bug={bug} />;
         })}
       </div>
     </div>

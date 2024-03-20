@@ -1,41 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import "./bugcard.css";
-import BugModal from "../bugModal/BugModal";
 import plankton from "../../assets/plankton.png";
+import useDateFormatter from "../../hooks/useDateFormatter";
 
-const BugCard = ({ bug }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const BugCard = ({ bug, openModal }) => {
+  const { formatForDisplay } = useDateFormatter();
 
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const priorityMap = {
+    1: "Low",
+    2: "Regular",
+    3: "High",
   };
 
-  const openModal = () => {
-    setIsModalOpen(true);
+  const statusMap = {
+    1: "Open",
+    2: "In Progress",
+    3: "Complete",
   };
 
-  // helper functions
-  function getPriorityText(priority) {
-    const priorityMap = {
-      1: "Low",
-      2: "Regular",
-      3: "High",
-    };
-    return priorityMap[priority] || "Unknown";
-  }
-
-  function getStatus(status) {
-    const statusMap = {
-      1: "Open",
-      2: "In Progress",
-      3: "Complete",
-    };
-    return statusMap[status] || "Unknown";
-  }
-
-  const formattedDueDate = bug.due
-    ? new Date(bug.due).toLocaleDateString("en-US")
-    : "";
+  const getFormattedDueDate = bug.due ? formatForDisplay(bug.due) : "";
 
   return (
     <div className="bugcard-bg">
@@ -43,21 +26,20 @@ const BugCard = ({ bug }) => {
         <img src={plankton} alt="plankton" className="card-plankton" />
         <div className="card-row">
           <h3>Priority:</h3>
-          <p> {getPriorityText(bug.priority)}</p>
+          <p>{priorityMap[bug.priority] || "Unknown"}</p>
         </div>
         <div className="card-row">
           <h3>Due:</h3>
-          <p>{formattedDueDate}</p>
+          <p>{getFormattedDueDate}</p>
         </div>
         <div className="card-row">
           <h3>Status: </h3>
-          <p>{getStatus(bug.status)}</p>{" "}
+          <p>{statusMap[bug.status]}</p>
         </div>
 
         <button onClick={openModal} className="bugcard__button">
           View Bug
         </button>
-        {isModalOpen && <BugModal closeModal={closeModal} bug={bug} />}
       </div>
     </div>
   );
