@@ -9,6 +9,7 @@
   font-family: var(--header-font);
   margin-block: 1em;
   font-weight: normal;
+  text-align: center;
 }
 
 .bugmodal-body {
@@ -72,6 +73,14 @@
 
 .bugmodal-buttons button {
   margin-inline: 2.5vw;
+}
+
+.delete-button-cotainer {
+  margin-inline: auto;
+}
+
+.delete-button {
+  text-align: center;
 }
 
 .updates-input {

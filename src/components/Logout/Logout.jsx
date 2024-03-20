@@ -15,7 +15,7 @@ const Logout = ({ className }) => {
   }, [isSuccess, navigate]);
 
   if (isLoading) return <p>Logging Out...</p>;
-  if (isError) return <p>Error: {error.date?.message}</p>;
+  if (isError) return <p>Error: {error.data?.message}</p>;
 
   return (
     <button onClick={sendLogout} className={`${className}`}>

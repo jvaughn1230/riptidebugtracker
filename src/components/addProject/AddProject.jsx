@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import "./addProject.css";
 import { useAddProjectMutation } from "../../redux/apis/projectsApiSlice";
 import Modal from "../modal/Modal";
+import { toast } from "react-toastify";
+import useErrorHandling from "../../hooks/useErrorHandling";
 
 const AddProject = ({ closeModal }) => {
   const [newProject, setNewProject] = useState({
@@ -9,11 +11,10 @@ const AddProject = ({ closeModal }) => {
     description: "",
   });
 
-  const [errMsg, setErrMsg] = useState("");
+  const { errMsg, handleErrors } = useErrorHandling();
 
   // TODO: Check if all needed
-  const [addProject, { isLoading, isSuccess, isError, error }] =
-    useAddProjectMutation();
+  const [addProject, { isLoading }] = useAddProjectMutation();
 
   const projectRef = useRef();
 
@@ -33,6 +34,7 @@ const AddProject = ({ closeModal }) => {
 
     const { name, description } = newProject;
 
+    // TODO: fix error messages
     try {
       await addProject({ name, description }).unwrap();
       setNewProject({
@@ -40,14 +42,9 @@ const AddProject = ({ closeModal }) => {
         description: "",
       });
       closeModal();
+      toast.success("Project Added!");
     } catch (err) {
-      if (!err.response) {
-        setErrMsg("No Server Response");
-      } else if (err.response?.status === 400) {
-        setErrMsg("Name is required");
-      } else {
-        setErrMsg("Failed to add Project");
-      }
+      handleErrors(err, "Failed to add Project");
     }
   };
 

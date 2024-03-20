@@ -2,8 +2,8 @@ import React from "react";
 import "./home.css";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/authSlice";
-import BugCard from "../../components/BugCard/BugCard";
 import { useFetchBugsQuery } from "../../redux/apis/bugsApiSlice";
+import BugModalContainer from "../../components/BugModalContainer";
 
 const Home = () => {
   const user = useSelector(selectCurrentUser);
@@ -46,6 +46,10 @@ const Home = () => {
   return (
     <div className="homepg">
       <h1 className="welcome-msg">{welcome}</h1>
+      {error && (
+        <div className="error-msg">There was an error. Please try again.</div>
+      )}
+
       <div className={error ? "" : "hide"}>
         There was an error. Please try again
       </div>
@@ -55,7 +59,7 @@ const Home = () => {
           {isLoading ? (
             <h3>Loading . . . </h3>
           ) : (
-            dueBugs?.map((bug) => <BugCard bug={bug} key={bug.id} />)
+            dueBugs?.map((bug) => <BugModalContainer bug={bug} key={bug.id} />)
           )}
         </div>
       </div>
@@ -65,7 +69,9 @@ const Home = () => {
           {isLoading ? (
             <h3>Loading . . .</h3>
           ) : (
-            highPriorityBugs?.map((bug) => <BugCard bug={bug} key={bug.id} />)
+            highPriorityBugs?.map((bug) => (
+              <BugModalContainer bug={bug} key={bug.id} />
+            ))
           )}
         </div>
       </div>
@@ -75,7 +81,9 @@ const Home = () => {
           {isLoading ? (
             <h3>Loading . . .</h3>
           ) : (
-            pastDueBugs?.map((bug) => <BugCard bug={bug} key={bug.id} />)
+            pastDueBugs?.map((bug) => (
+              <BugModalContainer bug={bug} key={bug.id} />
+            ))
           )}
         </div>
       </div>

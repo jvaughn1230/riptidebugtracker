@@ -13,9 +13,13 @@ import ManageProjects from "./routes/ManageProjects/ManageProjects";
 import RequireAuth from "./components/RequireAuth";
 import PersistLogin from "./redux/PersistLogin";
 
+import { ToastContainer } from "react-toastify";
+
 function App() {
   return (
     <div className="app">
+      <ToastContainer autoClose={5000} />
+
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />

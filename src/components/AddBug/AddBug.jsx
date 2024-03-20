@@ -1,49 +1,33 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./AddBug.css";
 import Modal from "../modal/Modal";
 import { useAddBugMutation } from "../../redux/apis/bugsApiSlice";
 import SelectProject from "../SelectProject/SelectProject";
-
-// TODO: Cleanup Date function
+import { toast } from "react-toastify";
+import useErrorHandling from "../../hooks/useErrorHandling";
+import useTodayDate from "../../hooks/useTodayDate";
+import useDateFormatter from "../../hooks/useDateFormatter";
 
 const AddBug = ({ closeModal }) => {
-  // Fetch Today's Date & Format
-  const today = useMemo(() => new Date(), []);
+  const today = useTodayDate();
+  const { formatForBackend } = useDateFormatter();
 
-  const month =
-    today.getMonth() + 1 < 10
-      ? `0${today.getMonth() + 1}`
-      : `${today.getMonth() + 1}`;
-
-  const day =
-    today.getDate() + 1 < 10 ? `0${today.getDate}` : `${today.getDate()}`;
-
-  // New Bug Init State
   const [newBug, setNewBug] = useState({
     issue: "",
     recreate: "",
     priority: 2,
     project: null,
-    due: `${today.getFullYear()}-${month}-${day}`,
+    due: today,
   });
 
-  const [addBug, { isLoading, isSuccess, isError, error }] =
-    useAddBugMutation();
+  const [addBug, { isLoading, isSuccess }] = useAddBugMutation();
 
-  const [errMsg, setErrMsg] = useState("");
-
-  const errRef = useRef();
+  const { handleErrors } = useErrorHandling();
   const bugRef = useRef();
-
-  const errClass = isError ? "errMsg" : "offscreen";
 
   useEffect(() => {
     bugRef.current.focus();
   }, []);
-
-  useEffect(() => {
-    setErrMsg("");
-  }, [newBug.issue, newBug.details]);
 
   useEffect(() => {
     if (isSuccess) {
@@ -51,11 +35,11 @@ const AddBug = ({ closeModal }) => {
         issue: "",
         recreate: "",
         priority: "Regular",
-        due: `${today.getFullYear()}-${month}-${day}`,
-        created: `${today.getFullYear()}-${month}-${day}`,
+        due: today,
+        created: today,
       });
     }
-  }, [isSuccess, day, month, today]);
+  }, [isSuccess, today]);
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -66,21 +50,16 @@ const AddBug = ({ closeModal }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const inputTime = new Date(newBug.due);
-    const timeZoneOffsetMninutes = inputTime.getTimezoneOffset();
-    const utcTime = new Date(
-      inputTime.getTime() + timeZoneOffsetMninutes * 60000
-    );
-
     const { issue, recreate, priority, project } = newBug;
+
+    const formattedDue = formatForBackend(newBug.due);
 
     try {
       await addBug({
         issue,
         recreate,
         priority,
-        due: utcTime,
+        due: formattedDue,
         project,
       }).unwrap();
 
@@ -92,15 +71,9 @@ const AddBug = ({ closeModal }) => {
         project: null,
       });
       closeModal();
+      toast.success("Bug Added!");
     } catch (err) {
-      if (!err.response) {
-        setErrMsg("No Server Response");
-      } else if (err.response?.status === 400) {
-        setErrMsg("Issues and Details are required fields");
-      } else {
-        setErrMsg("Failed to add Bug");
-      }
-      // errRef.current.focus();
+      handleErrors(err, "bug");
     }
   };
 
@@ -110,8 +83,6 @@ const AddBug = ({ closeModal }) => {
     <Modal closeModal={closeModal}>
       <div className="addbug-container">
         <h2 className="addbug-header">Create Bug</h2>
-
-        <p className={errClass}>{error?.data?.message}</p>
 
         <form className="addbug-form" id="bugform">
           <label>Issue: </label>
