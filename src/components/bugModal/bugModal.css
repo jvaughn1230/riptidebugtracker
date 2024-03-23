@@ -1,3 +1,5 @@
+/* Need to add on focus for border color & background color & regular border color */
+
 .modal-plankton {
   width: 10%;
   max-height: 100%;
@@ -12,22 +14,41 @@
   text-align: center;
 }
 
-.bugmodal-body {
+.bug-modal-body {
   font-size: var(--card-text);
   font-family: var(--content-font);
-  font-weight: 400;
-  margin-inline: auto;
   width: 90%;
-  text-align: start;
   line-height: 1.4;
+  padding-inline: 0.5rem;
 }
 
-.bugmodal__section-header {
-  font-size: var(--card-text);
-  font-family: var(--content-font);
-  font-weight: 700;
-  margin-block: 0.5em;
+.bug-modal-body p {
+  margin-block: 0.25em;
+  border: 2px solid green;
 }
+
+.bug-section-header {
+  font-weight: 700;
+  margin-block: 0.25em;
+}
+
+.bug-info {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.bug-info p:first-child {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  margin-bottom: 0.5em;
+}
+
+.bug-modal-updates {
+  height: 75px;
+  width: 80%;
+}
+
+/* Old Below */
 
 .bugmodal__section-row {
   display: flex;

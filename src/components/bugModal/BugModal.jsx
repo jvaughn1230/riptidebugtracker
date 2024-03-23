@@ -15,7 +15,9 @@ const BugModal = ({ closeModal, bug }) => {
 
   // Formatted Dates from Bug
   const formattedDueDate = bug.due ? formatForForm(bug.due) : "";
-  const formattedUpdateDate = bug.due ? formatForForm(bug.updatedAt) : "";
+  const formattedUpdateDate = bug.updatedAt
+    ? formatForDisplay(bug.updatedAt)
+    : "";
   const formattedCreatedDate = formatForDisplay(bug.createdAt);
 
   // State
@@ -92,131 +94,82 @@ const BugModal = ({ closeModal, bug }) => {
 
   return (
     <Modal closeModal={closeModal}>
-      {/* Modal Header */}
-      <h4 className="bugmodal-title">Alert #{bug._id}</h4>
-
-      {/* Modal Body */}
-      <div className="bugmodal-body">
-        {isError && toast.error("Failed to Update Bug. Please Try Again.")}
-
-        {/* Modal Details Section */}
-        <div className="bugmodal__section">
-          <h5 className="bugmodal__section-header">Details: </h5>
-          <div className="bugmodal__row">
-            <div className="bugmodal__container">
-              <label className="bugmodal__text">Project:</label>
-              <SelectProject value={draftBug.project} onChange={handleChange} />
-            </div>
-
-            <div className="bugmodal__container">
-              <label>Priority: </label>
-              <select
-                name="priority"
-                value={draftBug.priority}
-                onChange={handleChange}
-              >
-                <option value={2}>Regular</option>
-                <option value={3}>High</option>
-                <option value={1}>Low</option>
-              </select>
-            </div>
-
-            <div className="bugmodal__container">
-              <label>status:</label>
-              <select
-                name="status"
-                value={draftBug.status}
-                onChange={handleChange}
-              >
-                <option value={1}>Open</option>
-                <option value={2}>In Progress</option>
-                <option value={3}>Complete</option>
-              </select>
-            </div>
-          </div>
-          <div className="bugmodal__row">
-            <label className="display-label">Issue: </label>
-            <div className="display-inputs">{bug.issue}</div>
-          </div>
-          <div className="bugmodal__row">
-            <label className="display-label">To Recreate: </label>
-            <div className="display-inputs">{bug.recreate}</div>
-          </div>
+      <div className="bug-modal-body">
+        <div className="bug-modal-header">
+          <h4 className="bugmodal-title">Bug Details</h4>
         </div>
-        {/* Modal Dates Section */}
-        <div className="bugmodal__section">
-          <div className="bugmodal__section-header">Dates:</div>
-          <div className="bugmodal__row">
-            <div className="bugmodal__column">
-              <div className="bugmodal__container">
-                <p>Created: </p>
-                <p>{formattedCreatedDate}</p>
-              </div>
-              <div className="bugmodal__container">
-                <label>Due Date: </label>
-                <input
-                  type="date"
-                  name="due"
-                  value={draftBug.due}
-                  onChange={handleDueDateChange}
-                />
-              </div>
-            </div>
-            <div className="bugmodal__colum">
-              <div className="bugmodal__container">
-                <p>Last Updated: </p>
-                <p>{formattedUpdateDate}</p>
-              </div>
-              <div className="bugmodal__container">
-                <p>Completed: </p>
-                <p>{bug.completedAt}</p>
+
+        {/* Basic Info */}
+        <div className="bug-modal-content">
+          <div className="bug-section">
+            <h3 className="bug-section-header">Basic Information</h3>
+            <div className="bug-section-content">
+              <div className="bug-info">
+                <p>
+                  <span>Issue:</span> {bug.issue}
+                </p>
+                <p>Status: {bug.status}</p>
+                <p>Created: {formattedCreatedDate}</p>
+                <p>Last Updated: {formattedUpdateDate}</p>
               </div>
             </div>
           </div>
-        </div>
-        {/* Modal Notes Section */}
-        <div className="bugmodal__section">
-          <div className="bugmodal__row">
-            <label className="bugmodal__section-header">Updates: </label>
-            <textarea
-              type="text"
-              value={draftBug.updates}
-              name="updates"
-              className="updates-input"
-              onChange={handleChange}
-            ></textarea>
+
+          {/* Updatable Fields */}
+          <div className="bug-section">
+            <h3 className="bug-section-header">Project</h3>
+            <div className="bug-section-content">
+              <SelectProject
+                value={bug.project}
+                onChange={(e) =>
+                  setDraftBug({ ...draftBug, project: e.target.value })
+                }
+              />
+            </div>
           </div>
-        </div>
-        {/* Modal Buttons */}
-        {changed && (
-          <div className="bugmodal-buttons">
+
+          <div className="bug-section">
+            <h5 className="bug-section-header">Due Date</h5>
+            <div className="bug-section-content">
+              <input
+                type="date"
+                value={draftBug.due}
+                onChange={(e) =>
+                  setDraftBug({ ...draftBug, due: e.target.value })
+                }
+              />
+            </div>
+          </div>
+
+          <div className="bug-section">
+            <h5 className="bug-section-header">Updates</h5>
+            <div className="bug-section-content">
+              <textarea
+                value={draftBug.updates}
+                className="bug-updates"
+                onChange={(e) =>
+                  setDraftBug({ ...draftBug, updates: e.target.value })
+                }
+              ></textarea>
+            </div>
+          </div>
+
+          <div className="bug-modal-footer">
             <button
-              onClick={(e) => {
-                setDraftBug({
-                  priority: bug.priority,
-                  updates: bug.updates,
-                  project: bug.project ? bug.project._id : "none",
-                  due: formattedDueDate,
-                  status: bug.status,
-                  completed: bug.completed,
-                });
-              }}
+              className="update-bug-btn"
+              onClick={onUpdateBugClicked}
+              disabled={isLoading}
             >
-              cancel
+              Update Bug
             </button>
-            <button onClick={onUpdateBugClicked}>
-              {isLoading ? "Updating" : "Update"}
+            <button>Cancel</button>
+            <button className="delete-bug-btn" onClick={onDeleteBugClicked}>
+              Delete Bug
             </button>
           </div>
-        )}
-      </div>
-      <div className="delete-button-container">
-        <button onClick={onDeleteBugClicked} className="delete-button">
-          Delete
-        </button>
+        </div>
       </div>
     </Modal>
   );
 };
-
 export default BugModal;
