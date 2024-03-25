@@ -4,16 +4,9 @@ import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/authSlice";
 import { useFetchBugsQuery } from "../../redux/apis/bugsApiSlice";
 import BugModalContainer from "../../components/BugModalContainer";
-// Temp
-import AddBugForm from "../../components/AddBugForm/AddBugForm";
-import { toast } from "react-toastify";
-import { useAddBugMutation } from "../../redux/apis/bugsApiSlice";
 
 const Home = () => {
   const user = useSelector(selectCurrentUser);
-
-  const [{ isSuccess: addBugSuccess, isError: addBugError }] =
-    useAddBugMutation();
 
   const { data: bugs, error, isLoading } = useFetchBugsQuery();
 
@@ -53,11 +46,7 @@ const Home = () => {
   return (
     <div className="homepg">
       <h1 className="welcome-msg">{welcome}</h1>
-      {addBugSuccess && toast.success("Bug Added!")}
-      <AddBugForm />
-      {error && (
-        <div className="error-msg">There was an error. Please try again.</div>
-      )}
+
       <div className={error ? "" : "hide"}>
         There was an error. Please try again
       </div>

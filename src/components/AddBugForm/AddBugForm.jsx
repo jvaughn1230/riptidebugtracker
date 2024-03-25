@@ -11,7 +11,7 @@ import useDateFormatter from "../../hooks/useDateFormatter";
 import { useAddBugMutation } from "../../redux/apis/bugsApiSlice";
 import { useFetchProjectsQuery } from "../../redux/apis/projectsApiSlice";
 
-const AddBugForm = () => {
+const AddBugForm = ({ closeModal }) => {
   const today = useTodayDate();
   const { formatForBackend } = useDateFormatter();
 
@@ -36,7 +36,7 @@ const AddBugForm = () => {
   const validationSchema = Yup.object({
     issue: Yup.string().required("Required"),
     recreate: Yup.string().required("Required"),
-    priority: Yup.string().required("Required"),
+    priority: Yup.number().required("Required"),
     due: Yup.date()
       .min(today, "Date Cannot Be Before Today")
       .required("Required"),
@@ -54,6 +54,7 @@ const AddBugForm = () => {
       addBug(values);
       toast.success("Bug Added!");
       onSubmitProps.resetForm();
+      closeModal();
     } catch {
       toast.failed("Failed to add Bug. Please try again");
     }
