@@ -8,7 +8,7 @@ const AddBug = ({ closeModal }) => {
     <Modal closeModal={closeModal}>
       <div className="addbug-container">
         <h2 className="addbug-header">Create Bug</h2>
-        <AddBugForm />
+        <AddBugForm closeModal={closeModal} />
       </div>
     </Modal>
   );
