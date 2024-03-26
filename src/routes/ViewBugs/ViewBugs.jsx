@@ -13,7 +13,7 @@ const ViewBugs = () => {
       <h1 className="viewbugs-title">View Bugs</h1>
       <div className="buglist">
         {data?.map((bug) => {
-          return <BugModalContainer key={bug.id} bug={bug} />;
+          return <BugModalContainer key={bug._id} bug={bug} />;
         })}
       </div>
     </div>

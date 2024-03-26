@@ -9,9 +9,8 @@ const BugModal = ({ closeModal, bug }) => {
     <Modal closeModal={closeModal}>
       <div className="bug-modal-body">
         <div className="bug-modal-header">
-          <h4 className="bugmodal-title">Bug Details</h4>
+          <h4 className="bug-modal-title">Bug Details</h4>
         </div>
-        <h5>Updadte Form</h5>
         <UpdateBugForm bug={bug} closeModal={closeModal} />
       </div>
     </Modal>

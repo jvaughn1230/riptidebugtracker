@@ -8,8 +8,6 @@ import { useFetchProjectsQuery } from "../../redux/apis/projectsApiSlice";
 const ManageProjects = () => {
   const { data, error, isLoading } = useFetchProjectsQuery();
 
-  console.log(data);
-
   return isLoading ? (
     <h1>Loading...</h1>
   ) : (

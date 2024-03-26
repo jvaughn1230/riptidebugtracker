@@ -28,9 +28,17 @@
   display: flex;
 }
 
+.flex-row {
+  display: flex;
+}
+
 .flex-col {
   display: flex;
   flex-direction: column;
+}
+
+.err-msg {
+  color: red;
 }
 
 * {
