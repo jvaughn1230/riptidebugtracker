@@ -4,10 +4,11 @@
   width: 10%;
   max-height: 100%;
   justify-self: end;
+  display: none;
 }
 
-.bugmodal-title {
-  font-size: var(--subheader-text);
+.bug-modal-title {
+  font-size: var(--header-text);
   font-family: var(--header-font);
   margin-block: 1em;
   font-weight: normal;

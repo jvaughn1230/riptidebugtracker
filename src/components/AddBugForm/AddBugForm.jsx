@@ -67,33 +67,39 @@ const AddBugForm = ({ closeModal }) => {
       onSubmit={handleSubmit}
     >
       {({ isSubmitting, isValid }) => (
-        <Form>
+        <Form className="add-bug-form">
           <div className="field-container">
             <label htmlFor="issue">Issue:</label>
-            <Field name="issue" id="issue" type="text" />
-            <ErrorMessage name="issue" component="div" />
+            <div>
+              <Field
+                name="issue"
+                id="issue"
+                type="text"
+                placeHolder="Short Description Of Issue"
+              />
+              <ErrorMessage
+                name="issue"
+                component="div"
+                className="err-msg add-bug-err"
+              />
+            </div>
           </div>
 
           <div className="field-container">
-            <label htmlFor="recreate">Steps to Recreate</label>
-            <Field name="recreate" id="recreate" type="text" />
-            <ErrorMessage name="recreate" component="div" />
-          </div>
-
-          <div className="field-container">
-            <label htmlFor="priority">Priority:</label>
-            <Field as="select" name="priority" id="priority" type="number">
-              <option value={3}>High</option>
-              <option value={2}>Regular</option>
-              <option value={1}>Low</option>
-            </Field>
-            <ErrorMessage name="priority" component="div" />
-          </div>
-
-          <div className="field-container">
-            <label htmlFor="due">Due:</label>
-            <Field name="due" id="due" type="date" />
-            <ErrorMessage name="due" component="div" />
+            <label htmlFor="recreate">Details:</label>
+            <div>
+              <Field
+                name="recreate"
+                id="recreate"
+                type="text"
+                placeHolder="Details and Steps to Recreate Bug"
+              />
+              <ErrorMessage
+                name="recreate"
+                component="div"
+                className="err-msg add-bug-err"
+              />
+            </div>
           </div>
 
           <div className="field-container">
@@ -117,8 +123,45 @@ const AddBugForm = ({ closeModal }) => {
               )}
             </Field>
           </div>
+          {/* Test */}
+          <div className="field-container">
+            <label htmlFor="priority">Priority:</label>
+            <div>
+              <Field
+                as="select"
+                name="priority"
+                id="priority"
+                type="number"
+                className="add-bug-form-small-input"
+              >
+                <option value={3}>High</option>
+                <option value={2}>Regular</option>
+                <option value={1}>Low</option>
+              </Field>
+              <ErrorMessage
+                name="priority"
+                component="div"
+                className="err-msg add-bug-err"
+              />
+            </div>
+          </div>
+          <div className="field-container">
+            <label htmlFor="due">Due:</label>
+            <div>
+              <Field name="due" id="due" type="date" classname="small-input" />
+              <ErrorMessage
+                name="due"
+                component="div"
+                className="err-msg add-bug-err"
+              />
+            </div>
+          </div>
 
-          <button type="submit" disabled={isSubmitting || !isValid}>
+          <button
+            type="submit"
+            className="add-bug-button"
+            disabled={isSubmitting || !isValid}
+          >
             {addBugLoading ? "Adding Bug" : "Add Bug"}
           </button>
         </Form>

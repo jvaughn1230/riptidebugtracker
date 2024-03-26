@@ -1,0 +1,14 @@
+.filter-container {
+  background-color: inherit;
+}
+
+.selected-tab {
+  background-color: var(--new-blue);
+}
+
+.tab {
+  padding: 14px 14px;
+  transition: 0.3s;
+  border-radius: 0;
+  margin-bottom: 0.5rem;
+}

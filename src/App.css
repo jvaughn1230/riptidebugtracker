@@ -7,10 +7,6 @@
   background-color: var(--cream-color);
 }
 
-.flex-row {
-  display: flex;
-}
-
 p {
   font-family: var(--content-font);
 }
@@ -18,14 +14,7 @@ p {
 input,
 textarea,
 select {
-  background-color: #eee;
-  border: 2px solid #ccc;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-  border-color: green;
+  background-color: #fff;
 }
 
 @media (max-width: 900px) {

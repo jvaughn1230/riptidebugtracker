@@ -1,0 +1,29 @@
+.bug-section h3 {
+  font-weight: 600;
+  margin-block: 0.25em;
+  font-size: var(--subheader-text);
+}
+
+.update-bug-form labal {
+  font-size: var(--modal-text);
+}
+
+.update-bug-form input,
+.update-bug-form select,
+.update-bug-form textarea {
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: 0.5rem;
+}
+
+.update-bug-form input:read-only {
+  background-color: #eee;
+}
+
+.update-bug-full-row {
+  display: block;
+}
+
+/* eee = read only */
+/* fff = changeable */

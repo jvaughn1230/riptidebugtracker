@@ -39,8 +39,6 @@ const UpdateBugForm = ({ bug, closeModal }) => {
     project: bug.project === null ? "" : bug.project._id,
   };
 
-  console.log("init", initialValues);
-
   const validationSchema = Yup.object({
     issue: Yup.string().required("Required"),
     status: Yup.number().required("Required"),
@@ -65,7 +63,6 @@ const UpdateBugForm = ({ bug, closeModal }) => {
       closeModal();
     } catch (err) {
       toast.error("Failed to Update. Please try again");
-      console.log(err);
     }
   };
 
@@ -79,9 +76,6 @@ const UpdateBugForm = ({ bug, closeModal }) => {
     }
   };
 
-  console.log(bug.project);
-  console.log("init project", initialValues.project);
-
   return (
     <Formik
       initialValues={initialValues}
@@ -89,13 +83,14 @@ const UpdateBugForm = ({ bug, closeModal }) => {
       onSubmit={handleSubmit}
     >
       {({ isSubmitting, isValid }) => (
-        <Form>
+        <Form className="update-bug-form">
           <div className="bug-modal-content">
-            <div className="bug-section">
-              <h3 className="bug-section-header">Basic Information</h3>
-              <div className="bug-section-content">
+            {/* Basic Info Section*/}
+            <div className="bug-modal-section-container">
+              <div className="bug-section">
+                <h3 className="bug-modal-section-header">Basic Information</h3>
                 <div className="bug-info">
-                  <div>
+                  <div className="update-bug-full-row">
                     <label htmlFor="issue">Issue:</label>
                     <Field name="issue" id="issue" type="text" readOnly />
                   </div>
@@ -144,9 +139,10 @@ const UpdateBugForm = ({ bug, closeModal }) => {
               </div>
             </div>
 
-            <div className="bug-section">
-              <h3 className="bug-section-header">Project</h3>
-              <div className="bug-section-content">
+            {/* Project Section */}
+            <div className="bug-section-container">
+              <div className="bug-section">
+                <h3 className="bug-section-header">Project</h3>
                 <label htmlFor="project">Project:</label>
                 <Field as="select" name="project" id="project">
                   <option value="" disabled selected>
@@ -169,9 +165,9 @@ const UpdateBugForm = ({ bug, closeModal }) => {
               </div>
             </div>
 
-            {/* Here Next */}
+            {/* Due Date & Urgency? */}
             <div className="bug-section">
-              <h5 className="bug-section-header">Due Date</h5>
+              <h3 className="bug-section-header">Due Date</h3>
               <div className="bug-section-content">
                 <label htmlFor="due">Due:</label>
                 <Field name="due" id="due" type="date" />
@@ -179,17 +175,16 @@ const UpdateBugForm = ({ bug, closeModal }) => {
               </div>
             </div>
 
-            {/* Next */}
+            {/* Updates Section */}
             <div className="bug-section">
-              <h5 className="bug-section-header">Updates</h5>
+              <h3 className="bug-section-header">Updates</h3>
               <div className="bug-section-content">
                 <label htmlFor="updates">Updates:</label>
                 <Field name="updates" id="updates" as="textarea" />
               </div>
             </div>
 
-            {/* Last */}
-            {/* Footer of Buttons */}
+            {/* Buttons */}
             <div>
               <button
                 type="submit"
