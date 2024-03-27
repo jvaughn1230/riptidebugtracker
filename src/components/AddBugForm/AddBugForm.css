@@ -12,7 +12,6 @@ label {
 .add-bug-form label {
   font-size: var(--modal-text);
   align-self: center;
-  width: 50%;
 }
 
 .add-bug-form input {
@@ -55,5 +54,11 @@ label {
   }
   .add-bug-button {
     font-size: 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .add-bug-form {
+    flex-direction: column;
   }
 }
