@@ -33,10 +33,10 @@
   margin-block: 0.25em;
 }
 
-.bug-info {
+/* .bug-info {
   display: grid;
   grid-template-columns: auto auto auto;
-}
+} */
 
 .bug-info p:first-child {
   grid-column-start: 1;
