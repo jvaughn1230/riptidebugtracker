@@ -36,7 +36,7 @@ const BugsFilter = () => {
           High Priority
         </button>
       </div>
-      {filteredBugsList()}
+      <div className="filtered-bugs-container">{filteredBugsList()}</div>
     </div>
   );
 };

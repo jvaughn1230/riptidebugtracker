@@ -18,7 +18,6 @@ const useTodayDate = () => {
     return () => clearTimeout(timeout);
   }, []);
 
-  console.log(todayDate);
   return todayDate.toISOString().split("T")[0];
 };
 

@@ -28,6 +28,7 @@ const UpdateBugForm = ({ bug, closeModal }) => {
   } = useFetchProjectsQuery();
 
   // Init Values
+
   const initialValues = {
     id: bug._id,
     issue: bug.issue,
@@ -38,7 +39,7 @@ const UpdateBugForm = ({ bug, closeModal }) => {
     due: formatForForm(bug.due),
     updates: bug.updates,
     priority: bug.priority,
-    project: bug.project === null ? "" : bug.project._id,
+    project: !bug.project ? "" : bug.project._id,
   };
 
   // Validation Schema
@@ -98,12 +99,12 @@ const UpdateBugForm = ({ bug, closeModal }) => {
                 <Field name="issue" id="issue" type="text" readOnly />
               </div>
               <div>
-                <label htmlFor="details">Details: </label>
+                <label htmlFor="recreate">Details: </label>
                 <Field name="recreate" id="recreate" type="text" readOnly />
               </div>
 
               <div className="bug-info-section-dates">
-                <label name="createdAt">Created:</label>
+                <label htmlFor="createdAt">Created:</label>
                 <Field name="createdAt" id="createdAt" type="text" readOnly />
                 <br className="mobile-break" />
                 <label htmlFor="updatedAt">Last Update:</label>
@@ -116,7 +117,7 @@ const UpdateBugForm = ({ bug, closeModal }) => {
               <h3>Project</h3>
               <label htmlFor="project">Project:</label>
               <Field as="select" name="project" id="project">
-                <option value="" disabled selected>
+                <option value="" disabled>
                   Select Project
                 </option>
                 {projectsError ? (

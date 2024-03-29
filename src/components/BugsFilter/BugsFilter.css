@@ -12,3 +12,9 @@
   padding: 14px 14px;
   transition: 0.3s;
 }
+
+.filtered-bugs-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}

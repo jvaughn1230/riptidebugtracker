@@ -12,25 +12,26 @@ const DueBugsList = () => {
     const due = new Date(dueDate);
 
     const formattedToday = new Intl.DateTimeFormat("en-US").format(today);
+
     const formattedDue = new Intl.DateTimeFormat("en-US").format(due);
 
     return formattedDue === formattedToday;
   };
 
   useEffect(() => {
-    if (bugs) bugs?.filter((bug) => isDueToday(bug.due));
+    if (bugs) setDueBugs(bugs?.filter((bug) => isDueToday(bug.due)));
   }, [bugs]);
 
   return (
-    <div>
+    <>
       {error && <h3>Failed to Load Bugs. Please try again</h3>}
       {dueBugs?.length === 0 && <h3>No Bugs Due Today!</h3>}
       {isLoading ? (
         <h3>Loading . . . </h3>
       ) : (
-        dueBugs?.map((bug) => <BugModalContainer bug={bug} key={bug.id} />)
+        dueBugs?.map((bug) => <BugModalContainer bug={bug} key={bug._id} />)
       )}
-    </div>
+    </>
   );
 };
 
