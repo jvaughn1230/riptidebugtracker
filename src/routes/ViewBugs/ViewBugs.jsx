@@ -9,9 +9,9 @@ const ViewBugs = () => {
   return isLoading ? (
     <h1>Loading...</h1>
   ) : (
-    <div className="viewbugs">
-      <h1 className="viewbugs-title">View Bugs</h1>
-      <div className="buglist">
+    <div className="view-bugs">
+      <h1 className="view-bugs-title">View Bugs</h1>
+      <div className="bug-list">
         {data?.map((bug) => {
           return <BugModalContainer key={bug._id} bug={bug} />;
         })}

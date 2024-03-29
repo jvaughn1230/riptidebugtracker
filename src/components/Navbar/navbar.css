@@ -1,17 +1,17 @@
 .navbar {
+  align-items: center;
   background-color: var(--new-blue);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
   height: 100%;
+  justify-content: space-between;
   min-height: 100vh;
-  width: 13vw;
-  padding-left: 1.5em;
   padding-block: 2.5em;
+  padding-left: 1.5em;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  width: 13vw;
   z-index: 2;
 }
 
@@ -22,12 +22,12 @@
 }
 
 .desktop-links-container {
+  color: #f6f1f1;
   display: flex;
   flex-direction: column;
-  height: 30vh;
   font-family: var(--body-font);
   font-size: var(--link-text);
-  color: #f6f1f1;
+  height: 30vh;
   justify-content: space-around;
   margin-top: -10rem;
 }
@@ -48,10 +48,10 @@
 @media (max-width: 900px) {
   .navbar {
     flex-direction: row;
-    padding-inline: 1rem;
-    width: 100%;
     height: 20vh;
     min-height: 20vh;
+    padding-inline: 1rem;
+    width: 100%;
   }
 
   .mobile-menu-container {
@@ -64,39 +64,37 @@
 
   .hamburger {
     height: auto;
-    width: 10vw;
     min-width: 70px;
+    width: 10vw;
   }
 
   .openMobileMenu {
+    color: black;
     display: block;
     height: 100vh;
-    width: 100vw;
-    color: black;
-    position: fixed;
     left: 0;
+    position: fixed;
     top: 0;
+    width: 100vw;
   }
 
   .mobilenav__exit {
-    position: absolute;
-    top: 2.5%;
-    right: 2.5%;
     height: auto;
+    position: absolute;
+    right: 2.5%;
+    top: 2.5%;
     width: 15vw;
-    /* top: 5vh;
-    right: 5vw; */
   }
 
   .mobile-nav-container {
     align-items: center;
+    background-color: var(--new-blue);
     display: flex;
     flex-direction: column;
     height: 100vh;
     justify-content: space-around;
-    width: 100vw;
-    background-color: var(--new-blue);
     padding-block: 10vh;
+    width: 100vw;
   }
 
   .mobilenav__button {

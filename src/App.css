@@ -3,8 +3,8 @@
 }
 
 .layout {
-  display: flex;
   background-color: var(--cream-color);
+  display: flex;
 }
 
 p {

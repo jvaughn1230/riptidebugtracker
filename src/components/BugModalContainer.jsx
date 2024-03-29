@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import BugModal from "./bugModal/BugModal";
+import BugModal from "./BugModal/BugModal";
 import BugCard from "./BugCard/BugCard";
 
 const BugModalContainer = ({ bug }) => {

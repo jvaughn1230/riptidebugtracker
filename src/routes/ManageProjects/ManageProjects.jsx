@@ -11,9 +11,9 @@ const ManageProjects = () => {
   return isLoading ? (
     <h1>Loading...</h1>
   ) : (
-    <div className="manageprojects">
+    <div className="manage-projects">
       {error ? <div>There was an error, please try again</div> : null}
-      <h1 className="manageprojects-title">Manage Projects</h1>
+      <h1 className="manage-projects-title">Manage Projects</h1>
       <div className="projects-container">
         {data?.map((project, index) => {
           return <ProjectCard key={index} project={project} />;

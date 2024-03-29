@@ -1,49 +1,49 @@
-.addproject-form {
+.add-project-form {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.addproject-header {
-  font-size: var(--subheader-text);
-  color: black;
+.add-project-header {
   align-self: center;
+  color: black;
+  font-size: var(--subheader-text);
 }
 
-.addproject-form label {
+.add-project-form label {
   color: black;
   font-size: var(--modal-text);
 }
 
-.addproject-form input {
+.add-project-form input {
   width: 70%;
 }
 
-.addproject-form-row {
-  width: 75%;
+.add-project-form-row {
   align-self: center;
   display: flex;
   justify-content: space-between;
   margin-block: 0.5em;
   padding-inline: 10%;
+  width: 75%;
 }
 
-.addproject-button {
-  width: 35%;
+.add-project-button {
   align-self: center;
   margin-top: 1.5em;
+  width: 35%;
 }
 
 @media (max-width: 900px) {
-  .addproject-header {
+  .add-project-header {
     font-size: 32px;
   }
 
-  .addproject-form label {
+  .add-project-form label {
     font-size: 24px;
   }
 
-  .addproject-form button {
+  .add-project-form button {
     font-size: 24px;
   }
 }

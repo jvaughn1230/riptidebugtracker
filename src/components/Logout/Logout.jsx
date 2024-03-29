@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLogoutMutation } from "../../redux/authApiSlice";
 
-import "./logout.css";
+import "./Logout.css";
 
 const Logout = ({ className }) => {
   const navigate = useNavigate();

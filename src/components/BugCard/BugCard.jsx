@@ -1,5 +1,5 @@
 import React from "react";
-import "./bugcard.css";
+import "./Bugcard.css";
 import plankton from "../../assets/plankton.png";
 import useDateFormatter from "../../hooks/useDateFormatter";
 

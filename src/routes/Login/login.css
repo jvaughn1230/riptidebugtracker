@@ -1,48 +1,48 @@
 .login {
+  align-items: center;
+  background: url(../../assets/smallwave.jpg);
+  background-blend-mode: multiply;
   background-color: var(--primary-color);
+  background-color: var(--background-color);
+  background-size: cover;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  background: url(../../assets/smallwave.jpg);
-  background-size: cover;
-  background-color: var(--background-color);
-  background-blend-mode: multiply;
 }
 
 .login-container {
   background-color: var(--primary-color);
-  width: 50vw;
   padding: 5em;
   text-align: center;
+  width: 50vw;
 }
 
 .login-form {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .login-form input {
-  width: 70%;
+  border: none;
+  border-radius: 5px;
+  font-family: var(--content-font);
+  font-size: 16px;
   height: 40px;
   margin-bottom: 10px;
-  border-radius: 5px;
   padding: 5px;
-  border: none;
-  font-size: 16px;
-  font-family: var(--content-font);
+  width: 70%;
 }
 
 .login-form button {
-  width: 30%;
-  font-size: var(--body-text);
   font-family: var(--content-font);
+  font-size: var(--body-text);
+  width: 30%;
 }
 
 .login-form button:hover {
-  transition: all 0.3s;
   opacity: 0.7;
+  transition: all 0.3s;
 }
 
 .login-header {
