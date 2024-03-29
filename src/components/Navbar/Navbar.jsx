@@ -4,9 +4,9 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import logo from "../../assets/riptide-white.png";
 import AddBug from "../AddBug/AddBug";
-import AddProject from "../addProject/AddProject";
+import AddProject from "../AddProject/AddProject";
 import Logout from "../Logout/Logout";
-import "./navbar.css";
+import "./Navbar.css";
 
 const Navbar = () => {
   const [isBugModalOpen, setIsBugModalOpen] = useState(false);

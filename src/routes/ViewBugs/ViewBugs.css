@@ -1,24 +1,24 @@
-.viewbugs {
-  width: 100%;
+.view-bugs {
   min-height: 100vh;
+  width: 100%;
 }
 
-.buglist {
+.bug-list {
   display: flex;
-  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 1.3021vw;
+  justify-content: flex-start;
   margin-inline: 1.3021vw;
 }
 
-.viewbugs-title {
-  text-align: center;
+.view-bugs-title {
   font-family: var(--header-font);
   font-size: var(--header-text);
+  text-align: center;
 }
 
 @media (max-width: 1200px) {
-  .buglist {
+  .bug-list {
     justify-content: center;
   }
 }

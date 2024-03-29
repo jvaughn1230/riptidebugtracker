@@ -18,7 +18,7 @@
   --body-text: 1.0417vw;
   --card-text: clamp(14px, 1.3672vw, 24px);
 
-  /* Add Fonts Later */
+  /* Fonts */
   --content-font: "Gabarito", sans-serif;
   --header-font: "Hammersmith One", sans-serif;
 }
@@ -39,6 +39,10 @@
 
 .err-msg {
   color: red;
+}
+
+.hide {
+  display: none;
 }
 
 * {
@@ -65,15 +69,10 @@ a {
   font-weight: 500;
 }
 
-.hide {
-  display: none;
-}
-
 button {
   background-color: var(--orange-color);
   border-radius: 5px;
   padding: 0.3125rem 1.25rem;
-  /* padding: 5px 20px; */
   font-size: var(--link-text);
   text-align: center;
   margin-bottom: 10px;

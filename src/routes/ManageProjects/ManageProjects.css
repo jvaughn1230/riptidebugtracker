@@ -1,17 +1,17 @@
-.manageprojects {
-  width: 100%;
+.manage-projects {
   min-height: 100vh;
+  width: 100%;
 }
 
-.manageprojects-title {
-  text-align: center;
+.manage-projects-title {
   font-family: var(--header-font);
   font-size: var(--header-text);
+  text-align: center;
 }
 
 .projects-container {
-  margin-inline: 1.3021vw;
-  gap: 1.3021vw;
   display: flex;
   flex-wrap: wrap;
+  gap: 1.3021vw;
+  margin-inline: 1.3021vw;
 }

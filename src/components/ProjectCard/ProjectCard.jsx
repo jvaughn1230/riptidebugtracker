@@ -67,27 +67,27 @@ const ProjectCard = ({ project }) => {
   };
 
   return (
-    <div className="projectcard">
-      <div className="projectcard__container">
-        <h5 className="projectcard__header">Project:</h5>
+    <div className="project-card">
+      <div className="project-card-container">
+        <h5 className="project-card-header">Project:</h5>
         <input
-          className="projectcard__body"
+          className="project-card-body"
           type="text"
           name="name"
           value={updateName}
           onChange={handleNameChange}
         />
       </div>
-      <div className="projectcard__container">
-        <h5 className="projectcard__header">Description: </h5>
+      <div className="project-card-container">
+        <h5 className="project-card-header">Description: </h5>
         <input
-          className="projectcard__body"
+          className="project-card-body"
           name="description"
           value={updateDescription}
           onChange={handleDescriptionChange}
         />
       </div>
-      <div className="projectcard__buttons">
+      <div className="project-card-buttons">
         <button
           disabled={!changed || isLoading}
           type="submit"
@@ -97,10 +97,10 @@ const ProjectCard = ({ project }) => {
         </button>
         <button onClick={() => setReqDelete(true)}>Delete</button>
       </div>
-      <div className={`${reqDelete ? "reqDelete__container" : "hide"}`}>
-        <div className="reqDelete__body">
-          <p className="reqDelete__header">Delete Project? </p>
-          <div className="reqDelete__btns">
+      <div className={`${reqDelete ? "reqDelete-container" : "hide"}`}>
+        <div className="reqDelete-body">
+          <p className="reqDelete-header">Delete Project? </p>
+          <div className="reqDelete-btns">
             <button onClick={onDeleteProjectClicked}>Confirm</button>
             <button onClick={() => setReqDelete(false)}>Cancel</button>
           </div>

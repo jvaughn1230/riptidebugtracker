@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import "./addProject.css";
+import "./AddProject.css";
 import { useAddProjectMutation } from "../../redux/apis/projectsApiSlice";
-import Modal from "../modal/Modal";
+import Modal from "../Modal/Modal";
 import { toast } from "react-toastify";
 import useErrorHandling from "../../hooks/useErrorHandling";
 
@@ -52,10 +52,10 @@ const AddProject = ({ closeModal }) => {
     <h1>Loading ...</h1>
   ) : (
     <Modal closeModal={closeModal}>
-      <form className="addproject-form">
-        <h2 className="addproject-header">Add New Project</h2>
+      <form className="add-project-form">
+        <h2 className="add-project-header">Add New Project</h2>
         {errMsg ? <div className="errmsg">{errMsg}</div> : null}
-        <div className="addproject-form-row">
+        <div className="add-project-form-row">
           <label>Name:</label>
           <input
             type="text"
@@ -67,7 +67,7 @@ const AddProject = ({ closeModal }) => {
           />
         </div>
 
-        <div className="addproject-form-row">
+        <div className="add-project-form-row">
           <label>Description:</label>
           <input
             type="text"
@@ -77,7 +77,7 @@ const AddProject = ({ closeModal }) => {
           />
         </div>
 
-        <button onClick={handleSubmit} className="addproject-button">
+        <button onClick={handleSubmit} className="add-project-button">
           Add
         </button>
       </form>

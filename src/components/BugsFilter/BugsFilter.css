@@ -7,8 +7,8 @@
 }
 
 .tab {
-  padding: 14px 14px;
-  transition: 0.3s;
   border-radius: 0;
   margin-bottom: 0.5rem;
+  padding: 14px 14px;
+  transition: 0.3s;
 }

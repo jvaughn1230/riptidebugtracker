@@ -1,6 +1,6 @@
 import React from "react";
-import "./bugModal.css";
-import Modal from "../modal/Modal";
+import "./BugModal.css";
+import Modal from "../Modal/Modal";
 
 import UpdateBugForm from "../UpdateBugForm/UpdateBugForm";
 

@@ -15,7 +15,6 @@ import {
 } from "../../redux/apis/bugsApiSlice";
 
 const UpdateBugForm = ({ bug, closeModal }) => {
-  console.log(bug);
   const [updateBug, { isLoading: updateLoading }] = useUpdateBugMutation();
   const [deleteBug, { isLoading: deleteLoading }] = useDeleteBugMutation();
 
@@ -28,6 +27,7 @@ const UpdateBugForm = ({ bug, closeModal }) => {
     isloading: projectsLoading,
   } = useFetchProjectsQuery();
 
+  // Init Values
   const initialValues = {
     id: bug._id,
     issue: bug.issue,
@@ -41,6 +41,7 @@ const UpdateBugForm = ({ bug, closeModal }) => {
     project: bug.project === null ? "" : bug.project._id,
   };
 
+  // Validation Schema
   const validationSchema = Yup.object({
     issue: Yup.string().required("Required"),
     recreate: Yup.string().required("Required"),
@@ -53,6 +54,7 @@ const UpdateBugForm = ({ bug, closeModal }) => {
     due: Yup.date().required("Required"),
   });
 
+  // Handle Submit
   const handleSubmit = async (values) => {
     if (values.project === "") {
       values.project = null;
@@ -163,7 +165,6 @@ const UpdateBugForm = ({ bug, closeModal }) => {
 
             {/* Updates Section */}
             <div className="bug-section bug-updates-section">
-              {/* <h3 className="bug-section-header">Updates</h3> */}
               <label htmlFor="updates" className="bug-section-header">
                 <h3>Updates</h3>
               </label>

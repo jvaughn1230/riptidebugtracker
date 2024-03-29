@@ -1,50 +1,25 @@
 .bugcard {
   background-color: var(--card-color);
-  /* box-shadow: 2px 2px 2px var(--primary-color); */
-  text-align: center;
-  margin: 10px;
-  /* max-width: calc(25% - 20px); */
-  /* flex: 0 0 22%; */
-  width: 22vw;
-  padding-inline: 2em;
   border-radius: 0.5em;
+  margin: 10px;
+  padding-inline: 2em;
   position: relative;
-  /* z-index: 2; */
-  /* Below works but no rounded */
-  /* border: 10px solid;
-  border-image-slice: 1;
-  border-width: 5px;
-  border-image-source: linear-gradient(
-    180deg,
-    var(--orange-color),
-    var(--dark-blue)
-  ); */
+  text-align: center;
+  width: 22vw;
 }
 
 .bugcard-bg {
-  display: flex;
-  justify-content: center;
   align-items: center;
-
-  width: 23vw;
   background: linear-gradient(180deg, var(--orange-color), var(--dark-blue));
   border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  width: 23vw;
 }
 
-/* .bucard::before,
-.bugcard::after {
-  content: "";
-  position: absolute;
-  inset: -0.5rem;
-
-  z-index: -1;
-  border-radius: inherit;
-  background: linear-gradient(180deg, var(--orange-color), var(--dark-blue));
-} */
-
 .bugcard-title {
-  font-size: var(--header-text);
   font-family: var(--header-font);
+  font-size: var(--header-text);
 }
 
 .bugcard h3 {
@@ -60,19 +35,19 @@
 }
 
 .card-plankton {
-  width: 40%;
-  max-height: 100%;
   margin-top: 10%;
+  max-height: 100%;
+  width: 40%;
 }
 
 .card-row {
-  display: flex;
   align-items: baseline;
+  display: flex;
 }
 
 .card-row p {
-  margin-left: 0.5em;
   font-size: 24px;
+  margin-left: 0.5em;
 }
 
 @media (max-width: 1200px) {

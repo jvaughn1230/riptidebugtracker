@@ -1,45 +1,21 @@
-.homepg {
-  width: 100%;
+.home-page {
   display: flex;
   flex-direction: column;
-  /* margin-left: 2rem; */
   margin-inline: 1.3021vw;
+  width: 100%;
 }
 
 .welcome-msg {
   align-self: center;
 }
 
-.home__row {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 1.3021vw;
-  margin-inline: 1.3021vw;
-}
-
 @media (max-width: 800px) {
-  .homepg {
+  .home-page {
+    margin-inline: 0;
     margin-top: 20px;
-    margin-inline: 0;
-  }
-
-  .home__row {
-    justify-content: center;
-    margin-inline: 0;
   }
 
   .welcome-msg {
     font-size: 48px;
-  }
-
-  .home__subtitle {
-    font-size: 32px;
-    /* border: 2px solid red; */
-    width: 30%;
-    text-align: center;
-    padding-bottom: 0.5em;
-    border-bottom: 3px solid var(--orange-color);
-    margin: 0 auto;
   }
 }

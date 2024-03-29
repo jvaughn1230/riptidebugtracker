@@ -1,57 +1,57 @@
 .modal-bg {
-  position: fixed;
-  z-index: 9999;
   backdrop-filter: (12px);
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
   background-color: var(--background-color);
   display: flex;
+  height: 100vh;
   justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 9999;
 }
 
 .modal-container {
   background-color: var(--primary-color);
-  width: 60%;
   border-radius: 0.25rem;
-  margin-top: 2em;
-  margin-bottom: 2em;
-  padding: 1em;
   display: flex;
   flex-direction: column;
+  margin-bottom: 2em;
+  margin-top: 2em;
   overflow: scroll;
+  padding: 1em;
+  width: 60%;
 }
 
 .modal-top {
-  width: 100%;
-  padding-top: 3vh;
-  position: relative;
   display: flex;
   justify-content: center;
+  padding-top: 3vh;
+  position: relative;
+  width: 100%;
 }
 
 .close-modal {
   align-self: flex-start;
+  color: var(--orange-color);
+  height: auto;
   position: absolute;
   right: 5px;
   top: 0px;
-  height: auto;
   width: 50px;
-  color: var(--orange-color);
 }
 
 .modal-plankton {
-  width: 15%;
   max-height: 100%;
+  width: 15%;
 }
 
 @media (max-width: 900px) {
   .modal-container {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    width: 100vw;
     height: 100vh;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    width: 100vw;
   }
 
   .modal-plankton {

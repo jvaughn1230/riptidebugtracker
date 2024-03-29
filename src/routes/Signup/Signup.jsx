@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "../../redux/authApiSlice";
-import "./signup.css";
+import "./Signup.css";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../redux/authSlice";
 

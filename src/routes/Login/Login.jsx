@@ -5,7 +5,7 @@ import { setCredentials } from "../../redux/authSlice";
 import { useLoginMutation } from "../../redux/authApiSlice";
 import usePersist from "../../hooks/usePersist";
 
-import "./login.css";
+import "./Login.css";
 
 const Login = () => {
   const emailRef = useRef();

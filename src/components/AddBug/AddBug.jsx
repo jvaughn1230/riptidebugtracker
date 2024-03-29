@@ -1,6 +1,6 @@
 import React from "react";
 import "./AddBug.css";
-import Modal from "../modal/Modal";
+import Modal from "../Modal/Modal";
 
 import AddBugForm from "../AddBugForm/AddBugForm";
 const AddBug = ({ closeModal }) => {
