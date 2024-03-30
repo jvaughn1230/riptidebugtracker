@@ -75,7 +75,7 @@ const AddBugForm = ({ closeModal }) => {
                 name="issue"
                 id="issue"
                 type="text"
-                placeHolder="Short Description Of Issue"
+                placeholder="Short Description Of Issue"
               />
               <ErrorMessage
                 name="issue"
@@ -92,7 +92,7 @@ const AddBugForm = ({ closeModal }) => {
                 name="recreate"
                 id="recreate"
                 type="text"
-                placeHolder="Details and Steps to Recreate Bug"
+                placeholder="Details and Steps to Recreate Bug"
               />
               <ErrorMessage
                 name="recreate"
@@ -105,7 +105,7 @@ const AddBugForm = ({ closeModal }) => {
           <div className="field-container">
             <label htmlFor="project">Project:</label>
             <Field as="select" name="project" id="project" type="number">
-              <option value="" selected disabled>
+              <option value="" disabled>
                 Select Project
               </option>
               {projectsError ? (
@@ -148,7 +148,7 @@ const AddBugForm = ({ closeModal }) => {
           <div className="field-container">
             <label htmlFor="due">Due:</label>
             <div>
-              <Field name="due" id="due" type="date" classname="small-input" />
+              <Field name="due" id="due" type="date" className="small-input" />
               <ErrorMessage
                 name="due"
                 component="div"

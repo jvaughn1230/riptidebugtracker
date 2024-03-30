@@ -22,7 +22,7 @@ const PastDueBugsList = () => {
   }, [bugs]);
 
   return (
-    <div>
+    <>
       {error && <h3>Failed to Load Bugs. Please try again</h3>}
       {pastDueBugs?.length === 0 && <h3>No Past Due Bugs</h3>}
       {isLoading ? (
@@ -30,7 +30,7 @@ const PastDueBugsList = () => {
       ) : (
         pastDueBugs?.map((bug) => <BugModalContainer bug={bug} key={bug._id} />)
       )}
-    </div>
+    </>
   );
 };
 

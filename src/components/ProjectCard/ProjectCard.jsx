@@ -69,8 +69,11 @@ const ProjectCard = ({ project }) => {
   return (
     <div className="project-card">
       <div className="project-card-container">
-        <h5 className="project-card-header">Project:</h5>
+        <label className="project-card-header" htmlFor="project">
+          Project:
+        </label>
         <input
+          id="project"
           className="project-card-body"
           type="text"
           name="name"
@@ -79,8 +82,11 @@ const ProjectCard = ({ project }) => {
         />
       </div>
       <div className="project-card-container">
-        <h5 className="project-card-header">Description: </h5>
+        <label className="project-card-header" htmlFor="description">
+          Description:{" "}
+        </label>
         <input
+          id="description"
           className="project-card-body"
           name="description"
           value={updateDescription}

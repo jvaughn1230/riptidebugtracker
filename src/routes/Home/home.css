@@ -6,7 +6,9 @@
 }
 
 .welcome-msg {
-  align-self: center;
+  font-family: var(--header-font);
+  font-size: var(--header-text);
+  text-align: center;
 }
 
 @media (max-width: 800px) {
