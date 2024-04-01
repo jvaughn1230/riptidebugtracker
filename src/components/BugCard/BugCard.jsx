@@ -33,8 +33,9 @@ const BugCard = ({ bug, openModal }) => {
           <p>{getFormattedDueDate}</p>
         </div>
         <div className="card-row">
-          <h3>Status: </h3>
-          <p>{statusMap[bug.status]}</p>
+          <h3>Project: </h3>
+          <p>{bug.project ? bug.project.name : "Not Assigned"}</p>
+          {/* <p>{statusMap[bug.status]}</p> */}
         </div>
 
         <button onClick={openModal} className="bugcard__button">
