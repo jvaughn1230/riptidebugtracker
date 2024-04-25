@@ -5,6 +5,8 @@ import { setCredentials } from "../../redux/authSlice";
 import { useLoginMutation } from "../../redux/authApiSlice";
 import usePersist from "../../hooks/usePersist";
 
+import OceanBackground from "../../components/OceanBackground/OceanBackground";
+
 import "./Login.css";
 
 const Login = () => {
@@ -62,7 +64,8 @@ const Login = () => {
   return isLoading ? (
     <h1>Loading ...</h1>
   ) : (
-    <section className="login page-container">
+    // <section className="login page-container">
+    <OceanBackground>
       <div className="login-container">
         <p ref={errRef} className={errMsg ? "errmsg" : "hide"}>
           {errMsg}
@@ -106,7 +109,8 @@ const Login = () => {
           Dont have an account? Signup <Link to="/signup">here</Link>
         </p>
       </div>
-    </section>
+    </OceanBackground>
+    // </section>
   );
 };
 

@@ -8,6 +8,7 @@
   --new-blue: #1e89a5;
   --dark-blue: #205085;
   --water-color: #0184bd;
+  --transparent-bg: rgba(229, 218, 211, 0.3);
 
   /* Font Sizes */
   --link-text: clamp(12px, 1.1719vw, 22px);

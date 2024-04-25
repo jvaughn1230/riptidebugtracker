@@ -5,6 +5,8 @@ import "./Signup.css";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../redux/authSlice";
 
+import OceanBackground from "../../components/OceanBackground/OceanBackground";
+
 const Signup = () => {
   const [input, setInput] = useState({
     name: "",
@@ -72,7 +74,7 @@ const Signup = () => {
   return isLoading ? (
     <h1>Loading ...</h1>
   ) : (
-    <div className="signup-page">
+    <OceanBackground>
       <div className="signup-container">
         <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
           {errMsg}
@@ -127,7 +129,7 @@ const Signup = () => {
           Already have an account? Login <Link to="/">here</Link>
         </p>
       </div>
-    </div>
+    </OceanBackground>
   );
 };
 
