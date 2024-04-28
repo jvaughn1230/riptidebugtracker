@@ -2,7 +2,6 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 import { setCredentials, logOut } from "./authSlice";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://riptide-bugtracker-api.onrender.com",
   // baseUrl: "http://localhost:3500",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
