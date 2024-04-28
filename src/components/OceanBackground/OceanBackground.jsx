@@ -4,7 +4,6 @@ import FOG from "vanta/dist/vanta.fog.min";
 import "./OceanBackground.css";
 
 const OceanBackground = ({ children }) => {
-  console.log(FOG);
   const [vantaEffect, setVantaEffect] = useState(null);
   const myRef = useRef(null);
   useEffect(() => {
