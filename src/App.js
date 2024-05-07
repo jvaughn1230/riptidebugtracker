@@ -19,7 +19,6 @@ function App() {
   return (
     <div className="app">
       <ToastContainer autoClose={5000} />
-
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
