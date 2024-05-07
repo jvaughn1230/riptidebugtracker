@@ -10,7 +10,7 @@ export const authApi = apiSlice.injectEndpoints({
         mode: "cors",
         body: credentials,
         // Added This
-        credentials: "include",
+        // credentials: "include",
       }),
     }),
     register: builder.mutation({

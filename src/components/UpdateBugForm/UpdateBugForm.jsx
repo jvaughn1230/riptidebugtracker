@@ -6,7 +6,11 @@ import { toast } from "react-toastify";
 
 import * as Yup from "yup";
 
-import useDateFormatter from "../../hooks/useDateFormatter";
+import {
+  formatForDisplay,
+  formatForForm,
+  formatForBackend,
+} from "../../utils/dateFormatter";
 
 import { useFetchProjectsQuery } from "../../redux/apis/projectsApiSlice";
 import {
@@ -17,9 +21,6 @@ import {
 const UpdateBugForm = ({ bug, closeModal }) => {
   const [updateBug, { isLoading: updateLoading }] = useUpdateBugMutation();
   const [deleteBug, { isLoading: deleteLoading }] = useDeleteBugMutation();
-
-  const { formatForDisplay, formatForForm, formatForBackend } =
-    useDateFormatter();
 
   const {
     data: projects,

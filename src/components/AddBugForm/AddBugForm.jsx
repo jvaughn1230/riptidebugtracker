@@ -6,14 +6,13 @@ import * as Yup from "yup";
 import "./AddBugForm.css";
 
 import useTodayDate from "../../hooks/useTodayDate";
-import useDateFormatter from "../../hooks/useDateFormatter";
+import { formatForBackend } from "../../utils/dateFormatter";
 
 import { useAddBugMutation } from "../../redux/apis/bugsApiSlice";
 import { useFetchProjectsQuery } from "../../redux/apis/projectsApiSlice";
 
 const AddBugForm = ({ closeModal }) => {
   const today = useTodayDate();
-  const { formatForBackend } = useDateFormatter();
 
   const [addBug, { isLoading: addBugLoading }] = useAddBugMutation();
 

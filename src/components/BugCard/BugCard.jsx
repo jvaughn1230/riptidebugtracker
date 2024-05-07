@@ -1,21 +1,13 @@
 import React from "react";
 import "./Bugcard.css";
 import plankton from "../../assets/plankton.png";
-import useDateFormatter from "../../hooks/useDateFormatter";
+import { formatForDisplay } from "../../utils/dateFormatter";
 
 const BugCard = ({ bug, openModal }) => {
-  const { formatForDisplay } = useDateFormatter();
-
   const priorityMap = {
     1: "Low",
     2: "Regular",
     3: "High",
-  };
-
-  const statusMap = {
-    1: "Open",
-    2: "In Progress",
-    3: "Complete",
   };
 
   const getFormattedDueDate = bug.due ? formatForDisplay(bug.due) : "";
@@ -35,7 +27,6 @@ const BugCard = ({ bug, openModal }) => {
         <div className="card-row">
           <h3>Project: </h3>
           <p>{bug.project ? bug.project.name : "Not Assigned"}</p>
-          {/* <p>{statusMap[bug.status]}</p> */}
         </div>
 
         <button onClick={openModal} className="bugcard__button">
