@@ -8,6 +8,11 @@
   width: 22vw;
 }
 
+.bugcard-container {
+  display: grid;
+  grid-template-columns: 1fr 0.1fr; /* First column takes up remaining space, second column takes up 10% */
+}
+
 .bugcard-bg {
   align-items: center;
   background: linear-gradient(180deg, var(--orange-color), var(--dark-blue));

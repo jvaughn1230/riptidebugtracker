@@ -1,17 +1,17 @@
-export const formatForBackend = (date) => {
-  const inputTime = new Date(date);
-  const timeZoneOffsetMninutes = inputTime.getTimezoneOffset();
-  return new Date(inputTime.getTime() + timeZoneOffsetMninutes * 60000);
+import moment from "moment";
 
-  // return Date.toString();
+export const formatForBackend = (date) => {
+  const inputMoment = moment(date);
+  const utcMoment = inputMoment.utc();
+  return utcMoment.toDate();
 };
 
 export const formatForDisplay = (dateString) => {
-  const date = new Date(dateString);
-  return new Intl.DateTimeFormat("en-US").format(date);
+  const momentDate = moment(dateString);
+  return momentDate.format("MMMM DD, YYYY"); // Adjust the format as needed
 };
 
 export const formatForForm = (dateString) => {
-  const date = new Date(dateString).toISOString().split("T")[0];
-  return date;
+  const momentDate = moment(dateString);
+  return momentDate.format("YYYY-MM-DD");
 };

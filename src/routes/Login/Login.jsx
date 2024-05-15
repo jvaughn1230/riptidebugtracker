@@ -6,7 +6,7 @@ import LoginForm from "../../components/AuthForm/LoginForm";
 
 const Login = () => {
   return (
-    <OceanBackground>
+    <OceanBackground size="full">
       <AuthContainer type="login">
         <LoginForm />
       </AuthContainer>

@@ -6,6 +6,7 @@ import logo from "../../assets/riptide-white.png";
 import AddBug from "../AddBug/AddBug";
 import AddProject from "../AddProject/AddProject";
 import Logout from "../Logout/Logout";
+
 import "./Navbar.css";
 
 const Navbar = () => {

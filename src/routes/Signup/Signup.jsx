@@ -11,7 +11,7 @@ const Signup = () => {
   return isLoading ? (
     <h1>Loading ...</h1>
   ) : (
-    <OceanBackground>
+    <OceanBackground size="full">
       <AuthContainer type="signup">
         <SignupForm />
       </AuthContainer>

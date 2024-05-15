@@ -1,0 +1,59 @@
+/* Change Task opacity */
+/* Issue, Details, Deadline,  */
+/* Buttont o see side panel */
+/* buttont to delete or change  */
+/* 12 and 10px */
+/* 25px for recent headlines */
+
+.outer {
+  background: linear-gradient(180deg, var(--orange-color), var(--dark-blue));
+  height: 250px;
+  width: 350px;
+  /* width: 25%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5em2;
+}
+
+.layer2 {
+  height: 95%;
+  width: 95%;
+  display: flex;
+  align-items: center;
+  border-radius: inherit;
+}
+
+.test-content-card {
+  height: 100%;
+  width: 85%;
+  background-color: var(--card-color);
+  border-radius: 0.5em 0 0 0.5em;
+  padding: 0.5rem;
+}
+
+.side-container {
+  height: 100%;
+  width: 15%;
+  border-radius: 0 0.5em 0.5em 0;
+  background-color: gray;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.content-container {
+  border: 1px solid black;
+}
+
+.large-text-test {
+  font-size: 18px;
+}
+.small-text-test {
+  font-size: 14px;
+}
+
+.fade {
+  opacity: 0.5;
+  font-weight: 600;
+}
