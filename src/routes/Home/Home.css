@@ -8,7 +8,14 @@
 .welcome-msg {
   font-family: var(--header-font);
   font-size: var(--header-text);
-  text-align: center;
+  /* text-align: center; */
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 25%;
+  width: 40vw;
 }
 
 @media (max-width: 800px) {

@@ -3,7 +3,7 @@ import FOG from "vanta/dist/vanta.fog.min";
 
 import "./OceanBackground.css";
 
-const OceanBackground = ({ children }) => {
+const OceanBackground = ({ children, size }) => {
   const [vantaEffect, setVantaEffect] = useState(null);
   const myRef = useRef(null);
   useEffect(() => {
@@ -14,8 +14,8 @@ const OceanBackground = ({ children }) => {
           mouseControls: true,
           touchControls: true,
           gyroControls: false,
-          minHeight: 200.0,
-          minWidth: 200.0,
+          minHeight: 20.0,
+          minWidth: 20.0,
           highlightColor: "#082139",
           midtoneColor: "#1005ce",
           lowlightColor: "#d6dede",
@@ -30,7 +30,10 @@ const OceanBackground = ({ children }) => {
     };
   }, [vantaEffect]);
   return (
-    <div ref={myRef} className="ocean-background">
+    <div
+      ref={myRef}
+      className={`${size === "full" ? "ocean-background" : "ocean-sidebar"}`}
+    >
       {children}
     </div>
   );

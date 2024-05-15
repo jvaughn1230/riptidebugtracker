@@ -1,9 +1,18 @@
 .ocean-background {
-  /* position: absolute; */
   height: 100vh;
   width: 100vw;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.ocean-sidebar {
+  /* border-radius: 0 0.5em 0.5em 0; */
+  width: 100%;
+  height: 100%;
+}
+
+.ocean-sidebar canvas {
+  height: inherit;
 }

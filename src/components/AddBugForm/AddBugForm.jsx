@@ -3,16 +3,16 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { toast } from "react-toastify";
 
 import * as Yup from "yup";
+import moment from "moment";
 import "./AddBugForm.css";
 
-import useTodayDate from "../../hooks/useTodayDate";
 import { formatForBackend } from "../../utils/dateFormatter";
 
 import { useAddBugMutation } from "../../redux/apis/bugsApiSlice";
 import { useFetchProjectsQuery } from "../../redux/apis/projectsApiSlice";
 
 const AddBugForm = ({ closeModal }) => {
-  const today = useTodayDate();
+  const today = moment().format("YYYY-MM-DD");
 
   const [addBug, { isLoading: addBugLoading }] = useAddBugMutation();
 
@@ -21,6 +21,8 @@ const AddBugForm = ({ closeModal }) => {
     isError: projectsError,
     isloading: projectsLoading,
   } = useFetchProjectsQuery();
+
+  console.log("today");
 
   // Inital Values
   const initialValues = {
