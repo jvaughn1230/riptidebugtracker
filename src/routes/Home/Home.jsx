@@ -2,13 +2,11 @@ import React from "react";
 import "./Home.css";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/authSlice";
-import BugsFilter from "../../components/BugsFilter/BugsFilter";
-import { useFetchBugsQuery } from "../../redux/apis/bugsApiSlice";
-import NewBugCard from "../../components/newBugCard";
+import RecentBugs from "../../components/RecentBugs";
+import UpComingBugs from "../../components/UpComingBugs";
 
 import StatsCard from "../../components/Stats/StatsCard";
 const Home = () => {
-  const { data: bugs, error, isLoading } = useFetchBugsQuery();
   const user = useSelector(selectCurrentUser);
 
   const welcome = user ? `Welcome ${user.name}!` : "Welcome!";
@@ -23,32 +21,12 @@ const Home = () => {
           <StatsCard />
         </div>
       </div>
-
-      <h3>UpComing Deadline</h3>
-      <div
-        style={{
-          display: "flex",
-          gap: "32px",
-          border: "2px solid red",
-          flexWrap: "wrap",
-        }}
-      >
-        <NewBugCard />
-        <NewBugCard />
-        <NewBugCard />
-        <NewBugCard />
-        <NewBugCard />
+      <h3>Due Next:</h3>
+      <div className="bugcards-container">
+        <UpComingBugs />
       </div>
-
-      <h3>Recently Added</h3>
-      <div>
-        <NewBugCard />
-        <NewBugCard />
-        <NewBugCard />
-        <NewBugCard />
-      </div>
-
-      {/* <BugsFilter /> */}
+      <h3>Updated Recent Bugs Route</h3>
+      <RecentBugs />
     </div>
   );
 };

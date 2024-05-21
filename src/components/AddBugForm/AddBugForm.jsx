@@ -22,8 +22,6 @@ const AddBugForm = ({ closeModal }) => {
     isloading: projectsLoading,
   } = useFetchProjectsQuery();
 
-  console.log("today");
-
   // Inital Values
   const initialValues = {
     issue: "",
