@@ -1,5 +1,24 @@
 .color-bar {
-  width: 100%;
-  overflow: hidden;
-  background-color: blue;
+  position: absolute;
+  width: 120%;
+  background-color: #3f68c5;
+
+  --mask: radial-gradient(11.18px at 50% 15px, #000 99%, #0000 101%)
+      calc(50% - 10px) 0/20px 100%,
+    radial-gradient(11.18px at 50% -10px, #0000 99%, #000 101%) 50% 5px/20px
+      100% repeat-x;
+  -webkit-mask: var(--mask);
+  mask: var(--mask);
+
+  animation: moveLeftRight 1s linear infinite alternate;
+}
+
+@keyframes moveLeftRight {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-10%);
+  }
 }

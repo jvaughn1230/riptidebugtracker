@@ -13,9 +13,9 @@ export const bugApi = apiSlice.injectEndpoints({
     }),
 
     // Fetch Bugs
-    fetchBugs: builder.query({
-      query: () => ({
-        url: "/bugs",
+    fetchBugsWithPagination: builder.query({
+      query: (pageNumber) => ({
+        url: `/bugs?page=${pageNumber}`,
         method: "GET",
       }),
       providesTags: ["Bug"],
@@ -25,6 +25,38 @@ export const bugApi = apiSlice.injectEndpoints({
     fetchBug: builder.query({
       query: (id) => ({
         url: `/bugs/${id}`,
+        method: "GET",
+      }),
+      providesTags: (result, error, arg) => {
+        if (error || !result || result.totalPage <= arg.pageParam + 1) {
+          return ["Bug"];
+        }
+        return [];
+      },
+    }),
+
+    //fetch recent bugs
+    fetchRecentBugs: builder.query({
+      query: () => ({
+        url: "/bugs/recent",
+        method: "GET",
+      }),
+      providesTags: ["RecentBugs"],
+    }),
+
+    //fetch upcoming bugs
+    fetchUpcomingBugs: builder.query({
+      query: () => ({
+        url: "/bugs/upcoming",
+        method: "GET",
+      }),
+      providesTags: ["UpcomingBugs"],
+    }),
+
+    // Fetch Bugs By project
+    fetchBugsByProject: builder.query({
+      query: (projectId) => ({
+        url: `/bugs/project/$(projectId)`,
         method: "GET",
       }),
     }),
@@ -54,7 +86,10 @@ export const bugApi = apiSlice.injectEndpoints({
 });
 
 export const {
-  useFetchBugsQuery,
+  useFetchBugsWithPaginationQuery,
+  useFetchRecentBugsQuery,
+  useFetchUpcomingBugsQuery,
+  useFetcBugsByProjectQuery,
   useGetBugQuery,
   useUpdateBugMutation,
   useAddBugMutation,

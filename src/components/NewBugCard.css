@@ -13,7 +13,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 0.5em2;
+  border-radius: 0.5em;
 }
 
 .layer2 {
@@ -39,6 +39,7 @@
   background-color: gray;
   display: flex;
   align-items: flex-end;
+  position: relative;
   overflow: hidden;
 }
 
