@@ -8,3 +8,10 @@
   flex-wrap: wrap;
   width: 30%;
 }
+
+@media (max-width: 800px) {
+  .stat-card {
+    width: 25%;
+    padding: 1em;
+  }
+}

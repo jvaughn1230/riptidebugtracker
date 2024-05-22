@@ -56,9 +56,10 @@ export const bugApi = apiSlice.injectEndpoints({
     // Fetch Bugs By project
     fetchBugsByProject: builder.query({
       query: (projectId) => ({
-        url: `/bugs/project/$(projectId)`,
+        url: `/bugs/project/${projectId}`,
         method: "GET",
       }),
+      providesTags: ["ProjectBugs"],
     }),
 
     // Update Bug
@@ -80,7 +81,7 @@ export const bugApi = apiSlice.injectEndpoints({
         method: "DELETE",
         body: { id },
       }),
-      invalidatesTags: ["Bug"],
+      invalidatesTags: ["Bug", "RecentBug", "UpcomingBugs", "ProjectBugs"],
     }),
   }),
 });
@@ -89,7 +90,7 @@ export const {
   useFetchBugsWithPaginationQuery,
   useFetchRecentBugsQuery,
   useFetchUpcomingBugsQuery,
-  useFetcBugsByProjectQuery,
+  useFetchBugsByProjectQuery,
   useGetBugQuery,
   useUpdateBugMutation,
   useAddBugMutation,

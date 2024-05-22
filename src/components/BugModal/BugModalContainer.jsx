@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import BugModal from "./BugModal/BugModal";
-import BugCard from "./BugCard/BugCard";
+import BugModal from "./BugModal";
+import BugCard from "../BugCard/BugCard";
 
 const BugModalContainer = ({ bug }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

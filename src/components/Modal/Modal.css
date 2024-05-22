@@ -23,6 +23,10 @@
   width: 60%;
 }
 
+.modal-noscroll {
+  overflow: hidden;
+}
+
 .modal-top {
   display: flex;
   justify-content: center;

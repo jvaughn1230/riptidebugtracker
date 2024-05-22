@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import NewBugCard from "./newBugCard";
-import { useFetchBugsWithPaginationQuery } from "../redux/apis/bugsApiSlice";
+import BugModalContainer from "../BugModal/BugModalContainer";
+import { useFetchBugsWithPaginationQuery } from "../../redux/apis/bugsApiSlice";
 
 const BugList = () => {
   const [page, setPage] = useState(1);
@@ -13,6 +13,10 @@ const BugList = () => {
     if (data) {
       setBugs((prevBugs) => [...prevBugs, ...data.bugs]);
     }
+    return () => {
+      setBugs([]);
+      setPage(1);
+    };
   }, [data]);
 
   const handleLoadMore = () => {
@@ -32,10 +36,18 @@ const BugList = () => {
       ) : (
         <div className="bugcards-container">
           {bugs?.map((bug) => (
-            <NewBugCard key={bug._id} bug={bug} />
+            <BugModalContainer key={bug._id} bug={bug} />
           ))}
-          <button onClick={handleLoadMore} disabled={isButtonDisabled}>
-            {isFetching ? "Loading..." : "Load More"}
+          <button
+            className="load-more-button"
+            onClick={handleLoadMore}
+            disabled={isButtonDisabled}
+          >
+            {isFetching
+              ? "Loading..."
+              : isButtonDisabled
+              ? "No More Bugs To Load"
+              : "Load More"}
           </button>
         </div>
       )}

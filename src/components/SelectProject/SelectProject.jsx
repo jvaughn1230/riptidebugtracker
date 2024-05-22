@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFetchProjectsQuery } from "../../redux/apis/projectsApiSlice";
 
-const SelectProject = ({ value, handleChange }) => {
-  const {
-    data,
-    error: projectsError,
-    isLoading: projectsLoading,
-  } = useFetchProjectsQuery();
+const SelectProject = ({ onProjectSelect }) => {
+  const { data, error, isLoading } = useFetchProjectsQuery();
+
+  const [selectedProject, setSelectedProject] = useState("");
+
+  const handleChange = (e) => {
+    const projectId = e.target.value;
+    setSelectedProject(projectId);
+    onProjectSelect(projectId);
+  };
 
   return (
-    <select name="project" value={value} onChange={handleChange}>
+    <select name="project" value={selectedProject} onChange={handleChange}>
       <option value="none">Select Project</option>
-      {projectsError ? (
+      {error ? (
         <div>Failed to Load Projects</div>
-      ) : projectsLoading ? (
+      ) : isLoading ? (
         <option disabled>Loading . . .</option>
       ) : (
         data?.map((project, index) => {

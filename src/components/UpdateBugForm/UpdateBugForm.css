@@ -44,6 +44,14 @@
   width: 80%;
 }
 
+.bug-details-section {
+  display: flex;
+}
+
+.bug-details-section textarea {
+  height: 75px;
+}
+
 .update-bug-form-buttons button {
   margin-right: 1.5rem;
 }

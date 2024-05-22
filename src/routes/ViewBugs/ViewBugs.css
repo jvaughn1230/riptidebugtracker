@@ -3,6 +3,18 @@
   width: 100%;
 }
 
+.view-bugs-header {
+  align-items: center;
+  margin-left: 1.3021vw;
+}
+
+.project-filter-container select {
+  max-height: 25px;
+  border-radius: 5px;
+  align-self: center;
+  margin-left: 0.5rem;
+}
+
 .bug-list {
   display: flex;
   flex-wrap: wrap;
@@ -14,10 +26,23 @@
 .view-bugs-title {
   font-family: var(--header-font);
   font-size: var(--header-text);
-  text-align: center;
+  margin-bottom: 0;
 }
 
-@media (max-width: 1200px) {
+.load-more-button {
+  width: 100%;
+  opacity: 0.5;
+}
+
+@media (max-width: 900px) {
+  .view-bugs-title {
+    text-align: center;
+  }
+
+  .project-filter-container {
+    justify-content: center;
+  }
+
   .bug-list {
     justify-content: center;
   }
