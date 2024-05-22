@@ -74,7 +74,7 @@ const AddBugForm = ({ closeModal }) => {
                 name="issue"
                 id="issue"
                 type="text"
-                placeholder="Short Description Of Issue"
+                placeholder="Short Title of Issue"
               />
               <ErrorMessage
                 name="issue"
@@ -91,7 +91,7 @@ const AddBugForm = ({ closeModal }) => {
                 name="recreate"
                 id="recreate"
                 type="text"
-                placeholder="Details and Steps to Recreate Bug"
+                placeholder="Details of Issue and Steps to Recreate"
               />
               <ErrorMessage
                 name="recreate"

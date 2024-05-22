@@ -1,14 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ViewBugs.css";
-// import BugModalContainer from "../../components/BugModalContainer";
-import BugList from "../../components/BugList";
+import BugList from "../../components/BugLists/BugList";
+import BugListByProject from "../../components/BugLists/BugListByProject";
+
+import { useFetchProjectsQuery } from "../../redux/apis/projectsApiSlice";
 
 const ViewBugs = () => {
+  const { data, error, isLoading } = useFetchProjectsQuery();
+  const [selectedProject, setSelectedProject] = useState("");
+
+  const handleChange = (e) => {
+    const projectId = e.target.value;
+    setSelectedProject(projectId);
+  };
+
   return (
-    <div className="view-bugs">
-      <h1 className="view-bugs-title">View Bugs</h1>
+    <div className="view-bugs page">
+      <div className="view-bugs-header">
+        <h1 className="view-bugs-title">Open Bugs</h1>
+        <div className="flex project-filter-container">
+          <p>Filter By Project:</p>
+          {/* Project Filter */}
+          <select
+            name="project"
+            value={selectedProject}
+            onChange={handleChange}
+          >
+            <option value="none">Select Project</option>
+            {error ? (
+              <div>Failed to Load Projects</div>
+            ) : isLoading ? (
+              <option disabled>Loading . . .</option>
+            ) : (
+              data?.map((project, index) => {
+                return (
+                  <option key={index} value={project._id}>
+                    {project.name}
+                  </option>
+                );
+              })
+            )}
+          </select>
+        </div>
+      </div>
+
       <div className="bug-list">
-        <BugList />
+        {!selectedProject || selectedProject === "none" ? (
+          <BugList />
+        ) : (
+          <BugListByProject project={selectedProject} />
+        )}
       </div>
     </div>
   );

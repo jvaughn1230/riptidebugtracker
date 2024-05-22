@@ -9,7 +9,7 @@ const ManageProjects = () => {
   return isLoading ? (
     <h1>Loading...</h1>
   ) : (
-    <div className="manage-projects">
+    <div className="manage-projects page">
       {error ? <div>There was an error, please try again</div> : null}
       <h1 className="manage-projects-title">Manage Projects</h1>
       <div className="projects-container">

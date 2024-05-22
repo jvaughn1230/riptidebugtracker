@@ -75,9 +75,15 @@ const UpdateBugForm = ({ bug, closeModal }) => {
 
   //   Handle Delete
   const handleDelete = async () => {
+    const confirmed = window.confirm(
+      "Are you sure? This action cannot be undone."
+    );
+    if (!confirmed) return;
+
     try {
       await deleteBug({ id: bug._id });
       toast.success("Deleted Bug!");
+      closeModal();
     } catch (err) {
       toast.error("Failed To Delete Bug. Please Try Again!");
     }
@@ -89,7 +95,7 @@ const UpdateBugForm = ({ bug, closeModal }) => {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {({ isSubmitting, isValid }) => (
+      {({ isSubmitting, isValid, dirty }) => (
         <Form className="update-bug-form">
           <div className="bug-modal-content">
             {/* Basic Info Section*/}
@@ -99,9 +105,15 @@ const UpdateBugForm = ({ bug, closeModal }) => {
                 <label htmlFor="issue">Issue:</label>
                 <Field name="issue" id="issue" type="text" readOnly />
               </div>
-              <div>
+              <div className="bug-details-section">
                 <label htmlFor="recreate">Details: </label>
-                <Field name="recreate" id="recreate" type="text" readOnly />
+                <Field
+                  name="recreate"
+                  id="recreate"
+                  type="text"
+                  as="textarea"
+                  readOnly
+                />
               </div>
 
               <div className="bug-info-section-dates">
@@ -180,7 +192,7 @@ const UpdateBugForm = ({ bug, closeModal }) => {
               <button
                 type="submit"
                 className="update-bug-btn"
-                disabled={updateLoading}
+                disabled={updateLoading || !dirty}
               >
                 Update
               </button>

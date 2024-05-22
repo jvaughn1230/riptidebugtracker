@@ -7,6 +7,10 @@
   display: flex;
 }
 
+.page {
+  padding-bottom: 1.5rem;
+}
+
 p {
   font-family: var(--content-font);
 }

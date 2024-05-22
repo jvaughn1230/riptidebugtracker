@@ -92,3 +92,8 @@ button:hover {
   transition: all 0.3s;
   opacity: 0.8;
 }
+@media (max-width: 900px) {
+  .bugcards-container {
+    justify-content: center;
+  }
+}

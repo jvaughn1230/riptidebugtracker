@@ -1,94 +1,73 @@
-.bugcard {
-  background-color: var(--card-color);
-  border-radius: 0.5em;
-  margin: 10px;
-  padding-inline: 2em;
-  position: relative;
-  text-align: center;
-  width: 22vw;
-}
-
-.bugcard-container {
-  display: grid;
-  grid-template-columns: 1fr 0.1fr; /* First column takes up remaining space, second column takes up 10% */
-}
-
-.bugcard-bg {
-  align-items: center;
+.bug-card {
   background: linear-gradient(180deg, var(--orange-color), var(--dark-blue));
-  border-radius: 0.5em;
+  height: 250px;
+  width: 350px;
   display: flex;
   justify-content: center;
-  width: 23vw;
+  align-items: center;
+  border-radius: 0.5em;
 }
 
-.bugcard-title {
-  font-family: var(--header-font);
-  font-size: var(--header-text);
-}
-
-.bugcard h3 {
-  font-size: var(--card-text);
-}
-
-.bugcard p {
-  font-size: var(--card-text);
-}
-
-.bugcard__button {
-  margin-bottom: 1em;
-}
-
-.card-plankton {
-  margin-top: 10%;
-  max-height: 100%;
-  width: 40%;
-}
-
-.card-row {
-  align-items: baseline;
+.bug-card-container {
+  height: 95%;
+  width: 95%;
   display: flex;
+  align-items: center;
+  border-radius: inherit;
+  position: relative;
 }
 
-.card-row p {
-  font-size: 24px;
-  margin-left: 0.5em;
+.bug-card-content {
+  height: 100%;
+  width: 85%;
+  background-color: var(--card-color);
+  border-radius: 0.5em 0 0 0.5em;
+  padding: 0.5rem;
 }
 
-@media (max-width: 1200px) {
-  .bugcard {
-    width: 30vw;
-  }
-
-  .bugcard-bg {
-    width: 31vw;
-  }
+.side-container {
+  height: 100%;
+  width: 15%;
+  border-radius: 0 0.5em 0.5em 0;
+  background-color: gray;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  overflow: hidden;
 }
 
-@media (max-width: 900px) {
-  .bugcard {
-    width: 40vw;
-  }
-
-  .bugcard-bg {
-    width: 41vw;
-  }
-
-  .bugcard h3 {
-    font-size: 24px;
-  }
-
-  .bugcard__button {
-    font-size: 24px;
-  }
+.content-container {
+  border: 1px solid black;
 }
 
-@media (max-width: 600px) {
-  .bugcard {
-    width: 80vw;
-  }
+.large-text {
+  font-size: 20px;
+}
 
-  .bugcard-bg {
-    width: 81vw;
-  }
+.small-text {
+  font-size: 14px;
+}
+
+.bugcard-due-container {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+}
+
+.due-date {
+  margin-left: 0.5rem;
+}
+
+.fade {
+  opacity: 0.5;
+}
+
+.test-content-card p {
+  margin-top: 0;
+}
+
+.newbugcard__button {
+  position: absolute;
+  right: 18%;
+  bottom: 0;
 }
