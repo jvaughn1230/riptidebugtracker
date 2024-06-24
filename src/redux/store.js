@@ -8,5 +8,5 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(authApi.middleware),
   // Switch to false when hosted
-  devTools: true,
+  devTools: false,
 });
