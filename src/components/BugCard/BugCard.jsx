@@ -1,5 +1,5 @@
 import React from "react";
-import "./BugCard.css";
+import "./Bugcard.css";
 import SidePanel from "../SidePanel/SidePanel";
 import moment from "moment/moment";
 
