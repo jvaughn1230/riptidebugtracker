@@ -91,7 +91,7 @@ const SignupForm = () => {
           />
 
           <AuthButton type="submit" disabled={isSubmitting || !isValid}>
-            {isSubmitting ? "Submitting..." : "Login"}
+            {isSubmitting ? "Submitting..." : "Register"}
           </AuthButton>
         </Form>
       )}
